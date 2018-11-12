@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/source/_posts/webpack/5.md" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -105,12 +104,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="5.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="5.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/webpack/5.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="514">
-                <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
                 <folding>
                   <marker date="1541993159943" expanded="true" signature="1023:1070" ph="..." />
                   <marker date="1541993159943" expanded="true" signature="1106:1139" ph="..." />
@@ -123,6 +122,26 @@
                 </folding>
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JavaScript中的this.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="643">
+              <caret line="103" column="3" lean-forward="true" selection-start-line="103" selection-start-column="3" selection-end-line="103" selection-end-column="3" />
+              <folding>
+                <marker date="1542021331564" expanded="true" signature="471:527" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="838:905" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="870:902" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="1022:1088" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="1053:1085" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="1322:1356" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="1368:1406" ph="{&quot;b&quot;: fun...}" />
+                <marker date="1542021331564" expanded="true" signature="1964:2278" ph="{...}" />
+                <marker date="1542021331564" expanded="true" signature="2421:2435" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,6 +195,10 @@
         <option value="$PROJECT_DIR$/source/_posts/webpack/4.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/source/_posts/webpack/5.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/this.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/this-js.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/this指向.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md" />
       </list>
     </option>
   </component>
@@ -241,6 +264,13 @@
               <item name="hexo" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hexo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
               <item name="webpack" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -260,12 +290,13 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\git\local\hexo\themes\next\source\uploads" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\git\local\hexo\source\_posts\webpack" />
       <recent name="D:\git\local\hexo\themes\next\source\404" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\git\local\hexo\source\_posts\javascript" />
+      <recent name="D:\git\local\hexo\themes\next\source\uploads" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -299,12 +330,12 @@
       <workItem from="1541726382713" duration="10200000" />
       <workItem from="1541815095052" duration="6858000" />
       <workItem from="1541915243577" duration="5858000" />
-      <workItem from="1541986514559" duration="6133000" />
+      <workItem from="1541986514559" duration="9721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78964000" />
+    <option name="totallyTimeSpent" value="82552000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -319,14 +350,14 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15437302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14541623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28078818" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19804135" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14363438" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14581066" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -598,8 +629,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/5.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="514">
-            <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
             <folding>
               <marker date="1541993159943" expanded="true" signature="1023:1070" ph="..." />
               <marker date="1541993159943" expanded="true" signature="1106:1139" ph="..." />
@@ -612,6 +643,24 @@
             </folding>
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="643">
+          <caret line="103" column="3" lean-forward="true" selection-start-line="103" selection-start-column="3" selection-end-line="103" selection-end-column="3" />
+          <folding>
+            <marker date="1542021331564" expanded="true" signature="471:527" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="838:905" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="870:902" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="1022:1088" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="1053:1085" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="1322:1356" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="1368:1406" ph="{&quot;b&quot;: fun...}" />
+            <marker date="1542021331564" expanded="true" signature="1964:2278" ph="{...}" />
+            <marker date="1542021331564" expanded="true" signature="2421:2435" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
