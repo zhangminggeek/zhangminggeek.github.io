@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/source/_posts/webpack/6.md" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change afterPath="$PROJECT_DIR$/source/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_macro/post.swig" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_macro/post.swig" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,120 +68,111 @@
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.vcs.git.usages" />
     </session>
+    <session id="-1683260209">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="1" />
+          <entry key="ico" value="7" />
+          <entry key="json" value="1" />
+          <entry key="svg" value="1" />
+          <entry key="swig" value="4" />
+          <entry key="yml" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="1" />
+          <entry key="Image" value="7" />
+          <entry key="JSON" value="1" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="SVG" value="1" />
+          <entry key="YAML" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="swig" value="19" />
+          <entry key="yml" value="98" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="YAML" value="98" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="markdown.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="461">
-                <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="117" selection-end-column="10" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="4.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/webpack/4.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
-                <folding>
-                  <marker date="1541986506037" expanded="true" signature="383:530" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="405:528" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="465:520" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="1389:1761" ph="{&quot;entry&quot;: './path/to/my/entry/file.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="1440:1531" ph="{&quot;filename&quot;: 'my-first-webpack.bundle.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="1543:1640" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="1556:1636" ph="[...]" />
-                  <marker date="1541986506037" expanded="true" signature="1564:1630" ph="{&quot;use&quot;: 'babel-loader'...}" />
-                  <marker date="1541986506037" expanded="true" signature="1653:1759" ph="[...]" />
-                  <marker date="1541986506037" expanded="true" signature="2090:2106" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="2594:2730" ph="{&quot;mode&quot;: 'development'...}" />
-                  <marker date="1541986506037" expanded="true" signature="2650:2728" ph="{&quot;filename&quot;: 'foo.bundle.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="3081:3371" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="3222:3286" ph="[...]" />
-                  <marker date="1541986506037" expanded="true" signature="3487:3645" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="3531:3642" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="3554:3631" ph="{...}" />
-                  <marker date="1541986506037" expanded="true" signature="3570:3624" ph="{&quot;entry&quot;: './app.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="3607:3616" ph="/*...*/" />
-                  <marker date="1541986506037" expanded="true" signature="3842:4094" ph="[...]" />
-                  <marker date="1541986506037" expanded="true" signature="3843:3962" ph="{&quot;entry&quot;: './app.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="3855:3916" ph="{&quot;filename&quot;: './dist-amd.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="3964:4093" ph="{&quot;entry&quot;: './app.js'...}" />
-                  <marker date="1541986506037" expanded="true" signature="3976:4047" ph="{&quot;filename&quot;: './dist-commonjs.js'...}" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="5.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/webpack/5.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="17">
-                <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-                <folding>
-                  <marker date="1541993159943" expanded="true" signature="1023:1070" ph="..." />
-                  <marker date="1541993159943" expanded="true" signature="1106:1139" ph="..." />
-                  <marker date="1541993159943" expanded="true" signature="1333:1368" ph="..." />
-                  <marker date="1541993159943" expanded="true" signature="2715:2803" ph="{...}" />
-                  <marker date="1541993159943" expanded="true" signature="3248:3351" ph="{...}" />
-                  <marker date="1541993159943" expanded="true" signature="3670:3701" ph="{...}" />
-                  <marker date="1541993159943" expanded="true" signature="3918:3930" ph="{...}" />
-                  <marker date="1541993159943" expanded="true" signature="4074:4115" ph="{...}" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JavaScript中的this.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-              <folding>
-                <marker date="1542021331564" expanded="true" signature="471:527" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="838:905" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="870:902" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="1022:1088" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="1053:1085" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="1322:1356" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="1368:1406" ph="{&quot;b&quot;: fun...}" />
-                <marker date="1542021331564" expanded="true" signature="1964:2278" ph="{...}" />
-                <marker date="1542021331564" expanded="true" signature="2421:2435" ph="{...}" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="207" column="19" selection-start-line="207" selection-start-column="19" selection-end-line="207" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="6.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/webpack/6.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="600">
-                <caret line="122" column="0" lean-forward="true" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-                <folding>
-                  <marker date="1542114231273" expanded="true" signature="860:880" ph="{&quot;target&quot;: 'node'...}" />
-                  <marker date="1542114231273" expanded="true" signature="1735:1764" ph="{...}" />
-                  <marker date="1542114231273" expanded="true" signature="1852:2011" ph="{...}" />
-                  <marker date="1542114231273" expanded="true" signature="1878:2009" ph="{...}" />
-                  <marker date="1542114231273" expanded="true" signature="2167:2281" ph="{&quot;target&quot;: 'node'...}" />
-                  <marker date="1542114231273" expanded="true" signature="2197:2273" ph="{&quot;filename&quot;: 'lib.node.js'...}" />
-                  <marker date="1542114231273" expanded="true" signature="2303:2433" ph="{&quot;target&quot;: 'web'...}" />
-                  <marker date="1542114231273" expanded="true" signature="2354:2425" ph="{&quot;filename&quot;: 'lib.js'...}" />
-                </folding>
-              </first_editor>
-              <second_editor />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/next/layout/_macro/post.swig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="215" column="53" lean-forward="true" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/next/layout/_custom/header.swig">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/next/layout/_partials/head/external-fonts.swig">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/favicon.ico">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/next/layout/_partials/head/custom-head.swig">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/favicon.ico">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/landscape/_config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -202,25 +198,28 @@
       <find>rel=&quot;tag&quot;&gt;#</find>
       <find>highlight_theme</find>
       <find>posts</find>
+      <find>icon</find>
+      <find>url</find>
+      <find>root</find>
+      <find>post_wordcount</find>
+      <find>npm i --save hexo-wordcount</find>
+      <find>post-wordcount</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/next" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/source/_posts/test.md" />
-        <option value="$PROJECT_DIR$/_config.yml" />
         <option value="$PROJECT_DIR$/source/tags/index.md" />
         <option value="$PROJECT_DIR$/source/categories/index.md" />
         <option value="$PROJECT_DIR$/themes/next/source/404.html" />
         <option value="$PROJECT_DIR$/themes/next/layout/_layout.swig" />
         <option value="$PROJECT_DIR$/source/_data/next.yml" />
-        <option value="$PROJECT_DIR$/themes/next/layout/_macro/post.swig" />
         <option value="$PROJECT_DIR$/.gitmodules" />
-        <option value="$PROJECT_DIR$/themes/next/_config.yml" />
         <option value="$PROJECT_DIR$/themes/next/source/css/_custom/custom.styl" />
         <option value="$PROJECT_DIR$/source/_drafts/2.md" />
         <option value="$PROJECT_DIR$/source/_posts/markdown.md" />
@@ -235,6 +234,9 @@
         <option value="$PROJECT_DIR$/source/_posts/javascript/this指向.md" />
         <option value="$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md" />
         <option value="$PROJECT_DIR$/source/_posts/webpack/6.md" />
+        <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/themes/next/_config.yml" />
+        <option value="$PROJECT_DIR$/themes/next/layout/_macro/post.swig" />
       </list>
     </option>
   </component>
@@ -254,71 +256,80 @@
       <path value="$PROJECT_DIR$/themes/next/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="hexo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo" type="462c0819:PsiDirectoryNode" />
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="hexo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="hexo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hexo" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="next" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="next" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="themes" type="462c0819:PsiDirectoryNode" />
+              <item name="next" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+              <item name="_macro" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\git\local\hexo\source\_posts\webpack" />
-      <recent name="D:\git\local\hexo\themes\next\source\404" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source" />
+      <recent name="$PROJECT_DIR$/themes/next/source" />
+      <recent name="$PROJECT_DIR$/source/images" />
       <recent name="D:\git\local\hexo\source\_posts\javascript" />
       <recent name="D:\git\local\hexo\themes\next\source\uploads" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/themes/next/source/images" />
+      <recent name="$PROJECT_DIR$/themes/next/source" />
+      <recent name="$PROJECT_DIR$/themes/source/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -332,9 +343,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -353,11 +361,12 @@
       <workItem from="1541815095052" duration="6858000" />
       <workItem from="1541915243577" duration="5858000" />
       <workItem from="1541986514559" duration="12339000" />
+      <workItem from="1542439090572" duration="5697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85170000" />
+    <option name="totallyTimeSpent" value="90867000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -369,26 +378,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14541623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28078818" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19804135" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14581066" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14517266" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32961586" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32961586" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.28004956" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.19702603" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17967781" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,59 +432,18 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/webpack/4.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding>
-              <marker date="1541986506037" expanded="true" signature="383:530" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="405:528" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="465:520" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="1389:1761" ph="{&quot;entry&quot;: './path/to/my/entry/file.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="1440:1531" ph="{&quot;filename&quot;: 'my-first-webpack.bundle.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="1543:1640" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="1556:1636" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="1564:1630" ph="{&quot;use&quot;: 'babel-loader'...}" />
-              <marker date="1541986506037" expanded="true" signature="1653:1759" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="2090:2106" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="2594:2730" ph="{&quot;mode&quot;: 'development'...}" />
-              <marker date="1541986506037" expanded="true" signature="2650:2728" ph="{&quot;filename&quot;: 'foo.bundle.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3081:3371" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3222:3286" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="3487:3645" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3531:3642" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3554:3631" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3570:3624" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3607:3616" ph="/*...*/" />
-              <marker date="1541986506037" expanded="true" signature="3842:4094" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="3843:3962" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3855:3916" ph="{&quot;filename&quot;: './dist-amd.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3964:4093" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3976:4047" ph="{&quot;filename&quot;: './dist-commonjs.js'...}" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/next/source/404/index.html" />
     <entry file="file://$PROJECT_DIR$/themes/next/.github/CONTRIBUTING.md" />
     <entry file="file://$PROJECT_DIR$/themes/next/.github/ISSUE_TEMPLATE.md" />
     <entry file="file://$PROJECT_DIR$/themes/next/.github/PULL_REQUEST_TEMPLATE.md" />
     <entry file="file://$PROJECT_DIR$/themes/next/.gitignore" />
     <entry file="file://$PROJECT_DIR$/source/_data/next.yml" />
-    <entry file="file://$PROJECT_DIR$/themes/next/layout/_macro/post.swig" />
     <entry file="file://$PROJECT_DIR$/source/categories/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="85">
-            <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <caret line="5" selection-start-line="5" selection-end-line="5" />
           </first_editor>
           <second_editor />
         </state>
@@ -484,9 +452,7 @@
     <entry file="file://$PROJECT_DIR$/scaffolds/post.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
@@ -494,9 +460,7 @@
     <entry file="file://$PROJECT_DIR$/scaffolds/page.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
@@ -504,9 +468,7 @@
     <entry file="file://$PROJECT_DIR$/scaffolds/draft.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
+          <first_editor />
           <second_editor />
         </state>
       </provider>
@@ -515,46 +477,20 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="85">
-            <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="38" lean-forward="true" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/next/layout/_layout.swig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/layout/_layout.swig" />
     <entry file="file://$PROJECT_DIR$/source/_drafts/2.md" />
     <entry file="file://D:/企业微信/file/WXWork Files/File/2018-11/新建文本文档.md" />
-    <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/next/source/css/_custom/custom.styl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/source/css/_custom/custom.styl" />
     <entry file="file://$PROJECT_DIR$/.gitmodules">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -562,7 +498,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="17">
-            <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+            <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
           </first_editor>
           <second_editor />
         </state>
@@ -572,7 +508,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="34">
-            <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+            <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           </first_editor>
           <second_editor />
         </state>
@@ -581,8 +517,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/3.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
+          <first_editor>
+            <caret selection-end-line="5" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
@@ -591,97 +527,54 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1710">
+            <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/4.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="3" />
-            <folding>
-              <marker date="1541986506037" expanded="true" signature="383:530" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="405:528" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="465:520" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="1389:1761" ph="{&quot;entry&quot;: './path/to/my/entry/file.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="1440:1531" ph="{&quot;filename&quot;: 'my-first-webpack.bundle.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="1543:1640" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="1556:1636" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="1564:1630" ph="{&quot;use&quot;: 'babel-loader'...}" />
-              <marker date="1541986506037" expanded="true" signature="1653:1759" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="2090:2106" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="2594:2730" ph="{&quot;mode&quot;: 'development'...}" />
-              <marker date="1541986506037" expanded="true" signature="2650:2728" ph="{&quot;filename&quot;: 'foo.bundle.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3081:3371" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3222:3286" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="3487:3645" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3531:3642" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3554:3631" ph="{...}" />
-              <marker date="1541986506037" expanded="true" signature="3570:3624" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3607:3616" ph="/*...*/" />
-              <marker date="1541986506037" expanded="true" signature="3842:4094" ph="[...]" />
-              <marker date="1541986506037" expanded="true" signature="3843:3962" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3855:3916" ph="{&quot;filename&quot;: './dist-amd.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3964:4093" ph="{&quot;entry&quot;: './app.js'...}" />
-              <marker date="1541986506037" expanded="true" signature="3976:4047" ph="{&quot;filename&quot;: './dist-commonjs.js'...}" />
-            </folding>
+          <first_editor>
+            <caret selection-end-line="5" selection-end-column="3" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding>
-            <marker date="1542021331564" expanded="true" signature="471:527" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="838:905" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="870:902" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="1022:1088" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="1053:1085" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="1322:1356" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="1368:1406" ph="{&quot;b&quot;: fun...}" />
-            <marker date="1542021331564" expanded="true" signature="1964:2278" ph="{...}" />
-            <marker date="1542021331564" expanded="true" signature="2421:2435" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="461">
-            <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="117" selection-end-column="10" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/5.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="17">
-            <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-            <folding>
-              <marker date="1541993159943" expanded="true" signature="1023:1070" ph="..." />
-              <marker date="1541993159943" expanded="true" signature="1106:1139" ph="..." />
-              <marker date="1541993159943" expanded="true" signature="1333:1368" ph="..." />
-              <marker date="1541993159943" expanded="true" signature="2715:2803" ph="{...}" />
-              <marker date="1541993159943" expanded="true" signature="3248:3351" ph="{...}" />
-              <marker date="1541993159943" expanded="true" signature="3670:3701" ph="{...}" />
-              <marker date="1541993159943" expanded="true" signature="3918:3930" ph="{...}" />
-              <marker date="1541993159943" expanded="true" signature="4074:4115" ph="{...}" />
-            </folding>
+          <first_editor relative-caret-position="15">
+            <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
           </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
           <second_editor />
         </state>
       </provider>
@@ -689,20 +582,59 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/6.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="600">
-            <caret line="122" column="0" lean-forward="true" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-            <folding>
-              <marker date="1542114231273" expanded="true" signature="860:880" ph="{&quot;target&quot;: 'node'...}" />
-              <marker date="1542114231273" expanded="true" signature="1735:1764" ph="{...}" />
-              <marker date="1542114231273" expanded="true" signature="1852:2011" ph="{...}" />
-              <marker date="1542114231273" expanded="true" signature="1878:2009" ph="{...}" />
-              <marker date="1542114231273" expanded="true" signature="2167:2281" ph="{&quot;target&quot;: 'node'...}" />
-              <marker date="1542114231273" expanded="true" signature="2197:2273" ph="{&quot;filename&quot;: 'lib.node.js'...}" />
-              <marker date="1542114231273" expanded="true" signature="2303:2433" ph="{&quot;target&quot;: 'web'...}" />
-              <marker date="1542114231273" expanded="true" signature="2354:2425" ph="{&quot;filename&quot;: 'lib.js'...}" />
-            </folding>
+          <first_editor relative-caret-position="592">
+            <caret line="122" selection-start-line="122" selection-end-line="122" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/landscape/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/layout/_custom/header.swig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/layout/_partials/head/custom-head.swig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/layout/_partials/head/external-fonts.swig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="207" column="19" selection-start-line="207" selection-start-column="19" selection-end-line="207" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/next/layout/_macro/post.swig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="215" column="53" lean-forward="true" selection-start-line="215" selection-start-column="53" selection-end-line="215" selection-end-column="53" />
         </state>
       </provider>
     </entry>

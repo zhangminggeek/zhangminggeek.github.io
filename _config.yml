@@ -5,7 +5,7 @@
 # Site 站点信息
 title: 感动常在
 subtitle:
-description:
+description: 一枚前端打字员
 keywords:
 author: zhangming
 language: zh-Hans
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://zhangminggeek.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
