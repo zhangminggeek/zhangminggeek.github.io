@@ -35,7 +35,7 @@ titlecase: false # 标题转换成大写
 external_link: true # 在新选项卡中打开连接
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight: # 语法高亮
