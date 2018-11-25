@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/javascript/promise/promise/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/javascript/promise/index/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/25/javascript/promise/promise/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
+                <a class="post-title-link" href="/2018/11/25/javascript/promise/index/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
         
 
         <div class="post-meta">
@@ -424,7 +424,7 @@
 <li>rejected</li>
 </ul>
 <p>Promise 对象初始化状态为 pending</p>
-<img src="/2018/11/25/javascript/promise/promise/images/promises.png">
+<img src="/2018/11/25/javascript/promise/index/images/promises.png">
 <p>下面代码创造了一个Promise实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Promise构造函数接收一个excutor执行函数作为参数, excutor函数接收两个参数，分别是resolve和reject。</p>
 <p>resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；</p>
@@ -1172,6 +1172,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/javascript/JavaScript中的this/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/12/javascript/JavaScript中的this/" itemprop="url">JavaScript中的this</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
+<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
+<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
+<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
+<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/webpack/5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1359,191 +1544,6 @@
 <p>也可以使用 anymatch 模式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignored: <span class="string">"files/**/*.js"</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="watchOptions-poll"><a href="#watchOptions-poll" class="headerlink" title="watchOptions.poll"></a><code>watchOptions.poll</code></h4><p><code>boolean`</code>number`<br>通过传递 true 开启 polling，或者指定毫秒为单位进行轮询。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poll: <span class="number">1000</span> <span class="comment">// 每秒检查一次变动</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="info-verbosity"><a href="#info-verbosity" class="headerlink" title="info-verbosity"></a><code>info-verbosity</code></h4><p><code>string</code>: <code>none`</code>info<code></code>verbose`<br>控制生命周期消息的详细程度，例如 Started watching files(开始监听文件)… 日志。将 info-verbosity 设置为 verbose，还会额外在增量构建的开始和结束时，向控制台发送消息。info-verbosity 默认设置为 info。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --watch --info-verbosity verbose</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/javascript/JavaScript中的this/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/javascript/JavaScript中的this/" itemprop="url">JavaScript中的this</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
-<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
-<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
-<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
-<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
-<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
-<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
 
           
         
