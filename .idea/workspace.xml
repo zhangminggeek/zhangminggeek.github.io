@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/《爱你就像爱生命》摘抄/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -101,7 +98,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="md" value="3261" />
+          <entry key="md" value="3271" />
           <entry key="swig" value="19" />
           <entry key="yml" value="111" />
         </counts>
@@ -109,7 +106,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="2" />
-          <entry key="Markdown" value="3259" />
+          <entry key="Markdown" value="3269" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="YAML" value="111" />
         </counts>
@@ -137,8 +134,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/other/《爱你就像爱生命》摘抄/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="517">
-                <caret line="35" column="390" lean-forward="true" selection-start-line="35" selection-start-column="390" selection-end-line="35" selection-end-column="390" />
+              <first_editor relative-caret-position="509">
+                <caret line="35" column="280" selection-start-line="35" selection-start-column="280" selection-end-line="35" selection-end-column="280" />
               </first_editor>
               <second_editor />
             </state>
@@ -362,12 +359,12 @@
       <workItem from="1541986514559" duration="12339000" />
       <workItem from="1542439090572" duration="13777000" />
       <workItem from="1542638131925" duration="12769000" />
-      <workItem from="1543732368030" duration="5193000" />
+      <workItem from="1543732368030" duration="5442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116909000" />
+    <option name="totallyTimeSpent" value="117158000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -380,7 +377,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -393,8 +389,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.28004956" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.19950433" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17967781" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.1771995" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.17967781" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -710,8 +706,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/other/《爱你就像爱生命》摘抄/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="517">
-            <caret line="35" column="390" lean-forward="true" selection-start-line="35" selection-start-column="390" selection-end-line="35" selection-end-column="390" />
+          <first_editor relative-caret-position="509">
+            <caret line="35" column="280" selection-start-line="35" selection-start-column="280" selection-end-line="35" selection-end-column="280" />
           </first_editor>
           <second_editor />
         </state>
