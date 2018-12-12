@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index/images/165b1a74b0bc4290.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index/images/CORS_principle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -68,12 +64,13 @@
     <session id="-1683260209">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,8 +81,8 @@
           <entry key="ico" value="7" />
           <entry key="jpg" value="2" />
           <entry key="json" value="1" />
-          <entry key="md" value="16" />
-          <entry key="png" value="7" />
+          <entry key="md" value="20" />
+          <entry key="png" value="9" />
           <entry key="svg" value="1" />
           <entry key="swig" value="4" />
           <entry key="yml" value="9" />
@@ -94,9 +91,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="3" />
-          <entry key="Image" value="16" />
+          <entry key="Image" value="18" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="16" />
+          <entry key="Markdown" value="20" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="1" />
           <entry key="YAML" value="9" />
@@ -105,41 +102,29 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="md" value="3988" />
+          <entry key="md" value="4350" />
           <entry key="swig" value="19" />
-          <entry key="yml" value="116" />
+          <entry key="yml" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="2" />
-          <entry key="Markdown" value="3986" />
+          <entry key="JavaScript" value="3" />
+          <entry key="Markdown" value="4347" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="YAML" value="116" />
+          <entry key="YAML" value="118" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/promise/index.md">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="60">
-                <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/《爱你就像爱生命》摘抄/index.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor>
-                <caret selection-end-line="5" selection-end-column="3" />
+              <first_editor relative-caret-position="582">
+                <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
               </first_editor>
               <second_editor />
             </state>
@@ -150,56 +135,8 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="582">
-                <caret line="245" column="73" selection-start-line="245" selection-start-column="73" selection-end-line="245" selection-end-column="73" />
-                <folding>
-                  <element signature="n#!!doc" expanded="true" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="522">
-                <caret line="204" selection-start-line="204" selection-end-line="204" selection-end-column="59" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="259">
-                <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor>
-                <caret selection-end-line="5" selection-end-column="3" />
+              <first_editor relative-caret-position="194">
+                <caret line="102" selection-start-line="102" selection-end-line="102" selection-end-column="41" />
               </first_editor>
               <second_editor />
             </state>
@@ -237,6 +174,7 @@
       <find>ass</find>
       <find>post_asset_folder</find>
       <find>&amp;n</find>
+      <find>img</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -279,6 +217,7 @@
         <option value="$PROJECT_DIR$/source/_posts/other/《爱你就像爱生命》摘抄/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index.md" />
       </list>
     </option>
   </component>
@@ -333,23 +272,23 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="浏览器的回流与重绘" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="浏览器的回流与重绘" type="462c0819:PsiDirectoryNode" />
               <item name="index" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,8 +296,8 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="http" type="462c0819:PsiDirectoryNode" />
-              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="浏览器的回流与重绘" type="462c0819:PsiDirectoryNode" />
               <item name="index" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -367,15 +306,24 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="JavaScript的执行机制" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -395,19 +343,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index/images" />
-      <recent name="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index" />
-      <recent name="$PROJECT_DIR$/source/_posts/javascript/promise/index" />
-      <recent name="$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images" />
-      <recent name="$PROJECT_DIR$/source/images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/javascript/promise/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/javascript/promise" />
       <recent name="$PROJECT_DIR$/source/_posts/javascript" />
-      <recent name="$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index/images" />
+      <recent name="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index" />
+      <recent name="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index/images" />
+      <recent name="$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index" />
+      <recent name="$PROJECT_DIR$/source/_posts/javascript/promise/index" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -442,12 +390,13 @@
       <workItem from="1542439090572" duration="13777000" />
       <workItem from="1542638131925" duration="12769000" />
       <workItem from="1543732368030" duration="5765000" />
-      <workItem from="1544366619102" duration="4754000" />
+      <workItem from="1544366619102" duration="5778000" />
+      <workItem from="1544623854339" duration="4743000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122235000" />
+    <option name="totallyTimeSpent" value="128002000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -460,8 +409,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -473,7 +423,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.28004956" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.54756874" weight="0.23048328" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49964765" visible="true" weight="0.17967781" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49964765" visible="true" weight="0.17967781" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4524313" side_tool="true" weight="0.1771995" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -514,8 +464,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/themes/next/.github/CONTRIBUTING.md" />
-    <entry file="file://$PROJECT_DIR$/themes/next/.github/ISSUE_TEMPLATE.md" />
     <entry file="file://$PROJECT_DIR$/themes/next/.github/PULL_REQUEST_TEMPLATE.md" />
     <entry file="file://$PROJECT_DIR$/themes/next/.gitignore" />
     <entry file="file://$PROJECT_DIR$/source/_data/next.yml" />
@@ -677,8 +625,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589b575216a917.png">
-      <provider selected="true" editor-type-id="images" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/15fdcea13361a1ec.png">
       <provider selected="true" editor-type-id="images" />
@@ -715,16 +663,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/promise/index/images/promises.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.deploy_git/2018/11/25/javascript/promise/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-290" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.deploy_git/2018/11/18/javascript/JavaScript的执行机制/index/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.deploy_git/2018/11/25/javascript/promise/index/index.html" />
+    <entry file="file://$PROJECT_DIR$/.deploy_git/2018/11/18/javascript/JavaScript的执行机制/index/index.html" />
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/promise/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -760,10 +700,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="522">
+            <caret line="204" selection-start-line="204" selection-end-line="204" selection-end-column="59" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="194">
+            <caret line="102" selection-start-line="102" selection-end-line="102" selection-end-column="41" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index/images/16798b8db54caa31.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="259">
+          <first_editor relative-caret-position="1710">
             <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
           </first_editor>
           <second_editor />
@@ -775,33 +745,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="522">
-            <caret line="204" selection-start-line="204" selection-end-line="204" selection-end-column="59" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="582">
-            <caret line="245" column="73" selection-start-line="245" selection-start-column="73" selection-end-line="245" selection-end-column="73" />
-            <folding>
-              <element signature="n#!!doc" expanded="true" />
-            </folding>
+            <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
         </state>
       </provider>
     </entry>
