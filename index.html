@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjph4o6nx001pvrc9mmjucxuq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjplebwq1001tzucbjm7wxw7m/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,264 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/09/cjph4o6nx001pvrc9mmjucxuq/" itemprop="url">跨域问题及解决方式</a></h1>
+                <a class="post-title-link" href="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/" itemprop="url">浏览器的回流与重绘</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-12T22:37:55+08:00">
+                2018-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/browser/" itemprop="url" rel="index">
+                    <span itemprop="name">browser</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2.5k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  9分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/16798b8db54caa31.png">
+<p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
+<ol>
+<li>浏览器使用流式布局模型 (Flow Based Layout)</li>
+<li>解析HTML，生成DOM树，解析CSS，生成CSSOM树</li>
+<li>将DOM树和CSSOM树结合，生成渲染树(Render Tree)</li>
+<li>Layout(回流):根据生成的渲染树，进行回流(Layout)，得到节点的几何信息（位置，大小）</li>
+<li>Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
+<li>由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。</li>
+</ol>
+<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/16798b8d839a7d6d.png">
+<p>为构建渲染树，浏览器大体上完成了下列工作：</p>
+<ol>
+<li>从 DOM 树的根节点开始遍历每个可见节点。某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，上例中的 span 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了“display: none”属性。</li>
+<li>对于每个可见节点，为其找到适配的 CSSOM 规则并应用它们。</li>
+<li>发射可见节点，连同其内容和计算的样式。</li>
+</ol>
+<blockquote>
+<p>请注意 visibility: hidden 与 display: none 是不一样的。前者隐藏元素，但元素仍占据着布局空间（即将其渲染成一个空框），而后者 (display: none) 将元素从渲染树中完全移除，元素既不可见，也不是布局的组成部分。</p>
+</blockquote>
+<p>最终输出的渲染同时包含了屏幕上的所有可见内容及其样式信息。有了渲染树，我们就可以进入“布局”阶段。</p>
+<h3 id="回流-Reflow"><a href="#回流-Reflow" class="headerlink" title="回流 (Reflow)"></a>回流 (Reflow)</h3><p>到目前为止，我们计算了哪些节点应该是可见的以及它们的计算样式，但我们尚未计算它们在设备视口内的确切位置和大小—这就是“布局”阶段。当Render Tree中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。</p>
+<p>为弄清每个对象在网页上的确切大小和位置，浏览器从渲染树的根节点开始进行遍历。让我们考虑下面这样一个简单的实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Critial Path: Hello world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 50%"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 50%"</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上网页的正文包含两个嵌套 div：第一个（父）div 将节点的显示尺寸设置为视口宽度的 50%，—父 div 包含的第二个 div—将其宽度设置为其父项的 50%；即视口宽度的 25%。</p>
+<p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
+<p>最后，既然我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素。这一步通常称为“绘制”或“栅格化”。</p>
+<img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/layout-viewport.png">
+<p>会导致回流的操作：</p>
+<ul>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素尺寸或位置发生改变</li>
+<li>元素内容变化（文字数量或图片大小等等）</li>
+<li>元素字体大小变化</li>
+<li>添加或者删除可见的DOM元素</li>
+<li>激活CSS伪类（例如：:hover）</li>
+<li>查询某些属性或调用某些方法</li>
+</ul>
+<h3 id="重绘-Repaint"><a href="#重绘-Repaint" class="headerlink" title="重绘 (Repaint)"></a>重绘 (Repaint)</h3><p>当页面中元素样式的改变并不影响它在文档流中的位置时（例如：color、background-color、visibility等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
+<h2 id="性能影响"><a href="#性能影响" class="headerlink" title="性能影响"></a>性能影响</h2><p>回流比重绘的代价要更高。有时即使仅仅回流一个单一的元素，它的父元素以及任何跟随它的元素也会产生回流。</p>
+<p><strong>回流必将引起重绘，重绘不一定会引起回流。</strong></p>
+<h2 id="浏览器的优化机制"><a href="#浏览器的优化机制" class="headerlink" title="浏览器的优化机制"></a>浏览器的优化机制</h2><p>现代的浏览器都是很聪明的，由于每次重排都会造成额外的计算消耗，因此大多数浏览器都会通过队列化修改并批量执行来优化重排过程。浏览器会将修改操作放入到队列里，直到过了一段时间或者操作达到了一个阈值，才清空队列。但是！当你获取布局信息的操作的时候，会强制队列刷新，比如当你访问以下属性或者使用以下方法：</p>
+<ul>
+<li>offsetTop、offsetLeft、offsetWidth、offsetHeight</li>
+<li>scrollTop、scrollLeft、scrollWidth、scrollHeight</li>
+<li>clientTop、clientLeft、clientWidth、clientHeight</li>
+<li>getComputedStyle()</li>
+<li>getBoundingClientRect</li>
+</ul>
+<h2 id="减少回流和重绘"><a href="#减少回流和重绘" class="headerlink" title="减少回流和重绘"></a>减少回流和重绘</h2><h3 id="最小化重绘和重排"><a href="#最小化重绘和重排" class="headerlink" title="最小化重绘和重排"></a>最小化重绘和重排</h3><p>由于重绘和重排可能代价比较昂贵，因此最好就是可以减少它的发生次数。为了减少发生次数，我们可以合并多次对DOM和样式的修改，然后一次处理掉。考虑这个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);</span><br><span class="line">el.style.padding = <span class="string">'5px'</span>;</span><br><span class="line">el.style.borderLeft = <span class="string">'1px'</span>;</span><br><span class="line">el.style.borderRight = <span class="string">'2px'</span>;</span><br></pre></td></tr></table></figure>
+<p>例子中，有三个样式属性被修改了，每一个都会影响元素的几何结构，引起回流。当然，大部分现代浏览器都对其做了优化，因此，只会触发一次重排。但是如果在旧版的浏览器或者在上面代码执行的时候，有其他代码访问了布局信息(上文中的会触发回流的布局信息)，那么就会导致三次重排。</p>
+<p>因此，我们可以合并所有的改变然后依次处理，比如我们可以采取以下的方式：</p>
+<ul>
+<li><p>使用cssText</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);</span><br><span class="line">el.style.cssText += <span class="string">'border-left: 1px; border-right: 2px; padding: 5px;'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改CSS的class</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'test'</span>);</span><br><span class="line">el.className += <span class="string">' active'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="批量修改DOM"><a href="#批量修改DOM" class="headerlink" title="批量修改DOM"></a>批量修改DOM</h3><p>当我们需要对DOM对一系列修改的时候，可以通过以下步骤减少回流重绘次数：</p>
+<ol>
+<li>使元素脱离文档流</li>
+<li>对其进行多次修改</li>
+<li>将元素带回到文档中</li>
+</ol>
+<p>该过程的第一步和第三步可能会引起回流，但是经过第一步之后，对DOM的所有修改都不会引起回流，因为它已经不在渲染树了。</p>
+<p>有三种方式可以让DOM脱离文档流：</p>
+<ul>
+<li>隐藏元素，应用修改，重新显示</li>
+<li>使用文档片段(document fragment)在当前DOM之外构建一个子树，再把它拷贝回文档。</li>
+<li>将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。</li>
+</ul>
+<p>考虑我们要执行一段批量插入节点的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">appendDataToElement</span>(<span class="params">appendToElement, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> li;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    	li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</span><br><span class="line">        li.textContent = <span class="string">'text'</span>;</span><br><span class="line">        appendToElement.appendChild(li);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line">appendDataToElement(ul, data);</span><br></pre></td></tr></table></figure>
+<p>如果我们直接这样执行的话，由于每次循环都会插入一个新的节点，会导致浏览器回流一次。</p>
+<h4 id="隐藏元素，应用修改，重新显示"><a href="#隐藏元素，应用修改，重新显示" class="headerlink" title="隐藏元素，应用修改，重新显示"></a>隐藏元素，应用修改，重新显示</h4><p>这个会在展示和隐藏节点的时候，产生两次重绘<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">appendDataToElement</span>(<span class="params">appendToElement, data</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> li;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">    	li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</span><br><span class="line">        li.textContent = <span class="string">'text'</span>;</span><br><span class="line">        appendToElement.appendChild(li);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line">ul.style.display = <span class="string">'none'</span>;</span><br><span class="line">appendDataToElement(ul, data);</span><br><span class="line">ul.style.display = <span class="string">'block'</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用文档片段-document-fragment-在当前DOM之外构建一个子树，再把它拷贝回文档"><a href="#使用文档片段-document-fragment-在当前DOM之外构建一个子树，再把它拷贝回文档" class="headerlink" title="使用文档片段(document fragment)在当前DOM之外构建一个子树，再把它拷贝回文档"></a>使用文档片段(document fragment)在当前DOM之外构建一个子树，再把它拷贝回文档</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line"><span class="keyword">const</span> fragment = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">appendDataToElement(fragment, data);</span><br><span class="line">ul.appendChild(fragment);</span><br></pre></td></tr></table></figure>
+<h4 id="将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。"><a href="#将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。" class="headerlink" title="将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。"></a>将原始元素拷贝到一个脱离文档的节点中，修改节点后，再替换原始的元素。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'list'</span>);</span><br><span class="line"><span class="keyword">const</span> clone = ul.cloneNode(<span class="literal">true</span>);</span><br><span class="line">appendDataToElement(clone, data);</span><br><span class="line">ul.parentNode.replaceChild(clone, ul);</span><br></pre></td></tr></table></figure>
+<h3 id="避免触发同步布局事件"><a href="#避免触发同步布局事件" class="headerlink" title="避免触发同步布局事件"></a>避免触发同步布局事件</h3><p>上文我们说过，当我们访问元素的一些属性的时候，会导致浏览器强制清空队列，进行强制同步布局。举个例子，比如说我们想将一个p标签数组的宽度赋值为一个元素的宽度，我们可能写出这样的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initP</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; paragraphs.length; i++) &#123;</span><br><span class="line">        paragraphs[i].style.width = box.offsetWidth + <span class="string">'px'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码看上去是没有什么问题，可是其实会造成很大的性能问题。在每次循环的时候，都读取了box的一个offsetWidth属性值，然后利用它来更新p标签的width属性。这就导致了每一次循环的时候，浏览器都必须先使上一次循环中的样式更新操作生效，才能响应本次循环的样式读取操作。每一次循环都会强制浏览器刷新队列。我们可以优化为:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> width = box.offsetWidth;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initP</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; paragraphs.length; i++) &#123;</span><br><span class="line">        paragraphs[i].style.width = width + <span class="string">'px'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="对于复杂动画效果-使用绝对定位让其脱离文档流"><a href="#对于复杂动画效果-使用绝对定位让其脱离文档流" class="headerlink" title="对于复杂动画效果,使用绝对定位让其脱离文档流"></a>对于复杂动画效果,使用绝对定位让其脱离文档流</h3><p>对于复杂动画效果，由于会经常的引起回流重绘，因此，我们可以使用绝对定位，让它脱离文档流。否则会引起父元素以及后续元素频繁的回流。</p>
+<h3 id="css3硬件加速（GPU加速）"><a href="#css3硬件加速（GPU加速）" class="headerlink" title="css3硬件加速（GPU加速）"></a>css3硬件加速（GPU加速）</h3><p>使用css3硬件加速，可以让transform、opacity、filters这些动画不会引起回流重绘 。但是对于动画的其它属性，比如background-color这些，还是会引起回流重绘的，不过它还是可以提升这些动画的性能。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjplebwq1001uzucbbqbt8iiq/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/" itemprop="url">跨域问题及解决方式</a></h1>
         
 
         <div class="post-meta">
@@ -489,7 +746,7 @@
 </ul>
 <h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><h4 id="CORS的配置"><a href="#CORS的配置" class="headerlink" title="CORS的配置"></a>CORS的配置</h4><p>跨源资源共享（CORS）是一种机制，它使用其他HTTP请求头告诉浏览器让在一个源（域）上运行的Web应用程序有权访问不同来源服务器中的所选资源。Web应用程序在请求具有与自己不同源（域，协议和端口）的资源时，会发出跨源HTTP请求。</p>
 <p>出于安全原因，浏览器会限制从脚本中发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一源请求HTTP资源，除非来自其他来源的响应包含正确的CORS标头。</p>
-<img src="/2018/12/09/cjph4o6nx001pvrc9mmjucxuq/images/CORS_principle.png">
+<img src="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/images/CORS_principle.png">
 <p>CORS机制支持浏览器和Web服务器之间的安全跨源请求和数据传输。现代浏览器在API中使用CORS，如XMLHttpRequest和Fetch，以帮助减轻跨域的HTTP请求的风险。</p>
 <p>服务端设置 Access-Control-Allow-Origin 字段，值可以是具体的域名或者 ‘*’ 通配符，配置好后就可以允许跨域请求数据。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
@@ -518,7 +775,7 @@
 <li>同样的在 b 页面中通过 iframe 嵌入 c 页面，将要传递的数据通过  iframe 的 src 链接的 hash 值传递给 c 页面，由于 a 页面与 c 页面同域，c 页面可以直接修改 a 页面的 hash 值或者调用 a 页面中的全局函数。</li>
 </ul>
 <p>大致流程：</p>
-<img src="/2018/12/09/cjph4o6nx001pvrc9mmjucxuq/images/165b1a74b0bc4290.png">
+<img src="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/images/165b1a74b0bc4290.png">
 <p>a 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    iframe.src = <span class="string">"http://localhost:8081/b.html#data"</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkHash</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> data = location.hash ? location.hash.substring(<span class="number">1</span>) : <span class="string">''</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获得到的数据是：'</span>, data);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'监听到hash的变化：'</span>, location.hash.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>b 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="keyword">switch</span>(location.hash) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">         callback();</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"testHash"</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parent.location.hash = data;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">            <span class="keyword">var</span> ifrproxy = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">            ifrproxy.style.display = <span class="string">'none'</span>;</span><br><span class="line">            ifrproxy.src = <span class="string">'http://localhost:8080/c.html#'</span> + data;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(ifrproxy);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>c 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 修改 a 页面的 hash 值</span></span><br><span class="line">    parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 调用 a 页面的全局函数</span></span><br><span class="line">    parent.parent.checkHash();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -576,7 +833,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjph4o6nw001nvrc9ly73ubaq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjplebwq3001xzucb156961w0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -595,7 +852,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/02/cjph4o6nw001nvrc9ly73ubaq/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
+                <a class="post-title-link" href="/2018/12/02/cjplebwq3001xzucb156961w0/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
         
 
         <div class="post-meta">
@@ -779,7 +1036,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjph4o6oi0028vrc9mq3daw5e/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjplebwqw002nzucbi2ekm543/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -798,7 +1055,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/25/cjph4o6oi0028vrc9mq3daw5e/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
+                <a class="post-title-link" href="/2018/11/25/cjplebwqw002nzucbi2ekm543/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
         
 
         <div class="post-meta">
@@ -920,7 +1177,7 @@
 <li>rejected</li>
 </ul>
 <p>Promise 对象初始化状态为 pending</p>
-<img src="/2018/11/25/cjph4o6oi0028vrc9mq3daw5e/images/promises.png">
+<img src="/2018/11/25/cjplebwqw002nzucbi2ekm543/images/promises.png">
 <p>下面代码创造了一个Promise实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Promise构造函数接收一个excutor执行函数作为参数, excutor函数接收两个参数，分别是resolve和reject。</p>
 <p>resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；</p>
@@ -994,7 +1251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjph4o6ks000mvrc9x3gv0tla/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjplebwjk0008zucbujzrl4tf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1013,7 +1270,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/cjph4o6ks000mvrc9x3gv0tla/" itemprop="url">JavaScript中的闭包</a></h1>
+                <a class="post-title-link" href="/2018/11/19/cjplebwjk0008zucbujzrl4tf/" itemprop="url">JavaScript中的闭包</a></h1>
         
 
         <div class="post-meta">
@@ -1190,7 +1447,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjplebwq4001yzucb7bkts1up/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1209,7 +1466,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/" itemprop="url">JavaScript的执行机制</a></h1>
+                <a class="post-title-link" href="/2018/11/18/cjplebwq4001yzucb7bkts1up/" itemprop="url">JavaScript的执行机制</a></h1>
         
 
         <div class="post-meta">
@@ -1320,7 +1577,7 @@
 <li>同步任务</li>
 <li>异步任务</li>
 </ul>
-<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/15fdd88994142347.png"></p>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/15fdd88994142347.png"></p>
 <ul>
 <li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
 <li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
@@ -1353,7 +1610,7 @@
 <li>macro-task(宏任务)：包括整体代码script，setTimeout，setInterval</li>
 <li>micro-task(微任务)：Promise，process.nextTick</li>
 </ul>
-<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589b575216a917.png">
+<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b575216a917.png">
 <p>不同类型的任务会进入对应的Event Queue，比如setTimeout和setInterval会进入相同的Event Queue。<br>事件循环的顺序，决定js代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'then'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'console'</span>);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>这段代码作为宏任务，进入主线程。</li>
@@ -1363,40 +1620,40 @@
 <li>整体代码script作为第一个宏任务执行结束，看看有哪些微任务？我们发现了then在微任务Event Queue里面，执行。</li>
 <li>第一轮事件循环结束了，我们开始第二轮循环，当然要从宏任务Event Queue开始。我们发现了宏任务Event Queue中setTimeout对应的回调函数，立即执行。<br>结束。</li>
 </ul>
-<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/15fdcea13361a1ec.png"></p>
+<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/15fdcea13361a1ec.png"></p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="comment">// 记作 set1</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    <span class="comment">// set4</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// pro2</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'5'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 pro1</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7'</span>);</span><br><span class="line">    <span class="comment">// set3</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'8'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 set2</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'9'</span>);</span><br><span class="line">    <span class="comment">// 记作 pro3</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'10'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'11'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>第一轮事件循环：</li>
 </ul>
 <ol>
-<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589b8d4316baf3.png">
+<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b8d4316baf3.png">
 </li>
 </ol>
 <ol start="2">
-<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589b8f1ccba52c.png">
+<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b8f1ccba52c.png">
 </li>
 </ol>
 <ol start="3">
-<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589b9381cfd5e0.png">
+<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b9381cfd5e0.png">
 </li>
 </ol>
 <ol start="4">
-<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589b9647b2e171.png">
+<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b9647b2e171.png">
 </li>
 </ol>
 <ol start="5">
-<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589ba43caf6b9f.png">
+<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589ba43caf6b9f.png">
 </li>
 </ol>
 <ul>
 <li>第二轮事件循环：</li>
 </ul>
 <ol>
-<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589ba8bbbe9c47.png">
+<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589ba8bbbe9c47.png">
 </li>
 </ol>
 <ol start="2">
-<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjph4o6nv001mvrc9vl4wqkvo/images/16589bab583e4850.png">
+<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589bab583e4850.png">
 </li>
 </ol>
 <ul>
@@ -1459,7 +1716,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjph4o6kp000gvrc9egsgey9c/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjplebwjs000lzucbh47n38kl/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1478,7 +1735,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/13/cjph4o6kp000gvrc9egsgey9c/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
+                <a class="post-title-link" href="/2018/11/13/cjplebwjs000lzucbh47n38kl/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
         
 
         <div class="post-meta">
@@ -1668,7 +1925,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjph4o6kr000hvrc9eirvcrtz/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjplebwjj0007zucbg5i9kkrh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1687,7 +1944,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/cjph4o6kr000hvrc9eirvcrtz/" itemprop="url">JavaScript中的this</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjplebwjj0007zucbg5i9kkrh/" itemprop="url">JavaScript中的this</a></h1>
         
 
         <div class="post-meta">
@@ -1853,7 +2110,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjph4o6kn000dvrc9h08ipt5i/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjplebwjq000hzucbkthlcct4/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1872,7 +2129,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/cjph4o6kn000dvrc9h08ipt5i/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjplebwjq000hzucbkthlcct4/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
         
 
         <div class="post-meta">
@@ -2088,7 +2345,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjph4o6km000cvrc9gy3d8z32/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjplebwjp000gzucb7d1u2uks/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2107,7 +2364,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/11/cjph4o6km000cvrc9gy3d8z32/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
+                <a class="post-title-link" href="/2018/11/11/cjplebwjp000gzucb7d1u2uks/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
         
 
         <div class="post-meta">
@@ -2282,232 +2539,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/10/cjph4o6kk0008vrc9v23tf35c/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/10/cjph4o6kk0008vrc9v23tf35c/" itemprop="url">webpack学习笔记（三）：模式、loader</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-10T10:00:08+08:00">
-                2018-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  998字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>只在配置中提供 mode 选项：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>或者从 CLI 参数中传递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --mode=production</span><br></pre></td></tr></table></figure></p>
-<p>支持以下字符串值：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>development</td>
-<td>会将 process.env.NODE_ENV 的值设为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin。</td>
-</tr>
-<tr>
-<td>production</td>
-<td>会将 process.env.NODE_ENV 的值设为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 UglifyJsPlugin.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>记住，只设置 NODE_ENV，则不会自动设置 mode。</p>
-</blockquote>
-<h2 id="mode-development"><a href="#mode-development" class="headerlink" title="mode: development"></a>mode: development</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.development.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">+ mode: <span class="string">'development'</span></span><br><span class="line">- plugins: [</span><br><span class="line">-   <span class="keyword">new</span> webpack.NamedModulesPlugin(),</span><br><span class="line">-   <span class="keyword">new</span> webpack.DefinePlugin(&#123; <span class="string">"process.env.NODE_ENV"</span>: <span class="built_in">JSON</span>.stringify(<span class="string">"development"</span>) &#125;),</span><br><span class="line">- ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="mode-production"><a href="#mode-production" class="headerlink" title="mode: production"></a>mode: production</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">+  mode: <span class="string">'production'</span>,</span><br><span class="line">-  plugins: [</span><br><span class="line">-    <span class="keyword">new</span> UglifyJsPlugin(<span class="comment">/* ... */</span>),</span><br><span class="line">-    <span class="keyword">new</span> webpack.DefinePlugin(&#123; <span class="string">"process.env.NODE_ENV"</span>: <span class="built_in">JSON</span>.stringify(<span class="string">"production"</span>) &#125;),</span><br><span class="line">-    <span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin(),</span><br><span class="line">-    <span class="keyword">new</span> webpack.NoEmitOnErrorsPlugin()</span><br><span class="line">-  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p>loader 用于对模块的源代码进行转换。loader 可以使你在 import 或”加载”模块时预处理文件。因此，loader 类似于其他构建工具中“任务(task)”，并提供了处理前端构建步骤的强大方法。loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript，或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 import CSS文件！</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>例如，你可以使用 loader 告诉 webpack 加载 CSS 文件，或者将 TypeScript 转为 JavaScript。为此，首先安装相对应的 loader：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev css-loader</span><br><span class="line">npm install --save-dev ts-loader</span><br></pre></td></tr></table></figure></p>
-<p>然后指示 webpack 对每个 .css 使用 css-loader，以及对所有 .ts 文件使用 ts-loader：<br><strong>webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: <span class="string">'css-loader'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.ts$/</span>, <span class="attr">use</span>: <span class="string">'ts-loader'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="使用loader"><a href="#使用loader" class="headerlink" title="使用loader"></a>使用loader</h2><p>在你的应用程序中，有三种使用 loader 的方式：</p>
-<ul>
-<li>配置（推荐）：在 webpack.config.js 文件中指定 loader。</li>
-<li>内联：在每个 import 语句中显式指定 loader。</li>
-<li>CLI：在 shell 命令中指定它们。</li>
-</ul>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>module.rules 允许你在 webpack 配置中指定多个 loader。 这是展示 loader 的一种简明方式，并且有助于使代码变得简洁。同时让你对各个 loader 有个全局概览：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123; <span class="attr">loader</span>: <span class="string">'style-loader'</span> &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">'css-loader'</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              modules: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="内联"><a href="#内联" class="headerlink" title="内联"></a>内联</h3><p>可以在 import 语句或任何等效于 “import” 的方式中指定 loader。使用 ! 将资源中的 loader 分开。分开的每个部分都相对于当前目录解析。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Styles <span class="keyword">from</span> <span class="string">'style-loader!css-loader?modules!./styles.css'</span>;</span><br></pre></td></tr></table></figure></p>
-<p>通过前置所有规则及使用 !，可以对应覆盖到配置中的任意 loader。<br>选项可以传递查询参数，例如<code>?key=value&amp;foo=bar</code>，或者一个 JSON 对象，例如<code>?{&quot;key&quot;:&quot;value&quot;,&quot;foo&quot;:&quot;bar&quot;}</code>。</p>
-<blockquote>
-<p>尽可能使用 module.rules，因为这样可以减少源码中的代码量，并且可以在出错时，更快地调试和定位 loader 中的问题。</p>
-</blockquote>
-<h3 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --<span class="built_in">module</span>-bind jade-loader --<span class="built_in">module</span>-bind <span class="string">'css=style-loader!css-loader'</span></span><br></pre></td></tr></table></figure>
-<p>这会对 .jade 文件使用 jade-loader，对 .css 文件使用 style-loader 和 css-loader。</p>
-<h2 id="loader特性"><a href="#loader特性" class="headerlink" title="loader特性"></a>loader特性</h2><ul>
-<li>loader 支持链式传递。能够对资源使用流水线(pipeline)。一组链式的 loader 将按照相反的顺序执行。loader 链中的第一个 loader 返回值给下一个 loader。在最后一个 loader，返回 webpack 所预期的 JavaScript。</li>
-<li>loader 可以是同步的，也可以是异步的。</li>
-<li>loader 运行在 Node.js 中，并且能够执行任何可能的操作。</li>
-<li>loader 接收查询参数。用于对 loader 传递配置。</li>
-<li>loader 也能够使用 options 对象进行配置。</li>
-<li>除了使用 package.json 常见的 main 属性，还可以将普通的 npm 模块导出为 loader，做法是在 package.json 里定义一个 loader 字段。</li>
-<li>插件(plugin)可以为 loader 带来更多特性。</li>
-<li>loader 能够产生额外的任意文件。</li>
-</ul>
-<h2 id="解析loader"><a href="#解析loader" class="headerlink" title="解析loader"></a>解析loader</h2><p>loader 遵循标准的模块解析。多数情况下，loader 将从模块路径（通常将模块路径认为是 npm install, node_modules）解析。<br>loader 模块需要导出为一个函数，并且使用 Node.js 兼容的 JavaScript 编写。通常使用 npm 进行管理，但是也可以将自定义 loader 作为应用程序中的文件。按照约定，loader 通常被命名为 xxx-loader（例如 json-loader）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2556,7 +2587,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2567,7 +2598,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2578,7 +2609,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
