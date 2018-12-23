@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjplebwq1001tzucbjm7wxw7m/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjq0mffn4001tywcbj3ktin15/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,234 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/" itemprop="url">浏览器的回流与重绘</a></h1>
+                <a class="post-title-link" href="/2018/12/23/cjq0mffn4001tywcbj3ktin15/" itemprop="url">Gitflow工作流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T15:40:21+08:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在你开始阅读之前，请记住：流程应被视作为指导方针，而非“铁律”。我们只是想告诉你可能的做法。因此，如果有必要的话，你可以组合使用不同的流程。</p>
+<img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflows-gitflow.png">
+<p>&nbsp;<br>Gitflow工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。</p>
+<p>Gitflow工作流没有用超出功能分支工作流的概念和命令，而是为不同的分支分配一个很明确的角色，并定义分支之间如何和什么时候进行交互。除了使用功能分支，在做准备、维护和记录发布也使用各自的分支。当然你可以用上功能分支工作流所有的好处：Pull Requests、隔离实验性开发和更高效的协作。</p>
+<h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><p>Gitflow工作流仍然用中央仓库作为所有开发者的交互中心。和其它的工作流一样，开发者在本地工作并push分支到要中央仓库中。</p>
+<h2 id="历史分支"><a href="#历史分支" class="headerlink" title="历史分支"></a>历史分支</h2><p>相对使用仅有的一个master分支，Gitflow工作流使用2个分支来记录项目的历史。master分支存储了正式发布的历史，而develop分支作为功能的集成分支。这样也方便master分支上的所有提交分配一个版本号。</p>
+<img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-1historical.png">
+<p>&nbsp;<br>剩下要说明的问题围绕着这2个分支的区别展开。</p>
+<h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>每个新功能位于一个自己的分支，这样可以push到中央仓库以备份和协作。但功能分支不是从master分支上拉出新分支，而是使用develop分支作为父分支。当新功能完成时，合并回develop分支。新功能提交应该从不直接与master分支交互。</p>
+<img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-2feature.png">
+<p>&nbsp;</p>
+<blockquote>
+<p>注意，从各种含义和目的上来看，功能分支加上develop分支就是功能分支工作流的用法。但Gitflow工作流没有在这里止步。</p>
+</blockquote>
+<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-3release.png">
+<p>&nbsp;<br>一旦develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上fork一个发布分支。新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上 —— 这个分支只应该做Bug修复、文档生成和其它面向发布任务。一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag。另外，这些从新建发布分支以来的做的修改要合并回develop分支。</p>
+<p>使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。<br>这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本4.0』，并且在仓库的目录结构中可以实际看到）。</p>
+<h2 id="常用的分支约定"><a href="#常用的分支约定" class="headerlink" title="常用的分支约定"></a>常用的分支约定</h2><p>用于新建发布分支的分支: develop</p>
+<p>用于合并的分支: master</p>
+<p>分支命名: release-<em> 或 release/</em></p>
+<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-4maintenance.png">
+<p>&nbsp;<br>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从master分支fork出来的分支。修复完成，修改应该马上合并回master分支和develop分支（当前的发布分支），master分支应该用新的版本号打好Tag。</p>
+<p>为Bug修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。你可以把维护分支想成是一个直接在master分支上处理的临时发布。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-5createdev.png">
+<p>&nbsp;<br>第一步为master分支配套一个develop分支。简单来做可以本地创建一个空的develop分支，push到服务器上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
+<p>以后这个分支将会包含了项目的全部历史，而master分支将只包含了部分历史。其它开发者这时应该克隆中央仓库，建好develop分支的跟踪分支:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://user@host/path/to/repo.git</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
+<p>现在每个开发都有了这些历史分支的本地拷贝。</p>
+<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
+<p>&nbsp;<br>这个示例中，工程师A和工程师B开始各自的功能开发。他们需要为各自的功能创建相应的分支。新分支不是基于master分支，而是应该基于develop分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br></pre></td></tr></table></figure>
+<p>他们用老套路添加提交到各自功能分支上：编辑、暂存、提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
+<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-7maryfinishes.png">
+<p>&nbsp;<br>添加了提交后，工程师A觉得她的功能OK了。如果团队使用Pull Requests，这时候可以发起一个用于合并到develop分支。否则她可以直接合并到她本地的develop分支后push到中央仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge some-feature</span><br><span class="line">git push</span><br><span class="line">git branch -d some-feature</span><br></pre></td></tr></table></figure></p>
+<p>第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。冲突解决方法和集中式工作流一样</p>
+<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-8maryprepsrelease.png">
+<p>&nbsp;<br>这个时候工程师B正在实现他的功能，工程师A开始准备她的第一个项目正式发布。像功能开发一样，她用一个新的分支来做发布准备。这一步也确定了发布的版本号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1 develop</span><br></pre></td></tr></table></figure>
+<p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支。</p>
+<p>只要工程师A创建这个分支并push到中央仓库，这个发布就是功能冻结的。任何不在develop分支中的新功能都推到下个发布循环中。</p>
+<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjq0mffn4001tywcbj3ktin15/images/git-workflow-release-cycle-9maryfinishes.png">
+<p>&nbsp;<br>一旦准备好了对外发布，工程师A合并修改到master分支和develop分支上，删除发布分支。合并回develop分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可用的。另外，如果工程师A的团队要求Code Review，这是一个发起Pull Request的理想时机。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git checkout develop</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git branch -d release-0.1</span><br></pre></td></tr></table></figure>
+<p>发布分支是作为功能开发（develop分支）和对外发布（master分支）间的缓冲。只要有合并到master分支，就应该打好Tag以方便跟踪。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git tag -a 0.1 -m &quot;Initial public release&quot; master</span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+<p>Git有提供各种勾子（hook），即仓库有事件发生时触发执行的脚本。可以配置一个勾子，在你push中央仓库的master分支时，自动构建好对外发布。</p>
+<h3 id="最终用户发现Bug"><a href="#最终用户发现Bug" class="headerlink" title="最终用户发现Bug"></a>最终用户发现Bug</h3>
+<p>&nbsp;<br>对外发布后，工程师A回去和工程师B一起做下个发布的新功能开发，直到有最终用户开了一个Ticket抱怨当前版本的一个Bug。为了处理Bug，工程师A（或工程师B）从master分支上拉出了一个维护分支，提交修改以解决问题，然后直接合并回master分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b issue-#001 master</span><br></pre></td></tr></table></figure>
+<p>Fix the bug</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge issue-#001</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>就像发布分支，维护分支中新加这些重要修改需要包含到develop分支中，所以工程师A要执行一个合并操作。然后就可以安全地删除这个分支了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge issue-#001</span><br><span class="line">git push</span><br><span class="line">git branch -d issue-#001</span><br></pre></td></tr></table></figure>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow/" target="_blank" rel="noopener">Comparing Workflows</a><br><a href="https://www.cnblogs.com/myqianlan/p/4195994.html" target="_blank" rel="noopener">Git基本命令和GitFlow工作流</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjq0mffn7001xywcbx2i0ped1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/12/cjq0mffn7001xywcbx2i0ped1/" itemprop="url">浏览器的回流与重绘</a></h1>
         
 
         <div class="post-meta">
@@ -407,7 +634,7 @@
       
         
           
-            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/16798b8db54caa31.png">
+            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjq0mffn7001xywcbx2i0ped1/images/16798b8db54caa31.png">
 <p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
 <ol>
 <li>浏览器使用流式布局模型 (Flow Based Layout)</li>
@@ -417,7 +644,7 @@
 <li>Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
 <li>由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。</li>
 </ol>
-<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/16798b8d839a7d6d.png">
+<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjq0mffn7001xywcbx2i0ped1/images/16798b8d839a7d6d.png">
 <p>为构建渲染树，浏览器大体上完成了下列工作：</p>
 <ol>
 <li>从 DOM 树的根节点开始遍历每个可见节点。某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，上例中的 span 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了“display: none”属性。</li>
@@ -434,7 +661,7 @@
 <p>以上网页的正文包含两个嵌套 div：第一个（父）div 将节点的显示尺寸设置为视口宽度的 50%，—父 div 包含的第二个 div—将其宽度设置为其父项的 50%；即视口宽度的 25%。</p>
 <p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
 <p>最后，既然我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素。这一步通常称为“绘制”或“栅格化”。</p>
-<img src="/2018/12/12/cjplebwq1001tzucbjm7wxw7m/images/layout-viewport.png">
+<img src="/2018/12/12/cjq0mffn7001xywcbx2i0ped1/images/layout-viewport.png">
 <p>会导致回流的操作：</p>
 <ul>
 <li>页面首次渲染</li>
@@ -540,7 +767,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjplebwq1001uzucbbqbt8iiq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjq0mffn8001yywcbsm7nya6e/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -559,7 +786,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/" itemprop="url">跨域问题及解决方式</a></h1>
+                <a class="post-title-link" href="/2018/12/09/cjq0mffn8001yywcbsm7nya6e/" itemprop="url">跨域问题及解决方式</a></h1>
         
 
         <div class="post-meta">
@@ -746,7 +973,7 @@
 </ul>
 <h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><h4 id="CORS的配置"><a href="#CORS的配置" class="headerlink" title="CORS的配置"></a>CORS的配置</h4><p>跨源资源共享（CORS）是一种机制，它使用其他HTTP请求头告诉浏览器让在一个源（域）上运行的Web应用程序有权访问不同来源服务器中的所选资源。Web应用程序在请求具有与自己不同源（域，协议和端口）的资源时，会发出跨源HTTP请求。</p>
 <p>出于安全原因，浏览器会限制从脚本中发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一源请求HTTP资源，除非来自其他来源的响应包含正确的CORS标头。</p>
-<img src="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/images/CORS_principle.png">
+<img src="/2018/12/09/cjq0mffn8001yywcbsm7nya6e/images/CORS_principle.png">
 <p>CORS机制支持浏览器和Web服务器之间的安全跨源请求和数据传输。现代浏览器在API中使用CORS，如XMLHttpRequest和Fetch，以帮助减轻跨域的HTTP请求的风险。</p>
 <p>服务端设置 Access-Control-Allow-Origin 字段，值可以是具体的域名或者 ‘*’ 通配符，配置好后就可以允许跨域请求数据。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
@@ -775,7 +1002,7 @@
 <li>同样的在 b 页面中通过 iframe 嵌入 c 页面，将要传递的数据通过  iframe 的 src 链接的 hash 值传递给 c 页面，由于 a 页面与 c 页面同域，c 页面可以直接修改 a 页面的 hash 值或者调用 a 页面中的全局函数。</li>
 </ul>
 <p>大致流程：</p>
-<img src="/2018/12/09/cjplebwq1001uzucbbqbt8iiq/images/165b1a74b0bc4290.png">
+<img src="/2018/12/09/cjq0mffn8001yywcbsm7nya6e/images/165b1a74b0bc4290.png">
 <p>a 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    iframe.src = <span class="string">"http://localhost:8081/b.html#data"</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkHash</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> data = location.hash ? location.hash.substring(<span class="number">1</span>) : <span class="string">''</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获得到的数据是：'</span>, data);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'监听到hash的变化：'</span>, location.hash.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>b 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="keyword">switch</span>(location.hash) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">         callback();</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"testHash"</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parent.location.hash = data;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">            <span class="keyword">var</span> ifrproxy = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">            ifrproxy.style.display = <span class="string">'none'</span>;</span><br><span class="line">            ifrproxy.src = <span class="string">'http://localhost:8080/c.html#'</span> + data;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(ifrproxy);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>c 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 修改 a 页面的 hash 值</span></span><br><span class="line">    parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 调用 a 页面的全局函数</span></span><br><span class="line">    parent.parent.checkHash();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -833,7 +1060,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjplebwq3001xzucb156961w0/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjq0mffnt002lywcbygg8t2nz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -852,7 +1079,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/02/cjplebwq3001xzucb156961w0/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
+                <a class="post-title-link" href="/2018/12/02/cjq0mffnt002lywcbygg8t2nz/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
         
 
         <div class="post-meta">
@@ -1036,7 +1263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjplebwqw002nzucbi2ekm543/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjq0mffnt002mywcb6uwffvix/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1055,7 +1282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/25/cjplebwqw002nzucbi2ekm543/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
+                <a class="post-title-link" href="/2018/11/25/cjq0mffnt002mywcb6uwffvix/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
         
 
         <div class="post-meta">
@@ -1177,7 +1404,7 @@
 <li>rejected</li>
 </ul>
 <p>Promise 对象初始化状态为 pending</p>
-<img src="/2018/11/25/cjplebwqw002nzucbi2ekm543/images/promises.png">
+<img src="/2018/11/25/cjq0mffnt002mywcb6uwffvix/images/promises.png">
 <p>下面代码创造了一个Promise实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Promise构造函数接收一个excutor执行函数作为参数, excutor函数接收两个参数，分别是resolve和reject。</p>
 <p>resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；</p>
@@ -1251,7 +1478,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjplebwjk0008zucbujzrl4tf/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjq0mffj90008ywcbbtd5ntec/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1270,7 +1497,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/cjplebwjk0008zucbujzrl4tf/" itemprop="url">JavaScript中的闭包</a></h1>
+                <a class="post-title-link" href="/2018/11/19/cjq0mffj90008ywcbbtd5ntec/" itemprop="url">JavaScript中的闭包</a></h1>
         
 
         <div class="post-meta">
@@ -1447,7 +1674,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjplebwq4001yzucb7bkts1up/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1466,7 +1693,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/18/cjplebwq4001yzucb7bkts1up/" itemprop="url">JavaScript的执行机制</a></h1>
+                <a class="post-title-link" href="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/" itemprop="url">JavaScript的执行机制</a></h1>
         
 
         <div class="post-meta">
@@ -1577,7 +1804,7 @@
 <li>同步任务</li>
 <li>异步任务</li>
 </ul>
-<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/15fdd88994142347.png"></p>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/15fdd88994142347.png"></p>
 <ul>
 <li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
 <li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
@@ -1610,7 +1837,7 @@
 <li>macro-task(宏任务)：包括整体代码script，setTimeout，setInterval</li>
 <li>micro-task(微任务)：Promise，process.nextTick</li>
 </ul>
-<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b575216a917.png">
+<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589b575216a917.png">
 <p>不同类型的任务会进入对应的Event Queue，比如setTimeout和setInterval会进入相同的Event Queue。<br>事件循环的顺序，决定js代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'then'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'console'</span>);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>这段代码作为宏任务，进入主线程。</li>
@@ -1620,40 +1847,40 @@
 <li>整体代码script作为第一个宏任务执行结束，看看有哪些微任务？我们发现了then在微任务Event Queue里面，执行。</li>
 <li>第一轮事件循环结束了，我们开始第二轮循环，当然要从宏任务Event Queue开始。我们发现了宏任务Event Queue中setTimeout对应的回调函数，立即执行。<br>结束。</li>
 </ul>
-<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/15fdcea13361a1ec.png"></p>
+<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/15fdcea13361a1ec.png"></p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="comment">// 记作 set1</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    <span class="comment">// set4</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// pro2</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'5'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 pro1</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7'</span>);</span><br><span class="line">    <span class="comment">// set3</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'8'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 set2</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'9'</span>);</span><br><span class="line">    <span class="comment">// 记作 pro3</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'10'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'11'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>第一轮事件循环：</li>
 </ul>
 <ol>
-<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b8d4316baf3.png">
+<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589b8d4316baf3.png">
 </li>
 </ol>
 <ol start="2">
-<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b8f1ccba52c.png">
+<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589b8f1ccba52c.png">
 </li>
 </ol>
 <ol start="3">
-<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b9381cfd5e0.png">
+<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589b9381cfd5e0.png">
 </li>
 </ol>
 <ol start="4">
-<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589b9647b2e171.png">
+<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589b9647b2e171.png">
 </li>
 </ol>
 <ol start="5">
-<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589ba43caf6b9f.png">
+<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589ba43caf6b9f.png">
 </li>
 </ol>
 <ul>
 <li>第二轮事件循环：</li>
 </ul>
 <ol>
-<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589ba8bbbe9c47.png">
+<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589ba8bbbe9c47.png">
 </li>
 </ol>
 <ol start="2">
-<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjplebwq4001yzucb7bkts1up/images/16589bab583e4850.png">
+<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjq0mffn6001uywcb5g3xnvvg/images/16589bab583e4850.png">
 </li>
 </ol>
 <ul>
@@ -1716,7 +1943,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjplebwjs000lzucbh47n38kl/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjq0mffjh000lywcb6t2mkhaz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1735,7 +1962,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/13/cjplebwjs000lzucbh47n38kl/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
+                <a class="post-title-link" href="/2018/11/13/cjq0mffjh000lywcb6t2mkhaz/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
         
 
         <div class="post-meta">
@@ -1925,7 +2152,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjplebwjj0007zucbg5i9kkrh/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjq0mffjg000hywcb9h9shdum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1944,192 +2171,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/cjplebwjj0007zucbg5i9kkrh/" itemprop="url">JavaScript中的this</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
-<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
-<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
-<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
-<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
-<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
-<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjplebwjq000hzucbkthlcct4/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/cjplebwjq000hzucbkthlcct4/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjq0mffjg000hywcb9h9shdum/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
         
 
         <div class="post-meta">
@@ -2345,7 +2387,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjplebwjp000gzucb7d1u2uks/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjq0mffj90007ywcblm4m7fi7/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2364,7 +2406,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/11/cjplebwjp000gzucb7d1u2uks/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjq0mffj90007ywcblm4m7fi7/" itemprop="url">JavaScript中的this</a></h1>
         
 
         <div class="post-meta">
@@ -2376,8 +2418,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T21:48:34+08:00">
-                2018-11-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
+                2018-11-12
               </time>
             
 
@@ -2399,8 +2441,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -2430,7 +2472,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.2k字
+                  1k字
                 </span>
               
 
@@ -2469,41 +2511,19 @@
       
         
           
-            <h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><p>插件目的在于解决 loader 无法实现的其他事。</p>
-<h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><p>webpack 插件是一个具有 apply 属性的 JavaScript 对象。apply 属性会被 webpack compiler 调用，并且 compiler 对象可在整个编译生命周期访问。<br><strong>ConsoleLogOnBuildWebpackPlugin.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pluginName = <span class="string">'ConsoleLogOnBuildWebpackPlugin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsoleLogOnBuildWebpackPlugin</span> </span>&#123;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        compiler.hooks.run.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"webpack 构建过程开始！"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="compiler-钩子"><a href="#compiler-钩子" class="headerlink" title="compiler 钩子"></a>compiler 钩子</h3><p>Compiler 模块是 webpack 的支柱引擎，它通过 CLI 或 Node API 传递的所有选项，创建出一个 compilation 实例。它扩展(extend)自 Tapable 类，以便注册和调用插件。大多数面向用户的插件首先会在 Compiler 上注册。<br>compiler hook 的 tap 方法的第一个参数，应该是驼峰式命名的插件名称。建议为此使用一个常量，以便它可以在所有 hook 中复用</p>
-<blockquote>
-<p>此模块会暴露在 webpack.Compiler，可以直接通过这种方式使用。</p>
-</blockquote>
-<h4 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h4><p>Compiler 支持可以监控文件系统的监听(watching)机制，并且在文件修改时重新编译。当处于监听模式(watch mode)时，compiler 会触发诸如 watchRun, watchClose 和 invalid 等额外的事件。通常用于开发环境中使用，也常常会在 webpack-dev-server 这些工具的底层之下调用，由此开发人员无须每次都使用手动方式重新编译。还可以通过 CLI 进入监听模式。</p>
-<h4 id="相关钩子"><a href="#相关钩子" class="headerlink" title="相关钩子"></a>相关钩子</h4><p>以下生命周期钩子函数，是由 compiler 暴露，可以通过如下方式访问：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiler.hooks.someHook.tap(...)</span><br></pre></td></tr></table></figure></p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>由于插件可以携带参数/选项，你必须在 webpack 配置中，向 plugins 属性传入 new 实例。</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><strong>webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>); <span class="comment">//通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>); <span class="comment">//访问内置的插件</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./path/to/my/entry/file.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'my-first-webpack.bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(js|jsx)$/</span>,</span><br><span class="line">        use: <span class="string">'babel-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Node-API"><a href="#Node-API" class="headerlink" title="Node API"></a>Node API</h3><p><strong>some-node-script.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>); <span class="comment">//访问 webpack 运行时(runtime)</span></span><br><span class="line">  <span class="keyword">const</span> configuration = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> compiler = webpack(configuration);</span><br><span class="line">  compiler.apply(<span class="keyword">new</span> webpack.ProgressPlugin());</span><br><span class="line"></span><br><span class="line">  compiler.run(<span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure></p>
-<h1 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h1><p>很少有 webpack 配置看起来很完全相同，这是因为 webpack 的配置文件，是导出一个对象的 JavaScript 文件。</p>
-<p>因为 webpack 配置是标准的 Node.js CommonJS 模块，你可以做到以下事情：</p>
-<ul>
-<li>通过 require(…) 导入其他文件</li>
-<li>通过 require(…) 使用 npm 的工具函数</li>
-<li>使用 JavaScript 控制流表达式，例如 ?: 操作符</li>
-<li>对常用值使用常量或变量</li>
-<li>编写并执行函数来生成部分配置</li>
-</ul>
-<p>虽然技术上可行，但应避免以下做法：</p>
-<ul>
-<li>在使用 webpack 命令行接口(CLI)（应该编写自己的命令行接口(CLI)，或使用 –env）时，访问命令行接口(CLI)参数</li>
-<li>导出不确定的值（调用 webpack 两次应该产生同样的输出文件）</li>
-<li>编写很长的配置（应该将配置拆分为多个文件）</li>
-</ul>
-<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p><strong>webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: <span class="string">'./foo.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'foo.bundle.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="多个Target"><a href="#多个Target" class="headerlink" title="多个Target"></a>多个Target</h2><h3 id="导出为一个函数"><a href="#导出为一个函数" class="headerlink" title="导出为一个函数"></a>导出为一个函数</h3><p>最终，你会发现需要在开发和生产构建之间，消除 webpack.config.js 的差异。（至少）有两种选项：<br>作为导出一个配置对象的替代，还有一种可选的导出方式是，从 webpack 配置文件中导出一个函数。该函数在调用时，可传入两个参数：</p>
-<ul>
-<li>环境对象(environment)作为第一个参数。</li>
-<li>一个选项 map 对象（argv）作为第二个参数。这个对象描述了传递给 webpack 的选项，并且具有 output-filename 和 optimize-minimize 等 key。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-<span class="built_in">module</span>.exports = &#123;</span><br><span class="line">+<span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">env, argv</span>) </span>&#123;</span><br><span class="line">+  <span class="keyword">return</span> &#123;</span><br><span class="line">+    mode: env.production ? <span class="string">'production'</span> : <span class="string">'development'</span>,</span><br><span class="line">+    devtool: env.production ? <span class="string">'source-maps'</span> : <span class="string">'eval'</span>,</span><br><span class="line">     plugins: [</span><br><span class="line">       <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">+        compress: argv[<span class="string">'optimize-minimize'</span>] <span class="comment">// 只有传入 -p 或 --optimize-minimize</span></span><br><span class="line">       &#125;)</span><br><span class="line">     ]</span><br><span class="line">+  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="导出一个Promise"><a href="#导出一个Promise" class="headerlink" title="导出一个Promise"></a>导出一个Promise</h3><p>webpack 将运行由配置文件导出的函数，并且等待 Promise 返回。便于需要异步地加载所需的配置变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve(&#123;</span><br><span class="line">        entry: <span class="string">'./app.js'</span>,</span><br><span class="line">        <span class="comment">/* ... */</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;, <span class="number">5000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="导出多个配置对象"><a href="#导出多个配置对象" class="headerlink" title="导出多个配置对象"></a>导出多个配置对象</h3><p>作为导出一个配置对象/配置函数的替代，你可能需要导出多个配置对象（从 webpack 3.1.0 开始支持导出多个函数）。当运行 webpack 时，所有的配置对象都会构建。例如，导出多个配置对象，对于针对多个构建目标（例如 AMD 和 CommonJS）打包一个 library 非常有用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = [&#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'./dist-amd.js'</span>,</span><br><span class="line">    libraryTarget: <span class="string">'amd'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  entry: <span class="string">'./app.js'</span>,</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'./dist-commonjs.js'</span>,</span><br><span class="line">    libraryTarget: <span class="string">'commonjs'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  entry: <span class="string">'./app.js'</span>,</span><br><span class="line">  mode: <span class="string">'production'</span>,</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure></p>
+            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
+<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
+<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
+<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
+<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -2587,7 +2607,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2598,7 +2618,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2609,7 +2629,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
