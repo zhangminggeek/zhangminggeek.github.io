@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjqtnag8s0007tycbdeospo3n/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjqz6fw5v0007c9cb9f6tmpjd/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/cjqtnag8s0007tycbdeospo3n/" itemprop="url">JavaScript中的this</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjqz6fw5v0007c9cb9f6tmpjd/" itemprop="url">JavaScript中的this</a></h1>
         
 
         <div class="post-meta">
@@ -468,7 +468,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjqtnagcu000ztycb2ys6haex/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjqz6fw63000lc9cbe23j9qra/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -487,7 +487,242 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/11/cjqtnagcu000ztycb2ys6haex/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjqz6fw63000lc9cbe23j9qra/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.7k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1><h2 id="什么是模块"><a href="#什么是模块" class="headerlink" title="什么是模块"></a>什么是模块</h2><p>在模块化编程中，开发者将程序分解成离散功能块(discrete chunks of functionality)，并称之为模块。<br>对比 Node.js 模块，webpack 模块能够以各种方式表达它们的依赖关系，几个例子如下：</p>
+<ul>
+<li>ES2015 import 语句</li>
+<li>CommonJS require() 语句</li>
+<li>AMD define 和 require 语句</li>
+<li>css/sass/less 文件中的 @import 语句。</li>
+<li>样式(url(…))或 HTML 文件(<code>&lt;img src=...&gt;</code>)中的图片链接(image url)</li>
+</ul>
+<h2 id="支持的模块类型"><a href="#支持的模块类型" class="headerlink" title="支持的模块类型"></a>支持的模块类型</h2><p>webpack 通过 loader 可以支持各种语言和预处理器编写模块。loader 描述了 webpack 如何处理 非 JavaScript(non-JavaScript) _模块_，并且在 bundle 中引入这些依赖。 webpack 社区已经为各种流行语言和语言处理器构建了 loader，包括：</p>
+<ul>
+<li>CoffeeScript</li>
+<li>TypeScript</li>
+<li>ESNext (Babel)</li>
+<li>Sass</li>
+<li>Less</li>
+<li>Stylus</li>
+</ul>
+<h1 id="模块解析"><a href="#模块解析" class="headerlink" title="模块解析"></a>模块解析</h1><p>resolver 是一个库(library)，用于帮助找到模块的绝对路径。一个模块可以作为另一个模块的依赖模块，然后被后者引用，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">'path/to/module'</span></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'path/to/module'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>所依赖的模块可以是来自应用程序代码或第三方的库(library)。resolver 帮助 webpack 找到 bundle 中需要引入的模块代码，这些代码在包含在每个 require/import 语句中。 当打包模块时，webpack 使用 enhanced-resolve 来解析文件路径</p>
+<h2 id="webpack中的解析规则"><a href="#webpack中的解析规则" class="headerlink" title="webpack中的解析规则"></a>webpack中的解析规则</h2><p>使用 enhanced-resolve，webpack 能够解析三种文件路径：</p>
+<h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"/home/me/file"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"C:\\Users\\me\\file"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"../src/file1"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"./file2"</span>;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，使用 import 或 require 的资源文件(resource file)所在的目录被认为是上下文目录(context directory)。在 import/require 中给定的相对路径，会添加此上下文路径(context path)，以产生模块的绝对路径(absolute path)。</p>
+<h3 id="模块路径"><a href="#模块路径" class="headerlink" title="模块路径"></a>模块路径</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"module"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">"module/lib/file"</span>;</span><br></pre></td></tr></table></figure>
+<p>模块将在 resolve.modules 中指定的所有目录内搜索。 你可以替换初始模块路径，此替换路径通过使用 resolve.alias 配置选项来创建一个别名。<br>一旦根据上述规则解析路径后，解析器(resolver)将检查路径是否指向文件或目录。如果路径指向一个文件：</p>
+<ul>
+<li>如果路径具有文件扩展名，则被直接将文件打包。</li>
+<li>否则，将使用 [resolve.extensions] 选项作为文件扩展名来解析，此选项告诉解析器在解析中能够接受哪些扩展名（例如 .js, .jsx）。</li>
+</ul>
+<p>如果路径指向一个文件夹，则采取以下步骤找到具有正确扩展名的正确文件：</p>
+<ul>
+<li>如果文件夹中包含 package.json 文件，则按照顺序查找 resolve.mainFields 配置选项中指定的字段。并且 package.json 中的第一个这样的字段确定文件路径。</li>
+<li>如果 package.json 文件不存在或者 package.json 文件中的 main 字段没有返回一个有效路径，则按照顺序查找 resolve.mainFiles 配置选项中指定的文件名，看是否能在 import/require 目录下匹配到一个存在的文件名。</li>
+<li>文件扩展名通过 resolve.extensions 选项采用类似的方法进行解析。</li>
+</ul>
+<h4 id="resolve-aliasFields"><a href="#resolve-aliasFields" class="headerlink" title="resolve.aliasFields"></a><code>resolve.aliasFields</code></h4><p><code>string</code><br>指定一个字段，例如 browser，根据此规范进行解析。默认：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aliasFields: [<span class="string">"browser"</span>]</span><br></pre></td></tr></table></figure></p>
+<h4 id="resolve-extensions"><a href="#resolve-extensions" class="headerlink" title="resolve.extensions"></a><code>resolve.extensions</code></h4><p><code>array</code><br>自动解析确定的扩展。默认值为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extensions: [<span class="string">".js"</span>, <span class="string">".json"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>能够使用户在引入模块时不带扩展：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> File <span class="keyword">from</span> <span class="string">'../path/to/file'</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>使用此选项，会覆盖默认数组，这就意味着 webpack 将不再尝试使用默认扩展来解析模块。对于使用其扩展导入的模块，例如，import SomeFile from “./somefile.ext”，要想正确的解析，一个包含“*”的字符串必须包含在数组中</p>
+</blockquote>
+<h4 id="resolve-mainFields"><a href="#resolve-mainFields" class="headerlink" title="resolve.mainFields"></a><code>resolve.mainFields</code></h4><p><code>array</code><br>当从 npm 包中导入模块时（例如，import * as D3 from “d3”），此选项将决定在 package.json 中使用哪个字段导入模块。根据 webpack 配置中指定的 target 不同，默认值也会有所不同。<br>当 target 属性设置为 webworker, web 或者没有指定，默认值为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mainFields: [<span class="string">"browser"</span>, <span class="string">"module"</span>, <span class="string">"main"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>对于其他任意的 target（包括 node），默认值为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mainFields: [<span class="string">"module"</span>, <span class="string">"main"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>例如，D3 的 package.json 含有这些字段：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  main: <span class="string">'build/d3.Node.js'</span>,</span><br><span class="line">  browser: <span class="string">'build/d3.js'</span>,</span><br><span class="line">  <span class="built_in">module</span>: <span class="string">'index'</span>,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这意味着当我们 import * as D3 from “d3”，实际从 browser 属性解析文件。在这里 browser 属性是最优先选择的，因为它是 mainFields 的第一项。同时，由 webpack 打包的 Node.js 应用程序默认会从 module 字段中解析文件。</p>
+<h4 id="resolve-mainFiles"><a href="#resolve-mainFiles" class="headerlink" title="resolve.mainFiles"></a><code>resolve.mainFiles</code></h4><p><code>array</code><br>解析目录时要使用的文件名。默认<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mainFiles: [<span class="string">"index"</span>]</span><br></pre></td></tr></table></figure></p>
+<h2 id="解析loader"><a href="#解析loader" class="headerlink" title="解析loader"></a>解析loader</h2><p>Loader 解析遵循与文件解析器指定的规则相同的规则。但是 resolveLoader 配置选项可以用来为 Loader 提供独立的解析规则。</p>
+<h3 id="resolveLoader"><a href="#resolveLoader" class="headerlink" title="resolveLoader"></a>resolveLoader</h3><h4 id="resolveLoader-1"><a href="#resolveLoader-1" class="headerlink" title="resolveLoader"></a><code>resolveLoader</code></h4><p><code>object</code><br>这组选项与上面的 resolve 对象的属性集合相同，但仅用于解析 webpack 的 loader 包。默认：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  modules: [ <span class="string">'node_modules'</span> ],</span><br><span class="line">  extensions: [ <span class="string">'.js'</span>, <span class="string">'.json'</span> ],</span><br><span class="line">  mainFields: [ <span class="string">'loader'</span>, <span class="string">'main'</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意，这里你可以使用别名，并且其他特性类似于 resolve 对象。例如，{ txt: ‘raw-loader’ } 会使用 raw-loader 去 shim(填充) txt!templates/demo.txt。</p>
+</blockquote>
+<h4 id="resolveLoader-moduleExtensions"><a href="#resolveLoader-moduleExtensions" class="headerlink" title="resolveLoader.moduleExtensions"></a><code>resolveLoader.moduleExtensions</code></h4><p><code>array</code><br>解析 loader 时，用到扩展名(extensions)/后缀(suffixes)。从 webpack 2 开始，我们强烈建议使用全名，例如 example-loader，以尽可能清晰。然而，如果你确实想省略 -loader，也就是说只使用 example，则可以使用此选项来实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moduleExtensions: [ <span class="string">'-loader'</span> ]</span><br></pre></td></tr></table></figure></p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>每个文件系统访问都被缓存，以便更快触发对同一文件的多个并行或串行请求。在观察模式下，只有修改过的文件会从缓存中摘出。如果关闭观察模式，在每次编译前清理缓存。</p>
+<h3 id="watch-和-watchOptions"><a href="#watch-和-watchOptions" class="headerlink" title="watch 和 watchOptions"></a>watch 和 watchOptions</h3><h4 id="watch"><a href="#watch" class="headerlink" title="watch"></a><code>watch</code></h4><p><code>boolean</code><br>启用 Watch 模式。这意味着在初始构建之后，webpack 将继续监听任何已解析文件的更改。Watch 模式默认关闭。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>webpack-dev-server 和 webpack-dev-middleware 里 Watch 模式默认开启。</p>
+</blockquote>
+<h4 id="watchOptions"><a href="#watchOptions" class="headerlink" title="watchOptions"></a><code>watchOptions</code></h4><p><code>object</code><br>一组用来定制 Watch 模式的选项：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">  aggregateTimeout: <span class="number">300</span>,</span><br><span class="line">  poll: <span class="number">1000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="watchOptions-aggregateTimeout"><a href="#watchOptions-aggregateTimeout" class="headerlink" title="watchOptions.aggregateTimeout"></a><code>watchOptions.aggregateTimeout</code></h4><p><code>number</code><br>当第一个文件更改，会在重新构建前增加延迟。这个选项允许 webpack 将这段时间内进行的任何其他更改都聚合到一次重新构建里。以毫秒为单位：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aggregateTimeout: <span class="number">300</span> <span class="comment">// 默认值</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="watchOptions-ignored"><a href="#watchOptions-ignored" class="headerlink" title="watchOptions.ignored"></a><code>watchOptions.ignored</code></h4><p>对于某些系统，监听大量文件系统会导致大量的 CPU 或内存占用。这个选项可以排除一些巨大的文件夹，例如 node_modules：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignored: <span class="regexp">/node_modules/</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以使用 anymatch 模式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ignored: <span class="string">"files/**/*.js"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="watchOptions-poll"><a href="#watchOptions-poll" class="headerlink" title="watchOptions.poll"></a><code>watchOptions.poll</code></h4><p><code>boolean`</code>number`<br>通过传递 true 开启 polling，或者指定毫秒为单位进行轮询。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poll: <span class="number">1000</span> <span class="comment">// 每秒检查一次变动</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="info-verbosity"><a href="#info-verbosity" class="headerlink" title="info-verbosity"></a><code>info-verbosity</code></h4><p><code>string</code>: <code>none`</code>info<code></code>verbose`<br>控制生命周期消息的详细程度，例如 Started watching files(开始监听文件)… 日志。将 info-verbosity 设置为 verbose，还会额外在增量构建的开始和结束时，向控制台发送消息。info-verbosity 默认设置为 info。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack --watch --info-verbosity verbose</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjqz6fw60000gc9cb8r1vtrbm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/11/cjqz6fw60000gc9cb8r1vtrbm/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
         
 
         <div class="post-meta">
@@ -675,7 +910,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/10/cjqtnagcr000xtycbmo1tkjq5/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/10/cjqz6fw5z000dc9cbrnb8eqqp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -694,7 +929,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/10/cjqtnagcr000xtycbmo1tkjq5/" itemprop="url">webpack学习笔记（三）：模式、loader</a></h1>
+                <a class="post-title-link" href="/2018/11/10/cjqz6fw5z000dc9cbrnb8eqqp/" itemprop="url">webpack学习笔记（三）：模式、loader</a></h1>
         
 
         <div class="post-meta">
@@ -901,7 +1136,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/09/cjqtnagcq000wtycbs7hi5nhh/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/09/cjqz6fw5y000cc9cbpxzom9gy/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -920,7 +1155,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/09/cjqtnagcq000wtycbs7hi5nhh/" itemprop="url">webpack学习笔记（二）：入口、出口</a></h1>
+                <a class="post-title-link" href="/2018/11/09/cjqz6fw5y000cc9cbpxzom9gy/" itemprop="url">webpack学习笔记（二）：入口、出口</a></h1>
         
 
         <div class="post-meta">
@@ -1106,7 +1341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/08/cjqtnag8u000btycbzjfvmefp/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/08/cjqz6fw5x000bc9cbgds0c9fm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1125,7 +1360,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/08/cjqtnag8u000btycbzjfvmefp/" itemprop="url">webpack学习笔记（一）：概念</a></h1>
+                <a class="post-title-link" href="/2018/11/08/cjqz6fw5x000bc9cbgds0c9fm/" itemprop="url">webpack学习笔记（一）：概念</a></h1>
         
 
         <div class="post-meta">
@@ -1305,7 +1540,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/04/cjqtnag7v0000tycbma89jxv3/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/04/cjqz6fw180000c9cb2uk3zh7a/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1324,7 +1559,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/04/cjqtnag7v0000tycbma89jxv3/" itemprop="url">Markdown语法</a></h1>
+                <a class="post-title-link" href="/2018/11/04/cjqz6fw180000c9cb2uk3zh7a/" itemprop="url">Markdown语法</a></h1>
         
 
         <div class="post-meta">
@@ -1581,7 +1816,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1603,7 +1838,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
