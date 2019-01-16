@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,13 +66,14 @@
     <session id="-1683260209">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -82,7 +84,7 @@
           <entry key="ico" value="7" />
           <entry key="jpg" value="2" />
           <entry key="json" value="1" />
-          <entry key="md" value="27" />
+          <entry key="md" value="28" />
           <entry key="png" value="9" />
           <entry key="svg" value="1" />
           <entry key="swig" value="4" />
@@ -94,7 +96,7 @@
           <entry key="HTML" value="3" />
           <entry key="Image" value="18" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="27" />
+          <entry key="Markdown" value="28" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="1" />
           <entry key="YAML" value="9" />
@@ -103,7 +105,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="md" value="5254" />
+          <entry key="md" value="5471" />
           <entry key="swig" value="19" />
           <entry key="yml" value="118" />
         </counts>
@@ -111,7 +113,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="75" />
-          <entry key="Markdown" value="5179" />
+          <entry key="Markdown" value="5396" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="YAML" value="118" />
         </counts>
@@ -124,32 +126,20 @@
         <entry file="file://$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
+              <first_editor relative-caret-position="507">
+                <caret line="203" column="3" selection-start-line="203" selection-start-column="3" selection-end-line="203" selection-end-column="3" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
               <first_editor relative-caret-position="552">
-                <caret line="203" column="20" selection-start-line="203" selection-start-column="20" selection-end-line="203" selection-end-column="20" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-918">
-                <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="12" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的闭包.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="417">
-                <caret line="149" selection-start-line="149" selection-end-line="150" selection-end-column="18" />
+                <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
               </first_editor>
               <second_editor />
             </state>
@@ -233,6 +223,7 @@
         <option value="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/git/Gitflow工作流/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/javascript/设计模式/JavaScript中的鸭子类型和多态/index.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md" />
       </list>
     </option>
@@ -254,9 +245,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,7 +254,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,12 +285,13 @@
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
               <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="设计模式" type="462c0819:PsiDirectoryNode" />
+              <item name="Iterator迭代器" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,12 +354,13 @@
       <workItem from="1543732368030" duration="5765000" />
       <workItem from="1544366619102" duration="5778000" />
       <workItem from="1544623854339" duration="5184000" />
-      <workItem from="1545550753333" duration="8148000" />
+      <workItem from="1545550753333" duration="8679000" />
+      <workItem from="1547431115323" duration="2156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136591000" />
+    <option name="totallyTimeSpent" value="139278000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -384,7 +375,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -396,7 +387,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.28004956" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.54756874" weight="0.23048328" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49964765" visible="true" weight="0.17967781" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49964765" visible="true" weight="0.17967781" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4524313" side_tool="true" weight="0.1771995" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -437,7 +428,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_data/next.yml" />
     <entry file="file://$PROJECT_DIR$/source/categories/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -711,10 +701,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的闭包.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2235">
+            <caret line="149" selection-start-line="149" selection-end-line="150" selection-end-column="18" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的this.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-918">
+          <first_editor relative-caret-position="15">
             <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="12" />
           </first_editor>
           <second_editor />
@@ -726,11 +726,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript中的闭包.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="417">
-            <caret line="149" selection-start-line="149" selection-end-line="150" selection-end-column="18" />
+          <first_editor relative-caret-position="552">
+            <caret line="166" column="21" selection-start-line="166" selection-start-column="21" selection-end-line="166" selection-end-column="21" />
           </first_editor>
           <second_editor />
         </state>
@@ -739,8 +739,8 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/设计模式/鸭子类型，多态和封装/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="552">
-            <caret line="203" column="20" selection-start-line="203" selection-start-column="20" selection-end-line="203" selection-end-column="20" />
+          <first_editor relative-caret-position="507">
+            <caret line="203" column="3" selection-start-line="203" selection-start-column="3" selection-end-line="203" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
