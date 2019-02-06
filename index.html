@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjqz6fw7t001tc9cbcls5qoeb/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/06/cjrt8sq1u001plhw07lkqru02/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,204 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/16/cjqz6fw7t001tc9cbcls5qoeb/" itemprop="url">Iterator迭代器</a></h1>
+                <a class="post-title-link" href="/2019/02/06/cjrt8sq1u001plhw07lkqru02/" itemprop="url">尾调用优化和尾递归</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-06T21:36:11+08:00">
+                2019-02-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是尾调用"><a href="#什么是尾调用" class="headerlink" title="什么是尾调用"></a>什么是尾调用</h2><p>&emsp;&emsp;尾调用（Tail Call）是函数式编程的一个重要概念，就是指某个函数的最后一步是调用另一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;以下三种情况，都不属于尾调用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 情况一：调用函数g之后，还有赋值操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> y = g(x);</span><br><span class="line">  <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 情况二：调用后还有操作</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 情况三</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  g(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  g(x);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;尾调用不一定出现在函数尾部，只要是最后一步操作即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> m(x)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>&emsp;&emsp;函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。<br>&emsp;&emsp;尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> g(m + n);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">g(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;上面代码中，如果函数g不是尾调用，函数f就需要保存内部变量m和n的值、g的调用位置等信息。但由于调用g之后，函数f就结束了，所以执行到最后一步，完全可以删除f(x)的调用帧，只保留g(3)的调用帧。<br>&emsp;&emsp;这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。</p>
+<h2 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h2><p>&emsp;&emsp;函数调用自身，称为递归。如果尾调用自身，就称为尾递归。<br>&emsp;&emsp;递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。<br>&emsp;&emsp;如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="递归函数的改写"><a href="#递归函数的改写" class="headerlink" title="递归函数的改写"></a>递归函数的改写</h2><p>&emsp;&emsp;尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量total，那就把这个中间变量改写成函数的参数。<br>&emsp;&emsp;这样做的缺点就是不太直观，第一眼很难看出来，为什么计算5的阶乘，需要传入两个参数5和1？两个方法可以解决这个问题。方法一是在尾递归函数之外，再提供一个正常形式的函数。</p>
+<h3 id="提供函数"><a href="#提供函数" class="headerlink" title="提供函数"></a>提供函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">m</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.call(<span class="keyword">this</span>, m, n);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> factorial = currying(tailFactorial, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="函数默认值"><a href="#函数默认值" class="headerlink" title="函数默认值"></a>函数默认值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;总结一下，递归本质上是一种循环操作。纯粹的函数式编程语言没有循环操作命令，所有的循环都用递归实现，这就是为什么尾递归对这些语言极其重要。对于其他支持“尾调用优化”的语言（比如 Lua，ES6），只需要知道循环可以用递归代替，而一旦使用递归，就最好使用尾递归。</p>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>&emsp;&emsp;ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。这是因为在正常模式下，函数内部有两个变量，可以跟踪函数的调用栈。</p>
+<ul>
+<li><code>func.arguments</code>：返回调用时函数的参数。</li>
+<li><code>func.caller</code>：返回调用当前函数的那个函数。</li>
+</ul>
+<p>&emsp;&emsp;尾调用优化发生时，函数的调用栈会改写，因此上面两个变量就会失真。严格模式禁用这两个变量，所以尾调用模式仅在严格模式下生效。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">restricted</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line">  restricted.caller;    <span class="comment">// 报错</span></span><br><span class="line">  restricted.arguments; <span class="comment">// 报错</span></span><br><span class="line">&#125;</span><br><span class="line">restricted();</span><br></pre></td></tr></table></figure></p>
+<h2 id="尾递归优化的实现"><a href="#尾递归优化的实现" class="headerlink" title="尾递归优化的实现"></a>尾递归优化的实现</h2><p>&emsp;&emsp;尾递归之所以需要优化，原因是调用栈太多，造成溢出，那么只要减少调用栈，就不会溢出。方法就是采用“循环”换掉“递归”。<br>&emsp;&emsp;下面是一个正常的递归函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> sum(x + <span class="number">1</span>, y - <span class="number">1</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">100000</span>)</span><br><span class="line"><span class="comment">// Uncaught RangeError: Maximum call stack size exceeded(…)</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;蹦床函数（trampoline）可以将递归执行转为循环执行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trampoline</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (f &amp;&amp; f <span class="keyword">instanceof</span> <span class="built_in">Function</span>) &#123;</span><br><span class="line">    f = f();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;上面就是蹦床函数的一个实现，它接受一个函数f作为参数。只要f执行后返回一个函数，就继续执行。注意，这里是返回一个函数，然后执行该函数，而不是函数里面调用函数，这样就避免了递归执行，从而就消除了调用栈过大的问题。<br>&emsp;&emsp;然后，要做的就是将原来的递归函数，改写为每一步返回另一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> sum.bind(<span class="literal">null</span>, x + <span class="number">1</span>, y - <span class="number">1</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;现在，使用蹦床函数执行sum，就不会发生调用栈溢出。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">trampoline(sum(<span class="number">1</span>, <span class="number">100000</span>))</span><br><span class="line"><span class="comment">// 100001</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;蹦床函数并不是真正的尾递归优化，下面的实现才是。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tco</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value;</span><br><span class="line">  <span class="keyword">var</span> active = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">var</span> accumulated = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">accumulator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    accumulated.push(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">if</span> (!active) &#123;</span><br><span class="line">      active = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">while</span> (accumulated.length) &#123;</span><br><span class="line">        value = f.apply(<span class="keyword">this</span>, accumulated.shift());</span><br><span class="line">      &#125;</span><br><span class="line">      active = <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = tco(<span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> sum(x + <span class="number">1</span>, y - <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">100000</span>)</span><br><span class="line"><span class="comment">// 100001</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;上面代码中，tco函数是尾递归优化的实现，它的奥妙就在于状态变量active。默认情况下，这个变量是不激活的。一旦进入尾递归优化的过程，这个变量就激活了。然后，每一轮递归sum返回的都是undefined，所以就避免了递归执行；而accumulated数组存放每一轮sum执行的参数，总是有值的，这就保证了accumulator函数内部的while循环总是会执行。这样就很巧妙地将“递归”改成了“循环”，而后一轮的参数会取代前一轮的参数，保证了调用栈只有一层。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>阮一峰 《ECMAScript 6 入门》</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjrt8sq1u001qlhw0i4624tqu/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/16/cjrt8sq1u001qlhw0i4624tqu/" itemprop="url">Iterator迭代器</a></h1>
         
 
         <div class="post-meta">
@@ -493,7 +690,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjqz6fway0037c9cbxyxuihae/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjrt8sq53003clhw0h9z4myer/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -512,7 +709,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/cjqz6fway0037c9cbxyxuihae/" itemprop="url">鸭子类型，多态和封装</a></h1>
+                <a class="post-title-link" href="/2019/01/12/cjrt8sq53003clhw0h9z4myer/" itemprop="url">鸭子类型，多态和封装</a></h1>
         
 
         <div class="post-meta">
@@ -692,7 +889,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -711,7 +908,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/" itemprop="url">Gitflow工作流</a></h1>
+                <a class="post-title-link" href="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/" itemprop="url">Gitflow工作流</a></h1>
         
 
         <div class="post-meta">
@@ -817,47 +1014,47 @@
         
           
             <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在你开始阅读之前，请记住：流程应被视作为指导方针，而非“铁律”。我们只是想告诉你可能的做法。因此，如果有必要的话，你可以组合使用不同的流程。</p>
-<img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflows-gitflow.png">
+<img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflows-gitflow.png">
 <p>&nbsp;<br>Gitflow工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。</p>
 <p>Gitflow工作流没有用超出功能分支工作流的概念和命令，而是为不同的分支分配一个很明确的角色，并定义分支之间如何和什么时候进行交互。除了使用功能分支，在做准备、维护和记录发布也使用各自的分支。当然你可以用上功能分支工作流所有的好处：Pull Requests、隔离实验性开发和更高效的协作。</p>
 <h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><p>Gitflow工作流仍然用中央仓库作为所有开发者的交互中心。和其它的工作流一样，开发者在本地工作并push分支到要中央仓库中。</p>
 <h2 id="历史分支"><a href="#历史分支" class="headerlink" title="历史分支"></a>历史分支</h2><p>相对使用仅有的一个master分支，Gitflow工作流使用2个分支来记录项目的历史。master分支存储了正式发布的历史，而develop分支作为功能的集成分支。这样也方便master分支上的所有提交分配一个版本号。</p>
-<img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-1historical.png">
+<img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-1historical.png">
 <p>&nbsp;<br>剩下要说明的问题围绕着这2个分支的区别展开。</p>
 <h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>每个新功能位于一个自己的分支，这样可以push到中央仓库以备份和协作。但功能分支不是从master分支上拉出新分支，而是使用develop分支作为父分支。当新功能完成时，合并回develop分支。新功能提交应该从不直接与master分支交互。</p>
-<img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-2feature.png">
+<img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-2feature.png">
 <p>&nbsp;</p>
 <blockquote>
 <p>注意，从各种含义和目的上来看，功能分支加上develop分支就是功能分支工作流的用法。但Gitflow工作流没有在这里止步。</p>
 </blockquote>
-<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-3release.png">
+<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-3release.png">
 <p>&nbsp;<br>一旦develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上fork一个发布分支。新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上 —— 这个分支只应该做Bug修复、文档生成和其它面向发布任务。一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag。另外，这些从新建发布分支以来的做的修改要合并回develop分支。</p>
 <p>使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。<br>这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本4.0』，并且在仓库的目录结构中可以实际看到）。</p>
 <h2 id="常用的分支约定"><a href="#常用的分支约定" class="headerlink" title="常用的分支约定"></a>常用的分支约定</h2><p>用于新建发布分支的分支: develop</p>
 <p>用于合并的分支: master</p>
 <p>分支命名: release-<em> 或 release/</em></p>
-<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-4maintenance.png">
+<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-4maintenance.png">
 <p>&nbsp;<br>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从master分支fork出来的分支。修复完成，修改应该马上合并回master分支和develop分支（当前的发布分支），master分支应该用新的版本号打好Tag。</p>
 <p>为Bug修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。你可以把维护分支想成是一个直接在master分支上处理的临时发布。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-5createdev.png">
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-5createdev.png">
 <p>&nbsp;<br>第一步为master分支配套一个develop分支。简单来做可以本地创建一个空的develop分支，push到服务器上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
 <p>以后这个分支将会包含了项目的全部历史，而master分支将只包含了部分历史。其它开发者这时应该克隆中央仓库，建好develop分支的跟踪分支:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://user@host/path/to/repo.git</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
 <p>现在每个开发都有了这些历史分支的本地拷贝。</p>
-<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
+<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
 <p>&nbsp;<br>这个示例中，工程师A和工程师B开始各自的功能开发。他们需要为各自的功能创建相应的分支。新分支不是基于master分支，而是应该基于develop分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br></pre></td></tr></table></figure>
 <p>他们用老套路添加提交到各自功能分支上：编辑、暂存、提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-7maryfinishes.png">
+<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-7maryfinishes.png">
 <p>&nbsp;<br>添加了提交后，工程师A觉得她的功能OK了。如果团队使用Pull Requests，这时候可以发起一个用于合并到develop分支。否则她可以直接合并到她本地的develop分支后push到中央仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge some-feature</span><br><span class="line">git push</span><br><span class="line">git branch -d some-feature</span><br></pre></td></tr></table></figure></p>
 <p>第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。冲突解决方法和集中式工作流一样</p>
-<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-8maryprepsrelease.png">
+<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-8maryprepsrelease.png">
 <p>&nbsp;<br>这个时候工程师B正在实现他的功能，工程师A开始准备她的第一个项目正式发布。像功能开发一样，她用一个新的分支来做发布准备。这一步也确定了发布的版本号：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1 develop</span><br></pre></td></tr></table></figure>
 <p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支。</p>
 <p>只要工程师A创建这个分支并push到中央仓库，这个发布就是功能冻结的。任何不在develop分支中的新功能都推到下个发布循环中。</p>
-<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjqz6fwa5001yc9cbafp05uoq/images/git-workflow-release-cycle-9maryfinishes.png">
+<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjrt8sq4h0024lhw0zxorbgml/images/git-workflow-release-cycle-9maryfinishes.png">
 <p>&nbsp;<br>一旦准备好了对外发布，工程师A合并修改到master分支和develop分支上，删除发布分支。合并回develop分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可用的。另外，如果工程师A的团队要求Code Review，这是一个发起Pull Request的理想时机。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git checkout develop</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git branch -d release-0.1</span><br></pre></td></tr></table></figure>
 <p>发布分支是作为功能开发（develop分支）和对外发布（master分支）间的缓冲。只要有合并到master分支，就应该打好Tag以方便跟踪。</p>
@@ -919,7 +1116,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjqz6fwa6001zc9cb7pn0hht3/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjrt8sq4j0027lhw0z8tpff9c/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -938,7 +1135,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/12/cjqz6fwa6001zc9cb7pn0hht3/" itemprop="url">浏览器的回流与重绘</a></h1>
+                <a class="post-title-link" href="/2018/12/12/cjrt8sq4j0027lhw0z8tpff9c/" itemprop="url">浏览器的回流与重绘</a></h1>
         
 
         <div class="post-meta">
@@ -1043,7 +1240,7 @@
       
         
           
-            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjqz6fwa6001zc9cb7pn0hht3/images/16798b8db54caa31.png">
+            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjrt8sq4j0027lhw0z8tpff9c/images/16798b8db54caa31.png">
 <p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
 <ol>
 <li>浏览器使用流式布局模型 (Flow Based Layout)</li>
@@ -1053,7 +1250,7 @@
 <li>Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
 <li>由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。</li>
 </ol>
-<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjqz6fwa6001zc9cb7pn0hht3/images/16798b8d839a7d6d.png">
+<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjrt8sq4j0027lhw0z8tpff9c/images/16798b8d839a7d6d.png">
 <p>为构建渲染树，浏览器大体上完成了下列工作：</p>
 <ol>
 <li>从 DOM 树的根节点开始遍历每个可见节点。某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，上例中的 span 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了“display: none”属性。</li>
@@ -1070,7 +1267,7 @@
 <p>以上网页的正文包含两个嵌套 div：第一个（父）div 将节点的显示尺寸设置为视口宽度的 50%，—父 div 包含的第二个 div—将其宽度设置为其父项的 50%；即视口宽度的 25%。</p>
 <p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
 <p>最后，既然我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素。这一步通常称为“绘制”或“栅格化”。</p>
-<img src="/2018/12/12/cjqz6fwa6001zc9cb7pn0hht3/images/layout-viewport.png">
+<img src="/2018/12/12/cjrt8sq4j0027lhw0z8tpff9c/images/layout-viewport.png">
 <p>会导致回流的操作：</p>
 <ul>
 <li>页面首次渲染</li>
@@ -1176,7 +1373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjqz6fwa70022c9cbl0pjem1s/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjrt8sq4g0023lhw0vvmcuy2f/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1195,7 +1392,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/09/cjqz6fwa70022c9cbl0pjem1s/" itemprop="url">跨域问题及解决方式</a></h1>
+                <a class="post-title-link" href="/2018/12/09/cjrt8sq4g0023lhw0vvmcuy2f/" itemprop="url">跨域问题及解决方式</a></h1>
         
 
         <div class="post-meta">
@@ -1382,7 +1579,7 @@
 </ul>
 <h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><h4 id="CORS的配置"><a href="#CORS的配置" class="headerlink" title="CORS的配置"></a>CORS的配置</h4><p>跨源资源共享（CORS）是一种机制，它使用其他HTTP请求头告诉浏览器让在一个源（域）上运行的Web应用程序有权访问不同来源服务器中的所选资源。Web应用程序在请求具有与自己不同源（域，协议和端口）的资源时，会发出跨源HTTP请求。</p>
 <p>出于安全原因，浏览器会限制从脚本中发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一源请求HTTP资源，除非来自其他来源的响应包含正确的CORS标头。</p>
-<img src="/2018/12/09/cjqz6fwa70022c9cbl0pjem1s/images/CORS_principle.png">
+<img src="/2018/12/09/cjrt8sq4g0023lhw0vvmcuy2f/images/CORS_principle.png">
 <p>CORS机制支持浏览器和Web服务器之间的安全跨源请求和数据传输。现代浏览器在API中使用CORS，如XMLHttpRequest和Fetch，以帮助减轻跨域的HTTP请求的风险。</p>
 <p>服务端设置 Access-Control-Allow-Origin 字段，值可以是具体的域名或者 ‘*’ 通配符，配置好后就可以允许跨域请求数据。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
@@ -1411,7 +1608,7 @@
 <li>同样的在 b 页面中通过 iframe 嵌入 c 页面，将要传递的数据通过  iframe 的 src 链接的 hash 值传递给 c 页面，由于 a 页面与 c 页面同域，c 页面可以直接修改 a 页面的 hash 值或者调用 a 页面中的全局函数。</li>
 </ul>
 <p>大致流程：</p>
-<img src="/2018/12/09/cjqz6fwa70022c9cbl0pjem1s/images/165b1a74b0bc4290.png">
+<img src="/2018/12/09/cjrt8sq4g0023lhw0vvmcuy2f/images/165b1a74b0bc4290.png">
 <p>a 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    iframe.src = <span class="string">"http://localhost:8081/b.html#data"</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkHash</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> data = location.hash ? location.hash.substring(<span class="number">1</span>) : <span class="string">''</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获得到的数据是：'</span>, data);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'监听到hash的变化：'</span>, location.hash.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>b 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="keyword">switch</span>(location.hash) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">         callback();</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"testHash"</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parent.location.hash = data;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">            <span class="keyword">var</span> ifrproxy = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">            ifrproxy.style.display = <span class="string">'none'</span>;</span><br><span class="line">            ifrproxy.src = <span class="string">'http://localhost:8080/c.html#'</span> + data;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(ifrproxy);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>c 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 修改 a 页面的 hash 值</span></span><br><span class="line">    parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 调用 a 页面的全局函数</span></span><br><span class="line">    parent.parent.checkHash();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -1469,7 +1666,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjqz6fwat002qc9cbaxmjqrn4/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjrt8sq4k0029lhw0cw66xd8i/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1488,7 +1685,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/02/cjqz6fwat002qc9cbaxmjqrn4/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
+                <a class="post-title-link" href="/2018/12/02/cjrt8sq4k0029lhw0cw66xd8i/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
         
 
         <div class="post-meta">
@@ -1672,7 +1869,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjqz6fwau002rc9cb813kjxt2/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/25/cjrt8sq4x0034lhw0klveqy0y/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1691,7 +1888,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/25/cjqz6fwau002rc9cb813kjxt2/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
+                <a class="post-title-link" href="/2018/11/25/cjrt8sq4x0034lhw0klveqy0y/" itemprop="url">实现一个符合Promise/A+规范的Promise对象</a></h1>
         
 
         <div class="post-meta">
@@ -1813,7 +2010,7 @@
 <li>rejected</li>
 </ul>
 <p>Promise 对象初始化状态为 pending</p>
-<img src="/2018/11/25/cjqz6fwau002rc9cb813kjxt2/images/promises.png">
+<img src="/2018/11/25/cjrt8sq4x0034lhw0klveqy0y/images/promises.png">
 <p>下面代码创造了一个Promise实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>Promise构造函数接收一个excutor执行函数作为参数, excutor函数接收两个参数，分别是resolve和reject。</p>
 <p>resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；</p>
@@ -1887,7 +2084,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjqz6fw5w0008c9cbn46lwjy4/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjrt8spzp0007lhw0ox8f77oi/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1906,7 +2103,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/cjqz6fw5w0008c9cbn46lwjy4/" itemprop="url">JavaScript中的闭包</a></h1>
+                <a class="post-title-link" href="/2018/11/19/cjrt8spzp0007lhw0ox8f77oi/" itemprop="url">JavaScript中的闭包</a></h1>
         
 
         <div class="post-meta">
@@ -2083,7 +2280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjrt8sq4k0028lhw0sebplw06/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2102,7 +2299,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/" itemprop="url">JavaScript的执行机制</a></h1>
+                <a class="post-title-link" href="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/" itemprop="url">JavaScript的执行机制</a></h1>
         
 
         <div class="post-meta">
@@ -2213,7 +2410,7 @@
 <li>同步任务</li>
 <li>异步任务</li>
 </ul>
-<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/15fdd88994142347.png"></p>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/15fdd88994142347.png"></p>
 <ul>
 <li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
 <li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
@@ -2246,7 +2443,7 @@
 <li>macro-task(宏任务)：包括整体代码script，setTimeout，setInterval</li>
 <li>micro-task(微任务)：Promise，process.nextTick</li>
 </ul>
-<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589b575216a917.png">
+<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589b575216a917.png">
 <p>不同类型的任务会进入对应的Event Queue，比如setTimeout和setInterval会进入相同的Event Queue。<br>事件循环的顺序，决定js代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'then'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'console'</span>);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>这段代码作为宏任务，进入主线程。</li>
@@ -2256,40 +2453,40 @@
 <li>整体代码script作为第一个宏任务执行结束，看看有哪些微任务？我们发现了then在微任务Event Queue里面，执行。</li>
 <li>第一轮事件循环结束了，我们开始第二轮循环，当然要从宏任务Event Queue开始。我们发现了宏任务Event Queue中setTimeout对应的回调函数，立即执行。<br>结束。</li>
 </ul>
-<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/15fdcea13361a1ec.png"></p>
+<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/15fdcea13361a1ec.png"></p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="comment">// 记作 set1</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    <span class="comment">// set4</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// pro2</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'5'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 pro1</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7'</span>);</span><br><span class="line">    <span class="comment">// set3</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'8'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 set2</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'9'</span>);</span><br><span class="line">    <span class="comment">// 记作 pro3</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'10'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'11'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>第一轮事件循环：</li>
 </ul>
 <ol>
-<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589b8d4316baf3.png">
+<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589b8d4316baf3.png">
 </li>
 </ol>
 <ol start="2">
-<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589b8f1ccba52c.png">
+<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589b8f1ccba52c.png">
 </li>
 </ol>
 <ol start="3">
-<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589b9381cfd5e0.png">
+<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589b9381cfd5e0.png">
 </li>
 </ol>
 <ol start="4">
-<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589b9647b2e171.png">
+<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589b9647b2e171.png">
 </li>
 </ol>
 <ol start="5">
-<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589ba43caf6b9f.png">
+<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589ba43caf6b9f.png">
 </li>
 </ol>
 <ul>
 <li>第二轮事件循环：</li>
 </ul>
 <ol>
-<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589ba8bbbe9c47.png">
+<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589ba8bbbe9c47.png">
 </li>
 </ol>
 <ol start="2">
-<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjqz6fwa80023c9cb6or7x7e1/images/16589bab583e4850.png">
+<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjrt8sq4k0028lhw0sebplw06/images/16589bab583e4850.png">
 </li>
 </ol>
 <ul>
@@ -2304,215 +2501,6 @@
 </ul>
 <p>所以最后输出结果为1、6、7、2、4、5、9、10、11、8、3。</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://juejin.im/post/59e85eebf265da430d571f89" target="_blank" rel="noopener">这一次，彻底弄懂 JavaScript 执行机制</a><br><a href="https://juejin.im/post/5a61a6786fb9a01cc026522c" target="_blank" rel="noopener">JavaScript中的JS引擎的执行机制</a><br><a href="https://juejin.im/post/5b879a9f6fb9a01a0f24a5e1" target="_blank" rel="noopener">图解JS执行机制</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjqz6fw62000hc9cbwe0b2u5p/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/13/cjqz6fw62000hc9cbwe0b2u5p/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T20:40:51+08:00">
-                2018-11-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1.9k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  7分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="manifest"><a href="#manifest" class="headerlink" title="manifest"></a>manifest</h1><h2 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h2><p>runtime，以及伴随的 manifest 数据，主要是指：在浏览器运行时，webpack 用来连接模块化的应用程序的所有代码。runtime 包含：在模块交互时，连接模块所需的加载和解析逻辑。包括浏览器中的已加载模块的连接，以及懒加载模块的执行逻辑。</p>
-<h2 id="Manifest"><a href="#Manifest" class="headerlink" title="Manifest"></a>Manifest</h2><p>那么，一旦你的应用程序中，形如 index.html 文件、一些 bundle 和各种资源加载到浏览器中，会发生什么？你精心安排的 /src 目录的文件结构现在已经不存在，所以 webpack 如何管理所有模块之间的交互呢？这就是 manifest 数据用途的由来……<br>当编译器(compiler)开始执行、解析和映射应用程序时，它会保留所有模块的详细要点。这个数据集合称为 “Manifest”，当完成打包并发送到浏览器时，会在运行时通过 Manifest 来解析和加载模块。无论你选择哪种模块语法，那些 import 或 require 语句现在都已经转换为 <strong>webpack_require</strong> 方法，此方法指向模块标识符(module identifier)。通过使用 manifest 中的数据，runtime 将能够查询模块标识符，检索出背后对应的模块。</p>
-<h1 id="构建目标"><a href="#构建目标" class="headerlink" title="构建目标"></a>构建目标</h1><p>因为服务器和浏览器代码都可以用 JavaScript 编写，所以 webpack 提供了多种构建目标(target)，你可以在你的 webpack 配置中设置。</p>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>要设置 target 属性，只需要在你的 webpack 配置中设置 target 的值。<br><strong>webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  target: <span class="string">'node'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>在上面例子中，使用 node webpack 会编译为用于「类 Node.js」环境（使用 Node.js 的 require ，而不是使用任意内置模块（如 fs 或 path）来加载 chunk）。<br>每个target都有各种部署(deployment)/环境(environment)特定的附加项，以支持满足其需求。</p>
-<h3 id="target"><a href="#target" class="headerlink" title="target"></a><code>target</code></h3><p><code>string | function(compiler)</code></p>
-<h4 id="string"><a href="#string" class="headerlink" title="string"></a><code>string</code></h4><p>通过 WebpackOptionsApply ，可以支持以下字符串值：<br>|选项|描述|<br>|—|—|<br>|async-node|编译为类 Node.js 环境可用（使用 fs 和 vm 异步加载分块）|<br>|electron-main|编译为 Electron 主进程。|<br>|electron-renderer|编译为 Electron 渲染进程，使用 JsonpTemplatePlugin, FunctionModulePlugin 来为浏览器环境提供目标，使用 NodeTargetPlugin 和 ExternalsPlugin 为 CommonJS 和 Electron 内置模块提供目标。|<br>|node|编译为类 Node.js 环境可用（使用 Node.js require 加载 chunk）|<br>|node-webkit|编译为 Webkit 可用，并且使用 jsonp 去加载分块。支持 Node.js 内置模块和 nw.gui 导入（实验性质）|<br>|web|编译为类浏览器环境里可用（默认）|<br>|webworker|编译成一个 WebWorker|</p>
-<h4 id="function"><a href="#function" class="headerlink" title="function"></a><code>function</code></h4><p>如果传入一个函数，此函数调用时会传入一个 compiler 作为参数。如果以上列表中没有一个预定义的目标(target)符合你的要求，请将其设置为一个函数。<br>例如，如果你不需要使用以上任何插件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  target: <span class="function"><span class="params">()</span> =&gt;</span> <span class="literal">undefined</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>或者可以使用你想要指定的插件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  target: <span class="function">(<span class="params">compiler</span>) =&gt;</span> &#123;</span><br><span class="line">    compiler.apply(</span><br><span class="line">      <span class="keyword">new</span> webpack.JsonpTemplatePlugin(options.output),</span><br><span class="line">      <span class="keyword">new</span> webpack.LoaderTargetPlugin(<span class="string">"web"</span>)</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="多个Target"><a href="#多个Target" class="headerlink" title="多个Target"></a>多个Target</h2><p>尽管 webpack 不支持向 target 传入多个字符串，你可以通过打包两份分离的配置来创建同构的库：<br><strong>webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> serverConfig = &#123;</span><br><span class="line">  target: <span class="string">'node'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'lib.node.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clientConfig = &#123;</span><br><span class="line">  target: <span class="string">'web'</span>, <span class="comment">// &lt;=== 默认是 'web'，可省略</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">    filename: <span class="string">'lib.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//…</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = [ serverConfig, clientConfig ];</span><br></pre></td></tr></table></figure></p>
-<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>从上面的选项可以看出有多个不同的部署_目标_可供选择。下面是一个示例列表，以及你可以参考的资源。</p>
-<ul>
-<li>compare-webpack-target-bundles：有关「测试和查看」不同的 webpack target 的大量资源。也有大量 bug 报告。</li>
-<li>Boilerplate of Electron-React Application：一个 electron 主进程和渲染进程构建过程的很好的例子。</li>
-</ul>
-<h1 id="模块热替换"><a href="#模块热替换" class="headerlink" title="模块热替换"></a>模块热替换</h1><p>模块热替换(HMR - Hot Module Replacement)功能会在应用程序运行过程中替换、添加或删除模块，而无需重新加载整个页面。主要是通过以下几种方式，来显著加快开发速度：</p>
-<ul>
-<li>保留在完全重新加载页面时丢失的应用程序状态。</li>
-<li>只更新变更内容，以节省宝贵的开发时间。</li>
-<li>调整样式更加快速，几乎相当于在浏览器调试器中更改样式。</li>
-</ul>
-<h2 id="在应用程序中"><a href="#在应用程序中" class="headerlink" title="在应用程序中"></a>在应用程序中</h2><p>通过以下步骤，可以做到在应用程序中置换(swap in and out)模块：</p>
-<ol>
-<li>应用程序代码要求 HMR runtime 检查更新。</li>
-<li>HMR runtime（异步）下载更新，然后通知应用程序代码。</li>
-<li>应用程序代码要求 HMR runtime 应用更新。</li>
-<li>HMR runtime（同步）应用更新。</li>
-</ol>
-<p>你可以设置 HMR，以使此进程自动触发更新，或者你可以选择要求在用户交互时进行更新。</p>
-<h2 id="在编译器中"><a href="#在编译器中" class="headerlink" title="在编译器中"></a>在编译器中</h2><p>除了普通资源，编译器(compiler)需要发出 “update”，以允许更新之前的版本到新的版本。”update” 由两部分组成：</p>
-<ol>
-<li>更新后的 manifest(JSON)</li>
-<li>一个或多个更新后的 chunk (JavaScript)</li>
-</ol>
-<p>manifest 包括新的编译 hash 和所有的待更新 chunk 目录。每个更新 chunk 都含有对应于此 chunk 的全部更新模块（或一个 flag 用于表明此模块要被移除）的代码。<br>编译器确保模块 ID 和 chunk ID 在这些构建之间保持一致。通常将这些 ID 存储在内存中（例如，使用 webpack-dev-server 时），但是也可能将它们存储在一个 JSON 文件中。</p>
-<h2 id="在模块中"><a href="#在模块中" class="headerlink" title="在模块中"></a>在模块中</h2><p>HMR 是可选功能，只会影响包含 HMR 代码的模块。举个例子，通过 style-loader 为 style 样式追加补丁。为了运行追加补丁，style-loader 实现了 HMR 接口；当它通过 HMR 接收到更新，它会使用新的样式替换旧的样式。<br>类似的，当在一个模块中实现了 HMR 接口，你可以描述出当模块被更新后发生了什么。然而在多数情况下，不需要强制在每个模块中写入 HMR 代码。如果一个模块没有 HMR 处理函数，更新就会冒泡(bubble up)。这意味着一个简单的处理函数能够对整个模块树(complete module tree)进行更新。如果在这个模块树中，一个单独的模块被更新，那么整组依赖模块都会被重新加载。</p>
-<h2 id="在-HMR-Runtime-中"><a href="#在-HMR-Runtime-中" class="headerlink" title="在 HMR Runtime 中"></a>在 HMR Runtime 中</h2><p>对于模块系统的 runtime，附加的代码被发送到 parents 和 children 跟踪模块。在管理方面，runtime 支持两个方法 check 和 apply。<br>check 发送 HTTP 请求来更新 manifest。如果请求失败，说明没有可用更新。如果请求成功，待更新 chunk 会和当前加载过的 chunk 进行比较。对每个加载过的 chunk，会下载相对应的待更新 chunk。当所有待更新 chunk 完成下载，就会准备切换到 ready 状态。<br>apply 方法将所有被更新模块标记为无效。对于每个无效模块，都需要在模块中有一个更新处理函数(update handler)，或者在它的父级模块们中有更新处理函数。否则，无效标记冒泡，并也使父级无效。每个冒泡继续，直到到达应用程序入口起点，或者到达带有更新处理函数的模块（以最先到达为准，冒泡停止）。如果它从入口起点开始冒泡，则此过程失败。<br>之后，所有无效模块都被（通过 dispose 处理函数）处理和解除加载。然后更新当前 hash，并且调用所有 “accept” 处理函数。runtime 切换回闲置状态(idle state)，一切照常继续。</p>
 
           
         
@@ -2596,7 +2584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2618,7 +2606,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
