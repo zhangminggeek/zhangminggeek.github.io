@@ -2,7 +2,7 @@
 title: 实现一个符合Promise/A+规范的Promise对象
 date: 2018-11-25 22:40:22
 categories: JavaScript
-tags: [JavaScript, Promise, Promise/A+规范, 前端]
+tags: [JavaScript, Promise, Promise/A+规范, ES6]
 ---
 
 ## Promise的含义
