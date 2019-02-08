@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjrutsjze001zyqw0m787s752/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/19/cjrvr3y4i000lzdw00s6k65pw/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,203 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/18/cjrutsjze001zyqw0m787s752/" itemprop="url">JavaScript的执行机制</a></h1>
+                <a class="post-title-link" href="/2018/11/19/cjrvr3y4i000lzdw00s6k65pw/" itemprop="url">JavaScript中的闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T23:21:22+08:00">
+                2018-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.5k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是闭包？"><a href="#什么是闭包？" class="headerlink" title="什么是闭包？"></a>什么是闭包？</h2><p>首先来看一下MDN中对闭包定义对解释：</p>
+<blockquote>
+<p>闭包是函数和声明该函数的词法环境的组合。</p>
+</blockquote>
+<p>emmmm…很难理解，那再来看看《JavaScript高级程序设计》一书中对闭包的解释：</p>
+<blockquote>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数</p>
+</blockquote>
+<p>这看上去就比较好理解了。事实上，各种文献上对于闭包的解释都不一样，非常抽象且难看懂，所以我们直接来看闭包的创建和使用吧。创建闭包的常见方式，就是这一个函数内部创建另一个函数，下面例子中就是创建了一个闭包：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"Mozilla"</span>; <span class="comment">// name 是一个被 init 创建的局部变量</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">displayName</span>(<span class="params"></span>) </span>&#123; <span class="comment">// displayName() 是内部函数,一个闭包</span></span><br><span class="line">        alert(name); <span class="comment">// 使用了父函数中声明的变量</span></span><br><span class="line">    &#125;</span><br><span class="line">    displayName();</span><br><span class="line">&#125;</span><br><span class="line">init();</span><br></pre></td></tr></table></figure></p>
+<p>init() 创建了一个局部变量 name 和一个名为 displayName() 的函数。displayName() 是定义在 init() 里的内部函数，仅在该函数体内可用。displayName() 内没有自己的局部变量，然而它可以访问到外部函数的变量，所以 displayName() 可以使用父函数 init() 中声明的变量 name 。但是，如果有同名变量 name 在 displayName() 中被定义，则会使用 displayName() 中定义的 name 。</p>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>由于闭包与它的词法环境绑在一起，因此闭包让我们能够从一个函数内部访问其外部函数的作用域。内部函数的作用域链中包含外部函数的作用域，要彻底搞清楚其中的细节，必须从理解函数被调用的时候 都会发生什么入手。</p>
+<p>有关如何创建作用域链以及作用域链有什么作用的细节，对彻底理解闭包至关重要。当某个函数被调用时，会创建一个执行环境(execution context)及相应的作用域链。 然后，使用 arguments 和其他命名参数的值来初始化函数的活动对象(activation object)。但在作用域链中，外部函数的活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位，……直至作为作用域链终点的全局执行环境。在另一个函数内部定义的函数会将包含函数(即外部函数)的活动对象添加到它的作用域链中。因此，在函数内部定义的匿名函数的作用域链中，实际上将会包含外部函数的活动对象。</p>
+<p>简单来说，函数内部可以读取外部变量的值，而函数外部无法读取函数内的局部变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">　　alert(n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1(); <span class="comment">// 999</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(n) <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
+<h2 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h2><h3 id="实现对象的私有数据"><a href="#实现对象的私有数据" class="headerlink" title="实现对象的私有数据"></a>实现对象的私有数据</h3><p>闭包的用途之一是实现对象的私有数据。任何在函数中定义的变量，都可以认为是私有变量，因为不能在函数外部访问这些变量。私有变量包括函数的参数、局部变量和函数内定义的其他函数。我们可以使用闭包来模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。通过闭包，我们可以使外部环境访问函数内的局部变量，把有权访问私有变量的公有方法称为<strong>特权方法（privileged method）</strong>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量</span></span><br><span class="line">  <span class="keyword">var</span> series = <span class="string">"哺乳动物"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Run!!!"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 特权方法</span></span><br><span class="line">  <span class="keyword">this</span>.getSeries = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> series;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="保存变量"><a href="#保存变量" class="headerlink" title="保存变量"></a>保存变量</h3><p>闭包的另一个作用就是让这些变量的值始终保持在内存中。闭包是函数开始执行的时候被分配的一个栈帧，在函数执行结束返回后仍不会被释放(就好像一个栈帧被分配在堆里而不是栈里)。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">say667</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 局部变量num最后会保存在闭包中</span></span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">42</span>;</span><br><span class="line">  <span class="keyword">var</span> say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(num); &#125;</span><br><span class="line">  num++;</span><br><span class="line">  <span class="keyword">return</span> say;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> sayNumber = say667();</span><br><span class="line">sayNumber(); <span class="comment">// 输出 43</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="闭包的缺陷"><a href="#闭包的缺陷" class="headerlink" title="闭包的缺陷"></a>闭包的缺陷</h2><ol>
+<li>由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除</li>
+<li>闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
+</ol>
+<h2 id="闭包面试题"><a href="#闭包面试题" class="headerlink" title="闭包面试题"></a>闭包面试题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">n,o</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(o);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    fun: <span class="function"><span class="keyword">function</span>(<span class="params">m</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> fun(m,n);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = fun(<span class="number">0</span>);  <span class="comment">// undefined</span></span><br><span class="line">a.fun(<span class="number">1</span>);        <span class="comment">// 0        </span></span><br><span class="line">a.fun(<span class="number">2</span>);        <span class="comment">// 0</span></span><br><span class="line">a.fun(<span class="number">3</span>);        <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = fun(<span class="number">0</span>).fun(<span class="number">1</span>).fun(<span class="number">2</span>).fun(<span class="number">3</span>);  <span class="comment">// undefined, 0, 1, 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = fun(<span class="number">0</span>).fun(<span class="number">1</span>);  <span class="comment">// undefined, 0</span></span><br><span class="line">c.fun(<span class="number">2</span>);        <span class="comment">// 1</span></span><br><span class="line">c.fun(<span class="number">3</span>);        <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gLogNumber, gIncreaseNumber, gSetNumber;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setupSomeGlobals</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 局部变量num最后会保存在闭包中</span></span><br><span class="line">  <span class="keyword">var</span> num = <span class="number">42</span>;</span><br><span class="line">  <span class="comment">// 将一些对于函数的引用存储为全局变量</span></span><br><span class="line">  gLogNumber = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(num); &#125;</span><br><span class="line">  gIncreaseNumber = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; num++; &#125;</span><br><span class="line">  gSetNumber = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; num = x; &#125;</span><br><span class="line">&#125;</span><br><span class="line">setupSomeGlobals();</span><br><span class="line">gIncreaseNumber();</span><br><span class="line">gLogNumber(); <span class="comment">// 43</span></span><br><span class="line">gSetNumber(<span class="number">5</span>);</span><br><span class="line">gLogNumber(); <span class="comment">// 5</span></span><br><span class="line"><span class="keyword">var</span> oldLog = gLogNumber;</span><br><span class="line">setupSomeGlobals();</span><br><span class="line">gLogNumber(); <span class="comment">// 42</span></span><br><span class="line">oldLog() <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> items = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>);</span><br><span class="line">      </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; items.length; i++)&#123;</span><br><span class="line">    items[i].onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//上面的程序结果是：每次都弹出10;</span></span><br><span class="line"><span class="comment">//为了在用户点击的时候，能弹出对应的数字</span></span><br><span class="line"><span class="comment">// 需要构建一个闭包，将参数缓存起来</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; items.length; i++)&#123;</span><br><span class="line">    items[i].onclick = (<span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            alert(n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>《JavaScript高级程序设计》<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">闭包</a><br><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习Javascript闭包（Closure）</a><br><a href="https://juejin.im/entry/57d60f7067f3560057e37e25" target="_blank" rel="noopener">JavaScript 闭包</a><br><a href="https://juejin.im/post/58832fe72f301e00697b672d" target="_blank" rel="noopener">JavaScript 闭包入门（译文）</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/" itemprop="url">JavaScript的执行机制</a></h1>
         
 
         <div class="post-meta">
@@ -413,7 +609,7 @@
 <li>同步任务</li>
 <li>异步任务</li>
 </ul>
-<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/15fdd88994142347.png"></p>
+<p>当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：<br><img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/15fdd88994142347.png"></p>
 <ul>
 <li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
 <li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
@@ -446,7 +642,7 @@
 <li>macro-task(宏任务)：包括整体代码script，setTimeout，setInterval</li>
 <li>micro-task(微任务)：Promise，process.nextTick</li>
 </ul>
-<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589b575216a917.png">
+<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589b575216a917.png">
 <p>不同类型的任务会进入对应的Event Queue，比如setTimeout和setInterval会进入相同的Event Queue。<br>事件循环的顺序，决定js代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'then'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'console'</span>);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>这段代码作为宏任务，进入主线程。</li>
@@ -456,40 +652,40 @@
 <li>整体代码script作为第一个宏任务执行结束，看看有哪些微任务？我们发现了then在微任务Event Queue里面，执行。</li>
 <li>第一轮事件循环结束了，我们开始第二轮循环，当然要从宏任务Event Queue开始。我们发现了宏任务Event Queue中setTimeout对应的回调函数，立即执行。<br>结束。</li>
 </ul>
-<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/15fdcea13361a1ec.png"></p>
+<p>事件循环，宏任务，微任务的关系如图所示：<br><img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/15fdcea13361a1ec.png"></p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line"><span class="comment">// 记作 set1</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2'</span>);</span><br><span class="line">    <span class="comment">// set4</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'3'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// pro2</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'4'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'5'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 pro1</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7'</span>);</span><br><span class="line">    <span class="comment">// set3</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'8'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记作 set2</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'9'</span>);</span><br><span class="line">    <span class="comment">// 记作 pro3</span></span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'10'</span>);</span><br><span class="line">        resolve();</span><br><span class="line">    &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'11'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>第一轮事件循环：</li>
 </ul>
 <ol>
-<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589b8d4316baf3.png">
+<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589b8d4316baf3.png">
 </li>
 </ol>
 <ol start="2">
-<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589b8f1ccba52c.png">
+<li>遇到set1，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589b8f1ccba52c.png">
 </li>
 </ol>
 <ol start="3">
-<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589b9381cfd5e0.png">
+<li>遇到pro1，new Promise直接执行，输出6。then被分发到微任务Event Queue中。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589b9381cfd5e0.png">
 </li>
 </ol>
 <ol start="4">
-<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589b9647b2e171.png">
+<li>遇到了set2，其回调函数被分发到宏任务Event Queue中。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589b9647b2e171.png">
 </li>
 </ol>
 <ol start="5">
-<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589ba43caf6b9f.png">
+<li>主线程的整段js代码（宏任务）执行完，开始清空所有微任务；主线程执行微任务pro1，输出7；遇到set3，注册回调函数。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589ba43caf6b9f.png">
 </li>
 </ol>
 <ul>
 <li>第二轮事件循环：</li>
 </ul>
 <ol>
-<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589ba8bbbe9c47.png">
+<li>主线程执行队列中第一个宏任务set1，输出2；代码中遇到了set4，注册回调；又遇到了pro2，new promise()直接执行输出4，并注册回调；<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589ba8bbbe9c47.png">
 </li>
 </ol>
 <ol start="2">
-<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjrutsjze001zyqw0m787s752/images/16589bab583e4850.png">
+<li>set1宏任务执行完毕，开始清空微任务，主线程执行微任务pro2，输出5。<img src="/2018/11/18/cjrvr3y6t001rzdw0suswyqb2/images/16589bab583e4850.png">
 </li>
 </ol>
 <ul>
@@ -552,7 +748,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjrutsjwt0014yqw0fbj5t4of/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/13/cjrvr3y4p000yzdw0tq0q6m6y/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -571,7 +767,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/13/cjrutsjwt0014yqw0fbj5t4of/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
+                <a class="post-title-link" href="/2018/11/13/cjrvr3y4p000yzdw0tq0q6m6y/" itemprop="url">webpack学习笔记（六）:manifest、构建目标、模块热替换</a></h1>
         
 
         <div class="post-meta">
@@ -761,7 +957,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjrutsjv00007yqw0pjoeov2d/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjrvr3y4o000vzdw082r0nhun/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -780,192 +976,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/12/cjrutsjv00007yqw0pjoeov2d/" itemprop="url">JavaScript中的this</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  4分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
-<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
-<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
-<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
-<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
-<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
-<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjrutsjws0011yqw0x1h0ydap/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/12/cjrutsjws0011yqw0x1h0ydap/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjrvr3y4o000vzdw082r0nhun/" itemprop="url">webpack学习笔记（五）：模块、模块解析</a></h1>
         
 
         <div class="post-meta">
@@ -1181,7 +1192,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjrutsjwr000zyqw0hi7r401k/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/12/cjrvr3y330007zdw025xqkbg0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1200,7 +1211,192 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/11/cjrutsjwr000zyqw0hi7r401k/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
+                <a class="post-title-link" href="/2018/11/12/cjrvr3y330007zdw025xqkbg0/" itemprop="url">JavaScript中的this</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T10:10:22+08:00">
+                2018-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;<strong>this是在执行上下文创建时确定的一个在执行过程中不可更改的变量。</strong>所谓执行上下文，就是JavaScript引擎在执行一段代码之前将代码内部会用到的一些变量、函数、this提前声明然后保存在变量对象中的过程。这个’代码片段’包括：全局代码(script标签内部的代码)、函数内部代码、eval内部代码。而我们所熟知的作用域链也会在保存在这里，以一个类数组的形式存储在对应函数的[[Scopes]]属性中。<br>&emsp;&emsp;this只在函数调用阶段确定，也就是执行上下文创建的阶段进行赋值，保存在变量对象中。这个特性也导致了this的多变性:🙂即当函数在不同的调用方式下都可能会导致this的值不同。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="meta">    'use strict'</span>;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>👆严格模式下，this指向undefined;<br>👆非严格模式下，this指向window;</p>
+<p>&emsp;&emsp;当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中是window，node 中是 global)。</p>
+<h2 id="直接调用"><a href="#直接调用" class="headerlink" title="直接调用"></a>直接调用</h2><p>当函数独立调用的时候，在严格模式下它的this指向undefined，在非严格模式下，当this指向undefined的时候，自动指向全局对象(浏览器中就是window)。</p>
+<h2 id="作为对象的方法"><a href="#作为对象的方法" class="headerlink" title="作为对象的方法"></a>作为对象的方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(obj.b())<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>👆b所引用的匿名函数作为obj的一个方法调用，这时候this指向调用它的对象。这里也就是obj。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = obj.b; </span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<p>如上，t函数执行结果竟然是全局变量1，为啥呢？这就涉及Javascript的内存空间了，就是说，obj对象的b属性存储的是对该匿名函数的一个引用，可以理解为一个指针。当赋值给t的时候，并没有单独开辟内存空间存储新的函数，而是让t存储了一个指针，该指针指向这个函数。相当于执行了这么一段伪代码 👇：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;<span class="comment">//此函数存储在堆中 </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span>, </span><br><span class="line">    b: fun <span class="comment">//b指向fun函数 </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> t = fun;<span class="comment">//变量t指向fun函数 </span></span><br><span class="line"><span class="built_in">console</span>.log(t());<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用apply，call"><a href="#使用apply，call" class="headerlink" title="使用apply，call"></a>使用apply，call</h2><p>修改this指向为给定值<br>apply 和 call 基本类似，他们的区别只是传入的参数不同。call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组。<br>apply的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>call的语法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun.call(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure></p>
+<p>call() 和 apply() 是预定义的函数方法。 两个方法可用于调用函数，两个方法的第一个参数必须是对象本身<br>在 JavaScript 严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值， 即使该参数不是一个对象。<br>在 JavaScript 非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。</p>
+<h2 id="作为构造函数"><a href="#作为构造函数" class="headerlink" title="作为构造函数"></a>作为构造函数</h2><p>使用new关键字调用函数的过程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Func() &#123;</span><br><span class="line">    <span class="comment">// 创建空对象</span></span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="comment">// 设置新对象的constructor属性为构造函数的名称，设置新对象的__proto__属性指向构造函数prototype对象;</span></span><br><span class="line">    obj.__proto__ = Func.prototype;</span><br><span class="line">    <span class="comment">// 使用新对象调用函数，函数中的this被指向新实例对象;</span></span><br><span class="line">    <span class="keyword">var</span> result = Func.apply(obj, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 确保 new 出来的是个对象 返回的值是什么就return什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> result === <span class="string">'object'</span> ? result : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p><strong>箭头函数会捕获其所在上下文的 this 值，作为自己的 this 值</strong>，也就是说箭头函数的this在词法层面就完成了绑定。apply，call方法只是传入参数，却改不了this。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">var</span> obj = &#123; </span><br><span class="line">    a: <span class="number">2</span> </span><br><span class="line">&#125;; </span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">fun();<span class="comment">//1 </span></span><br><span class="line">fun.call(obj)<span class="comment">//1</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/11/cjrvr3y4m000szdw0x5t2u8aw/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/11/cjrvr3y4m000szdw0x5t2u8aw/" itemprop="url">webpack学习笔记（四）：插件、配置</a></h1>
         
 
         <div class="post-meta">
@@ -1388,7 +1584,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/10/cjrutsjwq000xyqw01xjn5jyu/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/10/cjrvr3y4l000qzdw02qul8q0c/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1407,7 +1603,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/10/cjrutsjwq000xyqw01xjn5jyu/" itemprop="url">webpack学习笔记（三）：模式、loader</a></h1>
+                <a class="post-title-link" href="/2018/11/10/cjrvr3y4l000qzdw02qul8q0c/" itemprop="url">webpack学习笔记（三）：模式、loader</a></h1>
         
 
         <div class="post-meta">
@@ -1614,7 +1810,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/09/cjrutsjwp000wyqw0k729o24d/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/09/cjrvr3y4k000ozdw02kznwhd9/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1633,7 +1829,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/09/cjrutsjwp000wyqw0k729o24d/" itemprop="url">webpack学习笔记（二）：入口、出口</a></h1>
+                <a class="post-title-link" href="/2018/11/09/cjrvr3y4k000ozdw02kznwhd9/" itemprop="url">webpack学习笔记（二）：入口、出口</a></h1>
         
 
         <div class="post-meta">
@@ -1819,7 +2015,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/08/cjrutsjv3000byqw00ulmqjmq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/08/cjrvr3y4j000mzdw0bsqe3tnx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1838,7 +2034,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/08/cjrutsjv3000byqw00ulmqjmq/" itemprop="url">webpack学习笔记（一）：概念</a></h1>
+                <a class="post-title-link" href="/2018/11/08/cjrvr3y4j000mzdw0bsqe3tnx/" itemprop="url">webpack学习笔记（一）：概念</a></h1>
         
 
         <div class="post-meta">
@@ -2018,7 +2214,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/04/cjrutsjts0000yqw0vur59whz/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/11/04/cjrvr3y1q0000zdw0s6l8nre0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2037,7 +2233,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/04/cjrutsjts0000yqw0vur59whz/" itemprop="url">Markdown语法</a></h1>
+                <a class="post-title-link" href="/2018/11/04/cjrvr3y1q0000zdw0s6l8nre0/" itemprop="url">Markdown语法</a></h1>
         
 
         <div class="post-meta">
@@ -2294,7 +2490,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2316,7 +2512,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

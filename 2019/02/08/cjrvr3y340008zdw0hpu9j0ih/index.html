@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="常用指令   命令 修饰符 描述     ls  显示文件或目录    -l 列出文件详细信息l(list)    -a 列出当前目录下所有文件及目录，包括隐藏的a(all)   mkdir  创建目录    -p 创建目录，若无父目录，则创建p(parent)   cd  切换目录   touch  创建空文件   echo  创建带有内容的文件   cat  查看文件内容   cp  拷贝">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用操作命令">
+<meta property="og:url" content="https://zhangminggeek.github.io/2019/02/08/cjrvr3y340008zdw0hpu9j0ih/index.html">
+<meta property="og:site_name" content="感动常在">
+<meta property="og:description" content="常用指令   命令 修饰符 描述     ls  显示文件或目录    -l 列出文件详细信息l(list)    -a 列出当前目录下所有文件及目录，包括隐藏的a(all)   mkdir  创建目录    -p 创建目录，若无父目录，则创建p(parent)   cd  切换目录   touch  创建空文件   echo  创建带有内容的文件   cat  查看文件内容   cp  拷贝">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-08T08:21:08.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用操作命令">
+<meta name="twitter:description" content="常用指令   命令 修饰符 描述     ls  显示文件或目录    -l 列出文件详细信息l(list)    -a 列出当前目录下所有文件及目录，包括隐藏的a(all)   mkdir  创建目录    -p 创建目录，若无父目录，则创建p(parent)   cd  切换目录   touch  创建空文件   echo  创建带有内容的文件   cat  查看文件内容   cp  拷贝">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangminggeek.github.io/2019/02/08/cjrvr3y340008zdw0hpu9j0ih/">
+
+
+
+
+
+  <title>Linux常用操作命令 | 感动常在</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">感动常在</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjrvr3y340008zdw0hpu9j0ih/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux常用操作命令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-08T15:45:23+08:00">
+                2019-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  787字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td></td>
+<td>显示文件或目录</td>
+</tr>
+<tr>
+<td></td>
+<td>-l</td>
+<td>列出文件详细信息l(list)</td>
+</tr>
+<tr>
+<td></td>
+<td>-a</td>
+<td>列出当前目录下所有文件及目录，包括隐藏的a(all)</td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td></td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td></td>
+<td>-p</td>
+<td>创建目录，若无父目录，则创建p(parent)</td>
+</tr>
+<tr>
+<td>cd</td>
+<td></td>
+<td>切换目录</td>
+</tr>
+<tr>
+<td>touch</td>
+<td></td>
+<td>创建空文件</td>
+</tr>
+<tr>
+<td>echo</td>
+<td></td>
+<td>创建带有内容的文件</td>
+</tr>
+<tr>
+<td>cat</td>
+<td></td>
+<td>查看文件内容</td>
+</tr>
+<tr>
+<td>cp</td>
+<td></td>
+<td>拷贝</td>
+</tr>
+<tr>
+<td>mv</td>
+<td></td>
+<td>移动或重命名</td>
+</tr>
+<tr>
+<td>rm</td>
+<td></td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td></td>
+<td>-r</td>
+<td>递归删除，可删除子目录及文件</td>
+</tr>
+<tr>
+<td></td>
+<td>-f</td>
+<td>强制删除</td>
+</tr>
+<tr>
+<td>find</td>
+<td></td>
+<td>在文件系统中搜索某文件</td>
+</tr>
+<tr>
+<td>wc</td>
+<td></td>
+<td>统计文本中行数、字数、字符数</td>
+</tr>
+<tr>
+<td>grep</td>
+<td></td>
+<td>在文本文件中查找某个字符串</td>
+</tr>
+<tr>
+<td>rmdir</td>
+<td></td>
+<td>删除空目录</td>
+</tr>
+<tr>
+<td>tree</td>
+<td></td>
+<td>树形结构显示目录，需要安装tree包</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td></td>
+<td>显示当前目录</td>
+</tr>
+<tr>
+<td>ln</td>
+<td></td>
+<td>创建链接文件</td>
+</tr>
+<tr>
+<td>more、less</td>
+<td></td>
+<td>分页显示文本文件内容</td>
+</tr>
+<tr>
+<td>head、tail</td>
+<td></td>
+<td>显示文件头、尾内容</td>
+</tr>
+<tr>
+<td>ctrl+alt+F1</td>
+<td></td>
+<td>命令行全屏模式</td>
+</tr>
+</tbody>
+</table>
+<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stat</td>
+<td></td>
+<td>显示指定文件的详细信息，比ls更详细</td>
+</tr>
+<tr>
+<td>who</td>
+<td></td>
+<td>显示在线登陆用户</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td></td>
+<td>显示当前操作用户</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td></td>
+<td>显示主机名</td>
+</tr>
+<tr>
+<td>uname</td>
+<td></td>
+<td>显示系统信息</td>
+</tr>
+<tr>
+<td>top</td>
+<td></td>
+<td>动态显示当前耗费资源最多进程信息</td>
+</tr>
+<tr>
+<td>ps</td>
+<td></td>
+<td>显示瞬间进程状态 ps -aux</td>
+</tr>
+<tr>
+<td>du</td>
+<td></td>
+<td>查看目录大小</td>
+</tr>
+<tr>
+<td></td>
+<td>-h /home</td>
+<td>带有单位显示目录信息</td>
+</tr>
+<tr>
+<td>df</td>
+<td></td>
+<td>查看磁盘大小</td>
+</tr>
+<tr>
+<td></td>
+<td>-h</td>
+<td>带有单位显示磁盘信息</td>
+</tr>
+<tr>
+<td>ifconfig</td>
+<td></td>
+<td>查看网络情况</td>
+</tr>
+<tr>
+<td>ping</td>
+<td></td>
+<td>测试网络连通</td>
+</tr>
+<tr>
+<td>netstat</td>
+<td></td>
+<td>显示网络状态信息</td>
+</tr>
+<tr>
+<td>clear</td>
+<td></td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>alias</td>
+<td></td>
+<td>对命令重命名 如：alias showmeit=”ps -aux” ，另外解除使用unaliax showmeit</td>
+</tr>
+<tr>
+<td>kill</td>
+<td></td>
+<td>杀死进程，可以先用ps 或 top命令查看进程的id，然后再用kill命令杀死进程</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vim使用"><a href="#vim使用" class="headerlink" title="vim使用"></a>vim使用</h2><p>vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或:来切换模式。<br>命令模式下：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:q</td>
+<td></td>
+<td>退出</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td></td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td></td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td>:set number</td>
+<td></td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>:set nonumber</td>
+<td></td>
+<td>隐藏行号</td>
+</tr>
+<tr>
+<td>/apache</td>
+<td></td>
+<td>在文档中查找apache 按n跳到下一个，shift+n上一个</td>
+</tr>
+<tr>
+<td>yyp</td>
+<td></td>
+<td>复制光标所在行，并粘贴</td>
+</tr>
+<tr>
+<td>h</td>
+<td></td>
+<td>左移一个字符←</td>
+</tr>
+<tr>
+<td>j</td>
+<td></td>
+<td>下一行↓</td>
+</tr>
+<tr>
+<td>k</td>
+<td></td>
+<td>上一行↑</td>
+</tr>
+<tr>
+<td>l</td>
+<td></td>
+<td>右移一个字符→</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用户及用户组管理"><a href="#用户及用户组管理" class="headerlink" title="用户及用户组管理"></a>用户及用户组管理</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/passwd</td>
+<td></td>
+<td>存储用户账号</td>
+</tr>
+<tr>
+<td>/etc/group</td>
+<td></td>
+<td>存储组账号</td>
+</tr>
+<tr>
+<td>/etc/shadow</td>
+<td></td>
+<td>存储用户账号的密码</td>
+</tr>
+<tr>
+<td>/etc/gshadow</td>
+<td></td>
+<td>存储用户组账号的密码</td>
+</tr>
+<tr>
+<td>useradd、adduser</td>
+<td></td>
+<td>建立用户帐号和创建用户的起始目录</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td></td>
+<td>删除用户帐号</td>
+</tr>
+<tr>
+<td>groupadd</td>
+<td></td>
+<td>建立组账号</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td></td>
+<td>删除组账号</td>
+</tr>
+<tr>
+<td>passwd root</td>
+<td></td>
+<td>给root设置密码</td>
+</tr>
+<tr>
+<td>su root</td>
+<td></td>
+<td>切换root</td>
+</tr>
+<tr>
+<td>/etc/profile</td>
+<td></td>
+<td>系统环境变量</td>
+</tr>
+<tr>
+<td>bash_profile</td>
+<td></td>
+<td>用户环境变量</td>
+</tr>
+<tr>
+<td>.bashrc</td>
+<td></td>
+<td>用户环境变量</td>
+</tr>
+<tr>
+<td>su user</td>
+<td></td>
+<td>切换用户，加载配置文件.bashrc</td>
+</tr>
+<tr>
+<td>su - user</td>
+<td></td>
+<td>切换用户，加载配置文件/etc/profile ，加载bash_profile</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件权限管理"><a href="#文件权限管理" class="headerlink" title="文件权限管理"></a>文件权限管理</h2><p>三种基本权限</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>描述</th>
+<th>数值表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>读</td>
+<td>4</td>
+</tr>
+<tr>
+<td>W</td>
+<td>写</td>
+<td>2</td>
+</tr>
+<tr>
+<td>X</td>
+<td>可执行</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>更改权限<br>sudo chmod [u所属用户  g所属组  o其他用户  a所有用户]  [+增加权限  -减少权限]  [r  w  x]   目录名 </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-fw fa-tags"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/08/cjrvr3y6v001uzdw00rktmz5r/" rel="next" title="圣境西藏">
+                <i class="fa fa-chevron-left"></i> 圣境西藏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="zhangming">
+          <p class="site-author-name" itemprop="name">zhangming</p>
+           
+              <p class="site-description motion-element" itemprop="description">一枚前端打字员</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用指令"><span class="nav-number">1.</span> <span class="nav-text">常用指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理命令"><span class="nav-number">2.</span> <span class="nav-text">系统管理命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim使用"><span class="nav-number">3.</span> <span class="nav-text">vim使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户及用户组管理"><span class="nav-number">4.</span> <span class="nav-text">用户及用户组管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件权限管理"><span class="nav-number">5.</span> <span class="nav-text">文件权限管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangming</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
