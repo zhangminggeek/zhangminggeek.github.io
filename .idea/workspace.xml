@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8463.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8465.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8473.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8481.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8482.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8496.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8497.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8503.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8527.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8538.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8571.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8575.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8582.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8583.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8620.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8625.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8645.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8652.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8655.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8660.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8669.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8671.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8674.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8680.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8687.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8693.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -110,7 +84,7 @@
           <entry key="ico" value="7" />
           <entry key="jpg" value="39" />
           <entry key="json" value="1" />
-          <entry key="md" value="37" />
+          <entry key="md" value="40" />
           <entry key="png" value="9" />
           <entry key="svg" value="1" />
           <entry key="swig" value="4" />
@@ -122,7 +96,7 @@
           <entry key="HTML" value="3" />
           <entry key="Image" value="55" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="37" />
+          <entry key="Markdown" value="40" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="1" />
           <entry key="YAML" value="9" />
@@ -131,7 +105,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="md" value="6072" />
+          <entry key="md" value="6305" />
           <entry key="swig" value="19" />
           <entry key="yml" value="118" />
         </counts>
@@ -139,7 +113,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="77" />
-          <entry key="Markdown" value="5995" />
+          <entry key="Markdown" value="6228" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="YAML" value="118" />
         </counts>
@@ -149,11 +123,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index.md">
+        <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="537">
-                <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+              <first_editor relative-caret-position="567">
+                <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
               </first_editor>
               <second_editor />
             </state>
@@ -161,38 +135,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8687.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8680.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8671.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8674.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8660.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8655.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8669.jpg">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="224">
+                <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -280,6 +231,8 @@
         <option value="$PROJECT_DIR$/source/_posts/javascript/promise/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/javascript/尾调用优化和尾递归/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/other/圣境西藏/index.md" />
+        <option value="$PROJECT_DIR$/source/_posts/linux/linux常用操作命令.md" />
+        <option value="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" />
       </list>
     </option>
   </component>
@@ -321,6 +274,19 @@
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="Linux" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -390,12 +356,12 @@
       <workItem from="1544623854339" duration="5184000" />
       <workItem from="1545550753333" duration="8679000" />
       <workItem from="1547431115323" duration="7926000" />
-      <workItem from="1549557760339" duration="1657000" />
+      <workItem from="1549557760339" duration="4500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146705000" />
+    <option name="totallyTimeSpent" value="149548000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -408,8 +374,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19238901" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -462,9 +429,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/15fdcea13361a1ec.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589b8d4316baf3.jpg" />
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589b8d4316baf3.png">
       <provider selected="true" editor-type-id="images" />
@@ -574,16 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="477">
-            <caret line="164" selection-start-line="164" selection-end-line="166" selection-end-column="21" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/尾调用优化和尾递归/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -591,21 +545,6 @@
             <caret line="213" column="34" selection-start-line="213" selection-start-column="34" selection-end-line="213" selection-end-column="34" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="960">
-            <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="112" selection-start-line="112" selection-end-line="112" />
         </state>
       </provider>
     </entry>
@@ -710,8 +649,43 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="537">
-            <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+          <first_editor relative-caret-position="432">
+            <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor>
+            <caret selection-end-line="5" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="224">
+            <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="567">
+            <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
           </first_editor>
           <second_editor />
         </state>
