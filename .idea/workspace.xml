@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/javascript/理解柯里化/index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,15 +66,15 @@
     <session id="-1683260209">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.543" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,7 +85,7 @@
           <entry key="ico" value="7" />
           <entry key="jpg" value="39" />
           <entry key="json" value="1" />
-          <entry key="md" value="40" />
+          <entry key="md" value="45" />
           <entry key="png" value="9" />
           <entry key="svg" value="1" />
           <entry key="swig" value="4" />
@@ -96,7 +97,7 @@
           <entry key="HTML" value="3" />
           <entry key="Image" value="55" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="40" />
+          <entry key="Markdown" value="45" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="1" />
           <entry key="YAML" value="9" />
@@ -105,7 +106,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="6" />
-          <entry key="md" value="6305" />
+          <entry key="md" value="6722" />
           <entry key="swig" value="19" />
           <entry key="yml" value="118" />
         </counts>
@@ -113,7 +114,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="77" />
-          <entry key="Markdown" value="6228" />
+          <entry key="Markdown" value="6645" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="YAML" value="118" />
         </counts>
@@ -122,24 +123,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="567">
-                <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+              <first_editor relative-caret-position="-314">
+                <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/javascript/理解柯里化/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="224">
-                <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
+              <first_editor relative-caret-position="432">
+                <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
               </first_editor>
               <second_editor />
             </state>
@@ -233,6 +234,7 @@
         <option value="$PROJECT_DIR$/source/_posts/other/圣境西藏/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/linux/linux常用操作命令.md" />
         <option value="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" />
+        <option value="$PROJECT_DIR$/source/_posts/javascript/理解柯里化/index.md" />
       </list>
     </option>
   </component>
@@ -253,8 +255,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -262,7 +265,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -286,12 +288,37 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="Linux" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+              <item name="Iterator迭代器" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaScript的执行机制" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+              <item name="javascript" type="462c0819:PsiDirectoryNode" />
+              <item name="理解柯里化" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,12 +383,13 @@
       <workItem from="1544623854339" duration="5184000" />
       <workItem from="1545550753333" duration="8679000" />
       <workItem from="1547431115323" duration="7926000" />
-      <workItem from="1549557760339" duration="4500000" />
+      <workItem from="1549557760339" duration="4912000" />
+      <workItem from="1549715702650" duration="2439000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149548000" />
+    <option name="totallyTimeSpent" value="152399000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,7 +457,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589b8d4316baf3.jpg" />
     <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589b8d4316baf3.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -563,16 +590,6 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8482.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1740">
-            <caret line="116" selection-start-line="116" selection-end-line="116" selection-end-column="43" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images/IMG_8497.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -656,11 +673,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor>
-            <caret selection-end-line="5" selection-end-column="3" />
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-314">
+            <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           </first_editor>
           <second_editor />
         </state>
@@ -669,7 +686,7 @@
     <entry file="file://$PROJECT_DIR$/source/_posts/markdown.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="224">
+          <first_editor relative-caret-position="1710">
             <caret line="114" selection-start-line="114" selection-end-line="117" selection-end-column="10" />
           </first_editor>
           <second_editor />
@@ -681,11 +698,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/Iterator迭代器/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="120">
+            <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="567">
-            <caret line="90" column="8" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+          <first_editor relative-caret-position="477">
+            <caret line="201" column="7" lean-forward="true" selection-start-line="201" selection-start-column="7" selection-end-line="202" selection-end-column="75" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/理解柯里化/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="432">
+            <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
           </first_editor>
           <second_editor />
         </state>

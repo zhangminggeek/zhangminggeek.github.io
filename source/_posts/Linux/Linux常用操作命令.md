@@ -1,7 +1,7 @@
 ---
 title: Linux常用操作命令
 date: 2019-02-08 15:45:23
-categories: JavaScript
+categories: Linux
 tags: [Linux]
 ---
 
