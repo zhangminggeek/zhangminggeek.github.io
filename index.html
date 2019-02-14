@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/09/cjrxh202b0021gmw0tih15rvo/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/14/cjs4qjbu7002063w0jry2be08/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,198 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/09/cjrxh202b0021gmw0tih15rvo/" itemprop="url">理解柯里化</a></h1>
+                <a class="post-title-link" href="/2019/02/14/cjs4qjbu7002063w0jry2be08/" itemprop="url">git常用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T22:42:21+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.1k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h2><p>在本地新建一个repo，进入一个项目目录，执行<code>git init</code>，会初始化一个repo，并在当前文件夹下创建一个.git文件夹。</p>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>获取一个url对应的远程Git repo，创建一个local copy。<br>一般的格式是<code>git clone [url]</code>，clone下来的repo会以url最后一个斜线后面的名称命名，创建一个文件夹，如果想要指定特定的名称，可以<code>git clone [url] newname</code>指定。</p>
+<h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>查询repo的状态。</p>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>显示提交日志大纲。</p>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>在提交之前，Git有一个暂存区(staging area)，可以放入新添加的文件或者加入新的改动。commit时提交的改动是上一次加入到staging area中的改动，而不是我们disk上的改动。<br><code>git add &lt;filename&gt;</code>添加单个文件<br><code>git add .</code>会递归地添加当前工作目录中的所有文件<br><img src="/2019/02/14/cjs4qjbu7002063w0jry2be08/images/dafjdaldha.jpeg"></p>
+<h2 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h2><p>此命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>提交已经被add进来的改动<br><code>git commit -m “the commit message&quot;</code><br><img src="/2019/02/14/cjs4qjbu7002063w0jry2be08/images/dafadfasfe.jpeg"></p>
+<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。<br><code>git reset HEAD</code>把不小心add进去的文件从staged状态取出来,可以单独针对某一个文件操作：<code>git reset HEAD &lt;filename&gt;</code><br>这里的HEAD关键字指的是当前分支最末梢最新的一个提交，也就是版本库中该分支上的最新版本。也可以把HEAD相应版本的版本号</p>
+<h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h2><p>git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，但是HEAD指针是指向这个新生成的版本，而不是目标版本。<br><code>git revert HEAD</code>撤销最近的一个提交<br>git revert会创建一个反向的新提交，可以通过参数-n来告诉Git先不要提交</p>
+<h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><p>git stash将会把当前目录和index中的所有改动(但不包括未track的文件)压入一个栈，然后留给你一个clean的工作状态，即处于上一次最新提交处<br><code>git stash list</code>会显示这个栈的list<br><code>git stash apply</code>取出stash中的上一个项目(stash@{0})，并且应用于当前的工作目录，也可以指定别的项目，比如git stash apply stash@{1}.<br><code>git stash pop</code>在应用stash中项目的同时删除它<br><code>git stash clear</code>删除所有项目</p>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p>git branch可以用来列出分支，创建分支和删除分支。<br><code>git branch</code>列出本地所有分支，当前分支会被星号标示出<br><code>git branch [branchname]</code>创建一个新的分支<br><code>git branch -D [branchname]</code>删除一个分支</p>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p><code>git checkout [branchname]</code>切换到一个分支<br><code>git checkout -b [branchname]</code>创建并切换到新的分支<br><code>git checkout &lt;filename&gt;</code>此命令会使用HEAD中的最新内容替换掉你的工作目录中的文件，已添加到暂存区的改动以及新文件都不会受到影响<br>注意：git checkout filename会删除该文件中所有没有暂存和提交的改动，这个操作是不可逆的</p>
+<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p><code>git merge [alias]/[branch]</code>把一个分支merge进当前的分支</p>
+<h2 id="git-tag"><a href="#git-tag" class="headerlink" title="git tag"></a>git tag</h2><p><code>git tag</code>列出现有标签<br><code>git tag -a [tagname] -m&quot;the tag message&quot;&quot;</code>创建一个含附注类型的标签<br><code>git show [tagname]</code>查看相应标签的版本信息，并连同显示打标签时的提交对象</p>
+<h2 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h2><p>把远程库的代码更新到本地库</p>
+<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><p>git pull会首先执行git fetch，然后执行git merge，把取来的分支的head merge到当前分支。这个merge操作会产生一个新的commit。</p>
+<h2 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h2><p>重新应用提交在另一个基本提示之上。rebase的过程中，也许会出现冲突，Git会停止rebase并让你解决冲突，在解决完冲突之后，用git add去更新这些内容，然后无需执行commit，只需要：<br><code>git rebase --continue</code>就会继续打余下的补丁<br><code>git rebase --abort</code>将会终止rebase,当前分支将会回到rebase之前的状态</p>
+<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p><code>git push [remote-name] [branch-name]</code>将提交推送到远程分支</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://git-scm.com/docs/git" target="_blank" rel="noopener">git</a><br><a href="https://www.cnblogs.com/my--sunshine/p/7093412.html" target="_blank" rel="noopener">Git常用命令总结</a><br><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/09/cjs4qjbu9002463w0qvteoek3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/09/cjs4qjbu9002463w0qvteoek3/" itemprop="url">理解柯里化</a></h1>
         
 
         <div class="post-meta">
@@ -474,7 +665,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjrxh1zzz0007gmw0we6frryn/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4qjbrs000763w0878s00cp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -493,7 +684,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/08/cjrxh1zzz0007gmw0we6frryn/" itemprop="url">Linux常用操作命令</a></h1>
+                <a class="post-title-link" href="/2019/02/08/cjs4qjbrs000763w0878s00cp/" itemprop="url">Linux常用操作命令</a></h1>
         
 
         <div class="post-meta">
@@ -1054,7 +1245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjrxh202c0023gmw0vbespau0/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4qjbu9002563w0qdh508q1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1073,7 +1264,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/08/cjrxh202c0023gmw0vbespau0/" itemprop="url">圣境西藏</a></h1>
+                <a class="post-title-link" href="/2019/02/08/cjs4qjbu9002563w0qdh508q1/" itemprop="url">圣境西藏</a></h1>
         
 
         <div class="post-meta">
@@ -1178,32 +1369,32 @@
       
         
           
-            <img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8465.jpg" title="布达拉宫">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8473.jpg" title="布达拉宫">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8482.jpg" title="布达拉宫夜景">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8481.jpg" title="西藏的第一座宫殿 雍布拉康">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8463.jpg" title="藏毯（萨垫）">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8496.jpg" title="雪山">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8497.jpg" title="雪山">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8527.jpg" title="雪山">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8538.jpg" title="雪山">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8503.jpg" title="巴松错">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8571.jpg" title="南迦巴瓦峰 海拔7782米">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8575.jpg" title="南迦巴瓦峰">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8583.jpg" title="南迦巴瓦峰">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8582.jpg" title="世界第一大峡谷 雅鲁藏布大峡谷">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8620.jpg" title="土拨鼠">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8625.jpg" title="西藏三大圣湖之一 羊卓雍错">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8645.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8652.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8660.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8655.jpg" title="五彩经幡">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8669.jpg" title="牛头图腾">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8671.jpg" title="318国道">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8674.jpg" title="江孜宗山英雄纪念碑">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8680.jpg" title="扎什伦布寺前朝圣的教徒">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8687.jpg" title="教徒">
-<img src="/2019/02/08/cjrxh202c0023gmw0vbespau0/images/IMG_8693.jpg" title="扎什伦布寺">
+            <img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8465.jpg" title="布达拉宫">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8473.jpg" title="布达拉宫">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8482.jpg" title="布达拉宫夜景">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8481.jpg" title="西藏的第一座宫殿 雍布拉康">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8463.jpg" title="藏毯（萨垫）">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8496.jpg" title="雪山">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8497.jpg" title="雪山">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8527.jpg" title="雪山">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8538.jpg" title="雪山">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8503.jpg" title="巴松错">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8571.jpg" title="南迦巴瓦峰 海拔7782米">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8575.jpg" title="南迦巴瓦峰">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8583.jpg" title="南迦巴瓦峰">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8582.jpg" title="世界第一大峡谷 雅鲁藏布大峡谷">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8620.jpg" title="土拨鼠">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8625.jpg" title="西藏三大圣湖之一 羊卓雍错">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8645.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8652.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8660.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8655.jpg" title="五彩经幡">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8669.jpg" title="牛头图腾">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8671.jpg" title="318国道">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8674.jpg" title="江孜宗山英雄纪念碑">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8680.jpg" title="扎什伦布寺前朝圣的教徒">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8687.jpg" title="教徒">
+<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8693.jpg" title="扎什伦布寺">
 
           
         
@@ -1252,7 +1443,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/06/cjrxh204r002pgmw0u95gincx/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/06/cjs4qjbx3002v63w0vy5m7n6h/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1271,7 +1462,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/cjrxh204r002pgmw0u95gincx/" itemprop="url">尾调用优化和尾递归</a></h1>
+                <a class="post-title-link" href="/2019/02/06/cjs4qjbx3002v63w0vy5m7n6h/" itemprop="url">尾调用优化和尾递归</a></h1>
         
 
         <div class="post-meta">
@@ -1449,7 +1640,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjrxh202a0020gmw0wycce4yv/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjs4qjbu8002163w0qckg9d0v/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1468,7 +1659,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/16/cjrxh202a0020gmw0wycce4yv/" itemprop="url">Iterator迭代器</a></h1>
+                <a class="post-title-link" href="/2019/01/16/cjs4qjbu8002163w0qckg9d0v/" itemprop="url">Iterator迭代器</a></h1>
         
 
         <div class="post-meta">
@@ -1659,7 +1850,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjrxh205l0041gmw02s8xcfdq/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjs4qjbxw004463w04q6lz529/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1678,7 +1869,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/cjrxh205l0041gmw02s8xcfdq/" itemprop="url">鸭子类型，多态和封装</a></h1>
+                <a class="post-title-link" href="/2019/01/12/cjs4qjbxw004463w04q6lz529/" itemprop="url">鸭子类型，多态和封装</a></h1>
         
 
         <div class="post-meta">
@@ -1858,7 +2049,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjrxh204o002ngmw0ivvimb09/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjs4qjbwz002o63w061ezkrva/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1877,7 +2068,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/cjrxh204o002ngmw0ivvimb09/" itemprop="url">Gitflow工作流</a></h1>
+                <a class="post-title-link" href="/2018/12/23/cjs4qjbwz002o63w061ezkrva/" itemprop="url">Gitflow工作流</a></h1>
         
 
         <div class="post-meta">
@@ -1983,47 +2174,47 @@
         
           
             <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在你开始阅读之前，请记住：流程应被视作为指导方针，而非“铁律”。我们只是想告诉你可能的做法。因此，如果有必要的话，你可以组合使用不同的流程。</p>
-<img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflows-gitflow.png">
+<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflows-gitflow.png">
 <p>&nbsp;<br>Gitflow工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。</p>
 <p>Gitflow工作流没有用超出功能分支工作流的概念和命令，而是为不同的分支分配一个很明确的角色，并定义分支之间如何和什么时候进行交互。除了使用功能分支，在做准备、维护和记录发布也使用各自的分支。当然你可以用上功能分支工作流所有的好处：Pull Requests、隔离实验性开发和更高效的协作。</p>
 <h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><p>Gitflow工作流仍然用中央仓库作为所有开发者的交互中心。和其它的工作流一样，开发者在本地工作并push分支到要中央仓库中。</p>
 <h2 id="历史分支"><a href="#历史分支" class="headerlink" title="历史分支"></a>历史分支</h2><p>相对使用仅有的一个master分支，Gitflow工作流使用2个分支来记录项目的历史。master分支存储了正式发布的历史，而develop分支作为功能的集成分支。这样也方便master分支上的所有提交分配一个版本号。</p>
-<img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-1historical.png">
+<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-1historical.png">
 <p>&nbsp;<br>剩下要说明的问题围绕着这2个分支的区别展开。</p>
 <h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>每个新功能位于一个自己的分支，这样可以push到中央仓库以备份和协作。但功能分支不是从master分支上拉出新分支，而是使用develop分支作为父分支。当新功能完成时，合并回develop分支。新功能提交应该从不直接与master分支交互。</p>
-<img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-2feature.png">
+<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-2feature.png">
 <p>&nbsp;</p>
 <blockquote>
 <p>注意，从各种含义和目的上来看，功能分支加上develop分支就是功能分支工作流的用法。但Gitflow工作流没有在这里止步。</p>
 </blockquote>
-<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-3release.png">
+<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-3release.png">
 <p>&nbsp;<br>一旦develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上fork一个发布分支。新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上 —— 这个分支只应该做Bug修复、文档生成和其它面向发布任务。一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag。另外，这些从新建发布分支以来的做的修改要合并回develop分支。</p>
 <p>使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。<br>这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本4.0』，并且在仓库的目录结构中可以实际看到）。</p>
 <h2 id="常用的分支约定"><a href="#常用的分支约定" class="headerlink" title="常用的分支约定"></a>常用的分支约定</h2><p>用于新建发布分支的分支: develop</p>
 <p>用于合并的分支: master</p>
 <p>分支命名: release-<em> 或 release/</em></p>
-<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-4maintenance.png">
+<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-4maintenance.png">
 <p>&nbsp;<br>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从master分支fork出来的分支。修复完成，修改应该马上合并回master分支和develop分支（当前的发布分支），master分支应该用新的版本号打好Tag。</p>
 <p>为Bug修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。你可以把维护分支想成是一个直接在master分支上处理的临时发布。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-5createdev.png">
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-5createdev.png">
 <p>&nbsp;<br>第一步为master分支配套一个develop分支。简单来做可以本地创建一个空的develop分支，push到服务器上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
 <p>以后这个分支将会包含了项目的全部历史，而master分支将只包含了部分历史。其它开发者这时应该克隆中央仓库，建好develop分支的跟踪分支:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://user@host/path/to/repo.git</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
 <p>现在每个开发都有了这些历史分支的本地拷贝。</p>
-<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
+<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
 <p>&nbsp;<br>这个示例中，工程师A和工程师B开始各自的功能开发。他们需要为各自的功能创建相应的分支。新分支不是基于master分支，而是应该基于develop分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br></pre></td></tr></table></figure>
 <p>他们用老套路添加提交到各自功能分支上：编辑、暂存、提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-7maryfinishes.png">
+<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-7maryfinishes.png">
 <p>&nbsp;<br>添加了提交后，工程师A觉得她的功能OK了。如果团队使用Pull Requests，这时候可以发起一个用于合并到develop分支。否则她可以直接合并到她本地的develop分支后push到中央仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge some-feature</span><br><span class="line">git push</span><br><span class="line">git branch -d some-feature</span><br></pre></td></tr></table></figure></p>
 <p>第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。冲突解决方法和集中式工作流一样</p>
-<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-8maryprepsrelease.png">
+<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-8maryprepsrelease.png">
 <p>&nbsp;<br>这个时候工程师B正在实现他的功能，工程师A开始准备她的第一个项目正式发布。像功能开发一样，她用一个新的分支来做发布准备。这一步也确定了发布的版本号：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1 develop</span><br></pre></td></tr></table></figure>
 <p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支。</p>
 <p>只要工程师A创建这个分支并push到中央仓库，这个发布就是功能冻结的。任何不在develop分支中的新功能都推到下个发布循环中。</p>
-<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjrxh204o002ngmw0ivvimb09/images/git-workflow-release-cycle-9maryfinishes.png">
+<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-9maryfinishes.png">
 <p>&nbsp;<br>一旦准备好了对外发布，工程师A合并修改到master分支和develop分支上，删除发布分支。合并回develop分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可用的。另外，如果工程师A的团队要求Code Review，这是一个发起Pull Request的理想时机。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git checkout develop</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git branch -d release-0.1</span><br></pre></td></tr></table></figure>
 <p>发布分支是作为功能开发（develop分支）和对外发布（master分支）间的缓冲。只要有合并到master分支，就应该打好Tag以方便跟踪。</p>
@@ -2085,7 +2276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjrxh204n002jgmw086gldv26/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2104,7 +2295,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/12/cjrxh204n002jgmw086gldv26/" itemprop="url">浏览器的回流与重绘</a></h1>
+                <a class="post-title-link" href="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/" itemprop="url">浏览器的回流与重绘</a></h1>
         
 
         <div class="post-meta">
@@ -2209,7 +2400,7 @@
       
         
           
-            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjrxh204n002jgmw086gldv26/images/16798b8db54caa31.png">
+            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/16798b8db54caa31.png">
 <p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
 <ol>
 <li>浏览器使用流式布局模型 (Flow Based Layout)</li>
@@ -2219,7 +2410,7 @@
 <li>Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
 <li>由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。</li>
 </ol>
-<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjrxh204n002jgmw086gldv26/images/16798b8d839a7d6d.png">
+<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/16798b8d839a7d6d.png">
 <p>为构建渲染树，浏览器大体上完成了下列工作：</p>
 <ol>
 <li>从 DOM 树的根节点开始遍历每个可见节点。某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，上例中的 span 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了“display: none”属性。</li>
@@ -2236,7 +2427,7 @@
 <p>以上网页的正文包含两个嵌套 div：第一个（父）div 将节点的显示尺寸设置为视口宽度的 50%，—父 div 包含的第二个 div—将其宽度设置为其父项的 50%；即视口宽度的 25%。</p>
 <p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
 <p>最后，既然我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素。这一步通常称为“绘制”或“栅格化”。</p>
-<img src="/2018/12/12/cjrxh204n002jgmw086gldv26/images/layout-viewport.png">
+<img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/layout-viewport.png">
 <p>会导致回流的操作：</p>
 <ul>
 <li>页面首次渲染</li>
@@ -2342,7 +2533,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjrxh204o002kgmw0hrptr0ee/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2361,7 +2552,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/09/cjrxh204o002kgmw0hrptr0ee/" itemprop="url">跨域问题及解决方式</a></h1>
+                <a class="post-title-link" href="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/" itemprop="url">跨域问题及解决方式</a></h1>
         
 
         <div class="post-meta">
@@ -2548,7 +2739,7 @@
 </ul>
 <h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><h4 id="CORS的配置"><a href="#CORS的配置" class="headerlink" title="CORS的配置"></a>CORS的配置</h4><p>跨源资源共享（CORS）是一种机制，它使用其他HTTP请求头告诉浏览器让在一个源（域）上运行的Web应用程序有权访问不同来源服务器中的所选资源。Web应用程序在请求具有与自己不同源（域，协议和端口）的资源时，会发出跨源HTTP请求。</p>
 <p>出于安全原因，浏览器会限制从脚本中发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一源请求HTTP资源，除非来自其他来源的响应包含正确的CORS标头。</p>
-<img src="/2018/12/09/cjrxh204o002kgmw0hrptr0ee/images/CORS_principle.png">
+<img src="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/images/CORS_principle.png">
 <p>CORS机制支持浏览器和Web服务器之间的安全跨源请求和数据传输。现代浏览器在API中使用CORS，如XMLHttpRequest和Fetch，以帮助减轻跨域的HTTP请求的风险。</p>
 <p>服务端设置 Access-Control-Allow-Origin 字段，值可以是具体的域名或者 ‘*’ 通配符，配置好后就可以允许跨域请求数据。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
@@ -2577,7 +2768,7 @@
 <li>同样的在 b 页面中通过 iframe 嵌入 c 页面，将要传递的数据通过  iframe 的 src 链接的 hash 值传递给 c 页面，由于 a 页面与 c 页面同域，c 页面可以直接修改 a 页面的 hash 值或者调用 a 页面中的全局函数。</li>
 </ul>
 <p>大致流程：</p>
-<img src="/2018/12/09/cjrxh204o002kgmw0hrptr0ee/images/165b1a74b0bc4290.png">
+<img src="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/images/165b1a74b0bc4290.png">
 <p>a 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    iframe.src = <span class="string">"http://localhost:8081/b.html#data"</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkHash</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> data = location.hash ? location.hash.substring(<span class="number">1</span>) : <span class="string">''</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获得到的数据是：'</span>, data);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'监听到hash的变化：'</span>, location.hash.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>b 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="keyword">switch</span>(location.hash) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">         callback();</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"testHash"</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parent.location.hash = data;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">            <span class="keyword">var</span> ifrproxy = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">            ifrproxy.style.display = <span class="string">'none'</span>;</span><br><span class="line">            ifrproxy.src = <span class="string">'http://localhost:8080/c.html#'</span> + data;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(ifrproxy);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>c 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 修改 a 页面的 hash 值</span></span><br><span class="line">    parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 调用 a 页面的全局函数</span></span><br><span class="line">    parent.parent.checkHash();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -2587,209 +2778,6 @@
 <li>数据直接暴露在 url 中。</li>
 </ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">浏览器的同源策略</a><br><a href="https://juejin.im/post/5b91d3be5188255c95380b5e" target="_blank" rel="noopener">前端跨域方法论</a><br><a href="https://juejin.im/post/5c07fa04e51d451de968906b" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】JSONP</a><br><a href="https://juejin.im/post/5c0a55e76fb9a049ef2665ba" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】CORS 基础篇</a><br><a href="https://juejin.im/post/5c0b5a8851882548e9380afb" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】CORS 进阶篇</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/02/cjrxh204s002sgmw09rufh1ms/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/02/cjrxh204s002sgmw09rufh1ms/" itemprop="url">《爱你就像爱生命》摘抄随笔</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T14:35:22+08:00">
-                2018-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/阅读/" itemprop="url" rel="index">
-                    <span itemprop="name">阅读</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2.7k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  9分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>&emsp;&emsp;你劝我的话我记住了。我将来一定把我的本心拿给你看。为什么是将来呢？啊，将来的我比现在好，这一点我已经有了把握。你不要逼我把我的坏处告诉你。请你原谅这一点男子汉的虚荣心吧，我会在暗地里把坏处去掉。我要自我完善起来，为了你我要成为完人。—《最初的呼唤》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;你说我这个人还有可原谅的地方吗？我对你做了这样的坏事你还能原谅我吗？我要给你唱一支好听的歌，就是我这一次猜忌是最后的一次。我不敢怨恨你，就是你做出什么样的决定我都不怨恨。我把我整个的灵魂都给你，连同它的怪癖，耍小脾气，忽明忽暗，一千八百种坏毛病。它真讨厌，只有一点好，爱你。—《请你不要吃我，我给你唱一支好听的歌》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;可是我有一个最高的准则，这也是我的秘密，我从来也不把它告诉人。就是，人是轻易不能知道自己的，因为人的感官全是向外的，比方说人能看见别人，却不能看见自己；人可以对别人有最细微的感觉，对自己就迟钝得多。自己的思想可以把握，可是产生自己思想的源泉谁能把握呢？有人可以写出极美好的小说和音乐，可是他自己何以能够写这些东西的直接原因却说不出来。人无论伟大还是卑贱，对于自己，就是最深微的“自己”却不十分了然。这个“自我”在很多人身上都沉默了。这些人也就沉默了，日复一日过着和昨日一样的生活。在另外一些人身上，它就沸腾不息，给它的主人带来无穷无尽的苦难。你说，是什么使双目失明的密尔顿苦苦地写诗呢，还不是它。你看，好多人给它许下了诺言，安德谢夫说他是个穷鬼时下定了决心，除了一颗枪子儿什么也挡不住他。可是他成了阔佬以后呢？心安理得了。<br>&emsp;&emsp;至于我呢，我情愿它永远不沉默，就是它给我带来什苦难都成。我们都活着，将来我们都活过。我情愿它沸腾到最后一秒钟为止，我永远不希望有一天我心安理得，觉得一切都平稳了。我知道，生和死，这是人们自己的事。谁也救不了别人的灵魂，要是人人都有个不休不止的灵魂才好呢。我真希望我的灵魂像你说的，是个源泉，永远汲取不干（当然这是不可能的事）。我希望我的“自我”永远“滋滋”作响，翻腾不休，就像火炭上的一滴糖。<br>&emsp;&emsp;我真不想有一天我自己觉得我有了足够的智慧，可以够用了，足够明辨是非了。—《孤独的灵魂多么寂寞啊》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;我不喜欢安分过什么“日子”，也不喜欢死气白赖地搅在一起。至于结婚不结婚之类的事情我都不爱去想。世俗所谓必不可少的东西我是一件也不要的。还有那个“爱”、“欠情”之类，似乎无关紧要。只希望你和我好，互不猜忌，也互不称誉，安如平日，你和我说话像对自己说话一样，我和你说话也像对自己说话一样。说吧，和我好吗？—《孤独的灵魂多么寂寞啊》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;我真不知力量从哪里来。我想，你知道，就是不告诉我。你呀，你准是不相信我是个好人，以为我会嘲笑你。我真的是个好人，我对好多人怀有最深的感情，尤其是对你。我很想为别人做好事，尤其是对你。我真想把我能做出的一切好事全献给你呢。—《我对好多人怀有最深对感情，尤其是对你》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;总之，我认为人不应当忽视自己，生活就是自己啊。总要无愧于自己才好。比方说我要无愧于自己就要好好地爱你才对。也不能让人家来造自己，谁要来造我我都不干。有人要我们这样要我们那样，我们就不知道什么是生活本身了。<br>&emsp;&emsp;过去我们在顶礼膜拜中度过光阴的时候，我们知道什么是生活吗？现在我们在一片拜物声中过的是什么日子啊。我自己过去和现在都很不好。不过我先要爱你，我觉得我很对，你也觉得我很对，别人与此有何相干。—《人为什么活着》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;社会的力量是很大的吧？什么排山倒海的力量也止不住两个相爱过的人的互助。我觉得我爱了你了，从此以后，不管什么时候我都不能对你无动于衷。我可不能赞成爱里面一点责任没有。我当然反对它成为一种枷锁，我也不能同意它是一场宴会。我以为它该是终身不能忘却的。比如说，将来你不爱我了，那你就离开我，可是别忘了它。这是不该忘记的东西。—《你和我是很不同的人》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;也许有一天我会明白人需要什么，也就是撇开灰色的社会生活（倒霉的机械重复，乏味透顶的干巴巴的人的干涉），也撇开对于神圣的虔诚，人能给自己建立什么生活。如果人到了不受限制的情境，一点也不考虑人们怎么看自己，你看看他能有多疯吧。我猜人能做到欢乐之极，这也看人的才能大小。出于爱，人能干出透顶美好的事情，比木木痴痴的人胜过一万倍。—《目空一切的那种爱》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;只要我们能在一起，我们什么都能找到。也许缺乏勇气是到达美好境界的障碍。你看我是多么适合你的人。我的勇气和你的勇气加起来，对付这个世界总够了吧？要无忧无虑地去抒情，去歌舞狂欢，去向世界发出我们的声音，我一个人是不敢的，我怕人家说我疯。有了你我就敢。只要有你一个，就不孤独！—《爱情会妨碍我们两个吗》</p>
-</blockquote>
-<blockquote>
-<p>&emsp;&emsp;美也是无穷的，可怜的就是人的生命、人的活力是有穷的。可惜我看不到无穷的一切。但是我知道它存在，我向往它。我会老也会死，势必有一天我也会衰老得无力进取的。可是我不怕。在什么事物消失之前，我们先要让它存在啊。—《我愿做你的菩提树》</p>
-</blockquote>
-<p>&emsp;&emsp;很早之前就听过这本书，看到书名就听喜欢这本书的，但是一直都没看，原因可能是因为之前看过王小波的《黄金时代》，看完那本书之后我开玩笑说过，二十年之内我绝不再看王小波的书，因为实在是看不懂。今天找到这本书来看是因为之前跟朋友提过这本书，早上听到他那在我看来”苦难”的感情终于修成正果，再加上看《奇葩说》又提到王小波和李银河的故事，最终决定打一打自己的脸。<br>&emsp;&emsp;贯穿整本书的是王小波和李银河两人互诉爱意，毫不掩饰的说爱你。每一封书信都把”我爱你”挂在嘴边，却不显得腻味。王小波在书信中多次提到”我的字又写得很不好”，但他还是频繁得用他但文字述说着他感情。我是个很好面的人，只愿意把我好的那面展现出来。我文笔不好，我就不写日记，不写读后感。我不擅交际，但为了不让别人说我太内向腼腆，我强迫自己去加入各种社交圈，只为了让人觉得我并非不擅长。可这一点都不真实，而且很累。在经历一些事情之后，我开始更多去关注自己的感受。换了工作，开始不用为了应付工作去交际。周末宅在家，看书听歌敲代码，享受一个人的时光。无所谓别人怎么看我，只想生活在自己的舒适区。我之前跟朋友说过，我结婚说不定不办婚礼，他们觉得不行，家里肯定不同意。我说只要对方同意，我就不办。别人可以给出他们的意见，但没人能干涉我的决定，要求我循规蹈矩。也行有些自私，但这也是我的自由。一辈子太短，我有权力去活成我想要的样子。<br>&emsp;&emsp;我也羡慕王小波和李银河这种毫无保留的爱情。以前我太不善于表达，许多感情不知出于何种原因，没有说出口。我想以后，我会说，我也得说。<br>&emsp;&emsp;最近有朋友跟我说，为什么我感觉你一年三百六十五天天都在工作。我说没有，今天我偷懒了，在床上躺了一天，堕落了。我把我的坏处藏起来了，我怎么可能天天都保持工作的状态。有人说我不上进，也许是的，那我就改呗，上进呗。改到现在，休息了一天，我就感觉到罪恶感，觉得本来就不如人，这一天又被拉开了差距。我只好向朋友寻求安慰，告诉我堕落一天是可以的。也许有些病态的激进，但这是我对评价不认可的态度。我还是那个观点，人无完人，我当然也不是完人，骨子里的惰性还是在的，一时半会也不可能完全剔除。所以我翻开书读到这句话的时候，我反复读了几遍，这就是我想说的吧。”你劝我的话我记住了。我将来一定把我的本心拿给你看。为什么是将来呢？啊，将来的我比现在好，这一点我已经有了把握。你不要逼我把我的坏处告诉你。请你原谅这一点男子汉的虚荣心吧，我会在暗地里把坏处去掉。我要自我完善起来，为了你我要成为完人。”</p>
 
           
         
@@ -2873,7 +2861,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
