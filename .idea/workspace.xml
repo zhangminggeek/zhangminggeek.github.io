@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10e34eda-3378-4113-ac9e-85f5f92dca2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/source/_posts/git/git常用命令/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/git/git常用命令/index/images/dafadfasfe.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/git/git常用命令/index/images/dafjdaldha.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/http/认识http2.0/index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/http/认识http2.0/index/images/138606-180318d7f001446f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/http/认识http2.0/index/images/138606-37ea7846b10ea092.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/http/认识http2.0/index/images/138606-d6b704a63c41587c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/http/认识http2.0/index/images/a8c500242cca3edb042b194d90763658_r.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -98,7 +100,7 @@
           <entry key="HTML" value="3" />
           <entry key="Image" value="55" />
           <entry key="JSON" value="1" />
-          <entry key="Markdown" value="47" />
+          <entry key="Markdown" value="49" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="SVG" value="1" />
           <entry key="YAML" value="9" />
@@ -115,7 +117,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JavaScript" value="77" />
-          <entry key="Markdown" value="7110" />
+          <entry key="Markdown" value="7284" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="YAML" value="118" />
         </counts>
@@ -136,12 +138,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/git/git常用命令/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="507">
                 <caret line="88" column="91" selection-start-line="88" selection-start-column="91" selection-end-line="88" selection-end-column="91" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/source/_posts/http/认识http2.0/index.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="522">
+                <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
               </first_editor>
               <second_editor />
             </state>
@@ -239,6 +253,7 @@
         <option value="$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md" />
         <option value="$PROJECT_DIR$/source/_posts/javascript/理解柯里化/index.md" />
         <option value="$PROJECT_DIR$/source/_posts/git/git常用命令/index.md" />
+        <option value="$PROJECT_DIR$/source/_posts/http/认识http2.0/index.md" />
       </list>
     </option>
   </component>
@@ -259,8 +274,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="127" />
+    <option name="y" value="23" />
+    <option name="width" value="1220" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -291,31 +308,23 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
-              <item name="Gitflow工作流" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="认识http2.0" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
-              <item name="git常用命令" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zhangminggeek.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
-              <item name="git常用命令" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="认识http2.0" type="462c0819:PsiDirectoryNode" />
               <item name="index" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -323,10 +332,8 @@
               <item name="zhangminggeek.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
               <item name="_posts" type="462c0819:PsiDirectoryNode" />
-              <item name="git" type="462c0819:PsiDirectoryNode" />
-              <item name="git常用命令" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+              <item name="跨域问题及解决方式" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -347,11 +354,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/source/_posts/http/认识http2.0/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/git/git常用命令/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/git/Gitflow工作流/index/images" />
       <recent name="$PROJECT_DIR$/source/_posts/git/Gitflow工作流/index" />
       <recent name="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index/images" />
-      <recent name="$PROJECT_DIR$/source/_posts/browser/浏览器的回流与重绘/index" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/source/_posts/other/圣境西藏/index/images" />
@@ -399,12 +406,12 @@
       <workItem from="1547431115323" duration="7926000" />
       <workItem from="1549557760339" duration="4912000" />
       <workItem from="1549715702650" duration="2806000" />
-      <workItem from="1550155274490" duration="2806000" />
+      <workItem from="1550155274490" duration="7190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155572000" />
+    <option name="totallyTimeSpent" value="159956000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -472,9 +479,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/javascript/JavaScript的执行机制/index/images/16589ba43caf6b9f.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/7.md" />
     <entry file="file://$PROJECT_DIR$/source/_posts/webpack/1.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -507,16 +511,6 @@
         <state split_layout="SPLIT">
           <first_editor>
             <caret selection-end-line="5" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="417">
-            <caret line="240" column="7" selection-start-line="240" selection-start-column="7" selection-end-line="242" selection-end-column="58" />
           </first_editor>
           <second_editor />
         </state>
@@ -720,16 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/git/Gitflow工作流/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -740,11 +724,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/Linux/Linux常用操作命令.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="135">
+            <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/git/git常用命令/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="507">
             <caret line="88" column="91" selection-start-line="88" selection-start-column="91" selection-end-line="88" selection-end-column="91" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/http/跨域问题及解决方式/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="167">
+            <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" selection-end-column="41" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/http/认识http2.0/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="522">
+            <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
           </first_editor>
           <second_editor />
         </state>
