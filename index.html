@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/14/cjs4qjbu7002063w0jry2be08/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/24/cjsj20p870000n5w01188j96e/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -302,7 +302,219 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/14/cjs4qjbu7002063w0jry2be08/" itemprop="url">git常用命令</a></h1>
+                <a class="post-title-link" href="/2019/02/24/cjsj20p870000n5w01188j96e/" itemprop="url">认识http/2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-24T23:12:48+08:00">
+                2019-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1.4k字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HTTP/2（超文本传输协议第2版，最初命名为HTTP 2.0），简称为h2（基于TLS/1.2或以上版本的加密连接）或h2c（非加密连接）</p>
+<p>HTTP/2标准于2015年5月以RFC 7540正式发表。多数主流浏览器已经在2015年底支持了该协议。此外，根据W3Techs的数据，在2017年5月，在排名前一千万的网站中，有13.7%支持了HTTP/2。</p>
+<h2 id="协议之间的比较"><a href="#协议之间的比较" class="headerlink" title="协议之间的比较"></a>协议之间的比较</h2><h3 id="HTTP-2与HTTP-1-1比较"><a href="#HTTP-2与HTTP-1-1比较" class="headerlink" title="HTTP/2与HTTP/1.1比较"></a>HTTP/2与HTTP/1.1比较</h3><p>HTTP/2 相比 HTTP/1.1 的修改并不会破坏现有程序的工作，但是新的程序可以借由新特性得到更好的速度。</p>
+<p><a href="https://http2.akamai.com/demo" target="_blank" rel="noopener">HTTP/2: the Future of the Internet</a>是 Akamai 公司建立的一个官方的演示，用以说明 HTTP/2 相比于之前的 HTTP/1.1 在性能上的大幅度提升。 同时请求 379 张图片，从Load time 的对比可以看出 HTTP/2 在速度上的优势。<br><img src="/2019/02/24/cjsj20p870000n5w01188j96e/images/a8c500242cca3edb042b194d90763658_r.jpg"></p>
+<p>http/2和HTTP1.X相比的新特性:</p>
+<ol>
+<li><strong>新的二进制格式（Binary Format）</strong>，HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑http/2的协议解析决定采用二进制格式，实现方便且健壮。</li>
+<li><strong>多路复用（MultiPlexing）</strong>，即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</li>
+<li><strong>header压缩</strong>，如上文中所言，对前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，http/2使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。</li>
+<li><strong>服务端推送（server push）</strong>，同SPDY一样，http/2也具有server push功能。</li>
+</ol>
+<h3 id="HTTP-2与SPDY的比较"><a href="#HTTP-2与SPDY的比较" class="headerlink" title="HTTP/2与SPDY的比较"></a>HTTP/2与SPDY的比较</h3><p>http/2可以说是SPDY的升级版（其实原本也是基于SPDY设计的），但是，http/2 跟 SPDY 仍有不同的地方，如下：</p>
+<ol>
+<li>http/2 支持明文 HTTP 传输，而 SPDY 强制使用 HTTPS</li>
+<li>http/2 消息头的压缩算法采用 HPACK，而非 SPDY 采用的 DEFLATE</li>
+</ol>
+<p>HTTP/2的开发基于SPDY进行跃进式改进。在诸多修改中，最显著的改进在于，HTTP/2使用了一份经过定制的压缩算法，基于霍夫曼编码，以此替代了SPDY的动态流压缩算法，以避免对协议的Oracle攻击——这一类攻击以CRIME为代表。此外，HTTP/2禁用了诸多加密包，以保证基于TLS的连接的前向安全。</p>
+<h2 id="HTTP-2的升级改造"><a href="#HTTP-2的升级改造" class="headerlink" title="HTTP/2的升级改造"></a>HTTP/2的升级改造</h2><ol>
+<li>http/2其实可以支持非HTTPS的，但是现在主流的浏览器像chrome，firefox表示还是只支持基于 TLS 部署的http/2协议，所以要想升级成http/2还是先升级HTTPS为好。</li>
+<li>当你的网站已经升级HTTPS之后，那么升级http/2就简单很多，如果你使用NGINX，只要在配置文件中启动相应的协议就可以了，可以参考<a href="https://www.nginx.com/wp-content/uploads/2015/09/NGINX_HTTP2_White_Paper_v4.pdf" target="_blank" rel="noopener">NGINX白皮书</a>，<a href="https://www.nginx.com/blog/nginx-1-9-5/" target="_blank" rel="noopener">NGINX配置http/2官方指南</a>。</li>
+<li>使用了http/2那么，原本的HTTP1.x怎么办，这个问题其实不用担心，http/2完全兼容HTTP1.x的语义，对于不支持http/2的浏览器，NGINX会自动向下兼容的。</li>
+</ol>
+<h2 id="http-2的多路复用和HTTP1-X中的长连接复用的区别"><a href="#http-2的多路复用和HTTP1-X中的长连接复用的区别" class="headerlink" title="http/2的多路复用和HTTP1.X中的长连接复用的区别"></a>http/2的多路复用和HTTP1.X中的长连接复用的区别</h2><ul>
+<li>HTTP/1.* 一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
+<li>HTTP/1.1 Pipeling解决方式为，若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞，毫无办法，也就是人们常说的线头阻塞；</li>
+<li>HTTP/2多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行；</li>
+</ul>
+<p>具体如图：<br><img src="/2019/02/24/cjsj20p870000n5w01188j96e/images/138606-37ea7846b10ea092.png"></p>
+<h2 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h2><p>服务端推送能把客户端所需要的资源伴随着index.html一起发送到客户端，省去了客户端重复请求的步骤。正因为没有发起请求，建立连接等操作，所以静态资源通过服务端推送的方式可以极大地提升速度。</p>
+<p>具体如下：</p>
+<ul>
+<li><p>普通的客户端请求过程：</p>
+<img src="/2019/02/24/cjsj20p870000n5w01188j96e/images/138606-d6b704a63c41587c.png">
+</li>
+<li><p>服务端推送的过程：</p>
+<img src="/2019/02/24/cjsj20p870000n5w01188j96e/images/138606-180318d7f001446f.png">
+</li>
+</ul>
+<h2 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h2><p>假定一个页面有100个资源需要加载（这个数量对于今天的Web而言还是挺保守的）, 而每一次请求都有1kb的消息头（这同样也并不少见，因为Cookie和引用等东西的存在）, 则至少需要多消耗100kb来获取这些消息头。http/2可以维护一个字典，差量更新HTTP头部，大大降低因头部传输产生的流量。<br>具体参考：<a href="https://imququ.com/post/header-compression-in-http2.html" target="_blank" rel="noopener">HTTP/2 头部压缩技术介绍</a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://zh.wikipedia.org/wiki/HTTP/2#%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%B6%E5%AE%9A" target="_blank" rel="noopener">HTTP/2</a><br><a href="https://www.jianshu.com/p/be29d679cbff" target="_blank" rel="noopener">HTTP1.0、HTTP1.1和http/2的区别</a><br><a href="https://www.zhihu.com/question/34074946" target="_blank" rel="noopener">HTTP/2.0 相比1.0有哪些重大改进？</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/14/cjs4shr31001ls5w0qoze7lde/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhangming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="感动常在">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/14/cjs4shr31001ls5w0qoze7lde/" itemprop="url">git常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -411,9 +623,9 @@
 <h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>获取一个url对应的远程Git repo，创建一个local copy。<br>一般的格式是<code>git clone [url]</code>，clone下来的repo会以url最后一个斜线后面的名称命名，创建一个文件夹，如果想要指定特定的名称，可以<code>git clone [url] newname</code>指定。</p>
 <h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p>查询repo的状态。</p>
 <h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p>显示提交日志大纲。</p>
-<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>在提交之前，Git有一个暂存区(staging area)，可以放入新添加的文件或者加入新的改动。commit时提交的改动是上一次加入到staging area中的改动，而不是我们disk上的改动。<br><code>git add &lt;filename&gt;</code>添加单个文件<br><code>git add .</code>会递归地添加当前工作目录中的所有文件<br><img src="/2019/02/14/cjs4qjbu7002063w0jry2be08/images/dafjdaldha.jpeg"></p>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>在提交之前，Git有一个暂存区(staging area)，可以放入新添加的文件或者加入新的改动。commit时提交的改动是上一次加入到staging area中的改动，而不是我们disk上的改动。<br><code>git add &lt;filename&gt;</code>添加单个文件<br><code>git add .</code>会递归地添加当前工作目录中的所有文件<br><img src="/2019/02/14/cjs4shr31001ls5w0qoze7lde/images/dafjdaldha.jpeg"></p>
 <h2 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h2><p>此命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。</p>
-<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>提交已经被add进来的改动<br><code>git commit -m “the commit message&quot;</code><br><img src="/2019/02/14/cjs4qjbu7002063w0jry2be08/images/dafadfasfe.jpeg"></p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>提交已经被add进来的改动<br><code>git commit -m “the commit message&quot;</code><br><img src="/2019/02/14/cjs4shr31001ls5w0qoze7lde/images/dafadfasfe.jpeg"></p>
 <h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p>git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。<br><code>git reset HEAD</code>把不小心add进去的文件从staged状态取出来,可以单独针对某一个文件操作：<code>git reset HEAD &lt;filename&gt;</code><br>这里的HEAD关键字指的是当前分支最末梢最新的一个提交，也就是版本库中该分支上的最新版本。也可以把HEAD相应版本的版本号</p>
 <h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a>git revert</h2><p>git revert的作用通过反做创建一个新的版本，这个版本的内容与我们要回退到的目标版本一样，但是HEAD指针是指向这个新生成的版本，而不是目标版本。<br><code>git revert HEAD</code>撤销最近的一个提交<br>git revert会创建一个反向的新提交，可以通过参数-n来告诉Git先不要提交</p>
 <h2 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h2><p>git stash将会把当前目录和index中的所有改动(但不包括未track的文件)压入一个栈，然后留给你一个clean的工作状态，即处于上一次最新提交处<br><code>git stash list</code>会显示这个栈的list<br><code>git stash apply</code>取出stash中的上一个项目(stash@{0})，并且应用于当前的工作目录，也可以指定别的项目，比如git stash apply stash@{1}.<br><code>git stash pop</code>在应用stash中项目的同时删除它<br><code>git stash clear</code>删除所有项目</p>
@@ -474,7 +686,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/09/cjs4qjbu9002463w0qvteoek3/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/09/cjs4shr33001ps5w02pt997ab/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -493,7 +705,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/09/cjs4qjbu9002463w0qvteoek3/" itemprop="url">理解柯里化</a></h1>
+                <a class="post-title-link" href="/2019/02/09/cjs4shr33001ps5w02pt997ab/" itemprop="url">理解柯里化</a></h1>
         
 
         <div class="post-meta">
@@ -665,7 +877,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4qjbrs000763w0878s00cp/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4shr120007s5w0ql3ac7za/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -684,7 +896,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/08/cjs4qjbrs000763w0878s00cp/" itemprop="url">Linux常用操作命令</a></h1>
+                <a class="post-title-link" href="/2019/02/08/cjs4shr120007s5w0ql3ac7za/" itemprop="url">Linux常用操作命令</a></h1>
         
 
         <div class="post-meta">
@@ -1245,7 +1457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4qjbu9002563w0qdh508q1/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/08/cjs4shr34001qs5w0rufjym6p/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1264,7 +1476,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/08/cjs4qjbu9002563w0qdh508q1/" itemprop="url">圣境西藏</a></h1>
+                <a class="post-title-link" href="/2019/02/08/cjs4shr34001qs5w0rufjym6p/" itemprop="url">圣境西藏</a></h1>
         
 
         <div class="post-meta">
@@ -1369,32 +1581,32 @@
       
         
           
-            <img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8465.jpg" title="布达拉宫">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8473.jpg" title="布达拉宫">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8482.jpg" title="布达拉宫夜景">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8481.jpg" title="西藏的第一座宫殿 雍布拉康">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8463.jpg" title="藏毯（萨垫）">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8496.jpg" title="雪山">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8497.jpg" title="雪山">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8527.jpg" title="雪山">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8538.jpg" title="雪山">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8503.jpg" title="巴松错">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8571.jpg" title="南迦巴瓦峰 海拔7782米">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8575.jpg" title="南迦巴瓦峰">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8583.jpg" title="南迦巴瓦峰">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8582.jpg" title="世界第一大峡谷 雅鲁藏布大峡谷">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8620.jpg" title="土拨鼠">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8625.jpg" title="西藏三大圣湖之一 羊卓雍错">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8645.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8652.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8660.jpg" title="羊卓雍错">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8655.jpg" title="五彩经幡">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8669.jpg" title="牛头图腾">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8671.jpg" title="318国道">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8674.jpg" title="江孜宗山英雄纪念碑">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8680.jpg" title="扎什伦布寺前朝圣的教徒">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8687.jpg" title="教徒">
-<img src="/2019/02/08/cjs4qjbu9002563w0qdh508q1/images/IMG_8693.jpg" title="扎什伦布寺">
+            <img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8465.jpg" title="布达拉宫">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8473.jpg" title="布达拉宫">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8482.jpg" title="布达拉宫夜景">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8481.jpg" title="西藏的第一座宫殿 雍布拉康">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8463.jpg" title="藏毯（萨垫）">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8496.jpg" title="雪山">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8497.jpg" title="雪山">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8527.jpg" title="雪山">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8538.jpg" title="雪山">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8503.jpg" title="巴松错">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8571.jpg" title="南迦巴瓦峰 海拔7782米">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8575.jpg" title="南迦巴瓦峰">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8583.jpg" title="南迦巴瓦峰">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8582.jpg" title="世界第一大峡谷 雅鲁藏布大峡谷">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8620.jpg" title="土拨鼠">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8625.jpg" title="西藏三大圣湖之一 羊卓雍错">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8645.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8652.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8660.jpg" title="羊卓雍错">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8655.jpg" title="五彩经幡">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8669.jpg" title="牛头图腾">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8671.jpg" title="318国道">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8674.jpg" title="江孜宗山英雄纪念碑">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8680.jpg" title="扎什伦布寺前朝圣的教徒">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8687.jpg" title="教徒">
+<img src="/2019/02/08/cjs4shr34001qs5w0rufjym6p/images/IMG_8693.jpg" title="扎什伦布寺">
 
           
         
@@ -1443,7 +1655,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/06/cjs4qjbx3002v63w0vy5m7n6h/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/02/06/cjs4shr65002fs5w01bjcpszi/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1462,7 +1674,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/cjs4qjbx3002v63w0vy5m7n6h/" itemprop="url">尾调用优化和尾递归</a></h1>
+                <a class="post-title-link" href="/2019/02/06/cjs4shr65002fs5w01bjcpszi/" itemprop="url">尾调用优化和尾递归</a></h1>
         
 
         <div class="post-meta">
@@ -1640,7 +1852,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjs4qjbu8002163w0qckg9d0v/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/16/cjs4shr32001ms5w0lcfkjcwr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1659,7 +1871,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/16/cjs4qjbu8002163w0qckg9d0v/" itemprop="url">Iterator迭代器</a></h1>
+                <a class="post-title-link" href="/2019/01/16/cjs4shr32001ms5w0lcfkjcwr/" itemprop="url">Iterator迭代器</a></h1>
         
 
         <div class="post-meta">
@@ -1850,7 +2062,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjs4qjbxw004463w04q6lz529/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2019/01/12/cjs4shr6w003ps5w0mccm8sp9/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -1869,7 +2081,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/cjs4qjbxw004463w04q6lz529/" itemprop="url">鸭子类型，多态和封装</a></h1>
+                <a class="post-title-link" href="/2019/01/12/cjs4shr6w003ps5w0mccm8sp9/" itemprop="url">鸭子类型，多态和封装</a></h1>
         
 
         <div class="post-meta">
@@ -2049,7 +2261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjs4qjbwz002o63w061ezkrva/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/23/cjs4shr63002ds5w0weqsag76/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2068,7 +2280,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/cjs4qjbwz002o63w061ezkrva/" itemprop="url">Gitflow工作流</a></h1>
+                <a class="post-title-link" href="/2018/12/23/cjs4shr63002ds5w0weqsag76/" itemprop="url">Gitflow工作流</a></h1>
         
 
         <div class="post-meta">
@@ -2174,47 +2386,47 @@
         
           
             <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在你开始阅读之前，请记住：流程应被视作为指导方针，而非“铁律”。我们只是想告诉你可能的做法。因此，如果有必要的话，你可以组合使用不同的流程。</p>
-<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflows-gitflow.png">
+<img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflows-gitflow.png">
 <p>&nbsp;<br>Gitflow工作流定义了一个围绕项目发布的严格分支模型。虽然比功能分支工作流复杂几分，但提供了用于一个健壮的用于管理大型项目的框架。</p>
 <p>Gitflow工作流没有用超出功能分支工作流的概念和命令，而是为不同的分支分配一个很明确的角色，并定义分支之间如何和什么时候进行交互。除了使用功能分支，在做准备、维护和记录发布也使用各自的分支。当然你可以用上功能分支工作流所有的好处：Pull Requests、隔离实验性开发和更高效的协作。</p>
 <h2 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h2><p>Gitflow工作流仍然用中央仓库作为所有开发者的交互中心。和其它的工作流一样，开发者在本地工作并push分支到要中央仓库中。</p>
 <h2 id="历史分支"><a href="#历史分支" class="headerlink" title="历史分支"></a>历史分支</h2><p>相对使用仅有的一个master分支，Gitflow工作流使用2个分支来记录项目的历史。master分支存储了正式发布的历史，而develop分支作为功能的集成分支。这样也方便master分支上的所有提交分配一个版本号。</p>
-<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-1historical.png">
+<img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-1historical.png">
 <p>&nbsp;<br>剩下要说明的问题围绕着这2个分支的区别展开。</p>
 <h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p>每个新功能位于一个自己的分支，这样可以push到中央仓库以备份和协作。但功能分支不是从master分支上拉出新分支，而是使用develop分支作为父分支。当新功能完成时，合并回develop分支。新功能提交应该从不直接与master分支交互。</p>
-<img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-2feature.png">
+<img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-2feature.png">
 <p>&nbsp;</p>
 <blockquote>
 <p>注意，从各种含义和目的上来看，功能分支加上develop分支就是功能分支工作流的用法。但Gitflow工作流没有在这里止步。</p>
 </blockquote>
-<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-3release.png">
+<h2 id="发布分支"><a href="#发布分支" class="headerlink" title="发布分支"></a>发布分支</h2><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-3release.png">
 <p>&nbsp;<br>一旦develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上fork一个发布分支。新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上 —— 这个分支只应该做Bug修复、文档生成和其它面向发布任务。一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag。另外，这些从新建发布分支以来的做的修改要合并回develop分支。</p>
 <p>使用一个用于发布准备的专门分支，使得一个团队可以在完善当前的发布版本的同时，另一个团队可以继续开发下个版本的功能。<br>这也打造定义良好的开发阶段（比如，可以很轻松地说，『这周我们要做准备发布版本4.0』，并且在仓库的目录结构中可以实际看到）。</p>
 <h2 id="常用的分支约定"><a href="#常用的分支约定" class="headerlink" title="常用的分支约定"></a>常用的分支约定</h2><p>用于新建发布分支的分支: develop</p>
 <p>用于合并的分支: master</p>
 <p>分支命名: release-<em> 或 release/</em></p>
-<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-4maintenance.png">
+<h2 id="维护分支"><a href="#维护分支" class="headerlink" title="维护分支"></a>维护分支</h2><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-4maintenance.png">
 <p>&nbsp;<br>维护分支或说是热修复（hotfix）分支用于生成快速给产品发布版本（production releases）打补丁，这是唯一可以直接从master分支fork出来的分支。修复完成，修改应该马上合并回master分支和develop分支（当前的发布分支），master分支应该用新的版本号打好Tag。</p>
 <p>为Bug修复使用专门分支，让团队可以处理掉问题而不用打断其它工作或是等待下一个发布循环。你可以把维护分支想成是一个直接在master分支上处理的临时发布。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-5createdev.png">
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="创建开发分支"><a href="#创建开发分支" class="headerlink" title="创建开发分支"></a>创建开发分支</h3><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-5createdev.png">
 <p>&nbsp;<br>第一步为master分支配套一个develop分支。简单来做可以本地创建一个空的develop分支，push到服务器上：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch develop</span><br><span class="line">git push -u origin develop</span><br></pre></td></tr></table></figure>
 <p>以后这个分支将会包含了项目的全部历史，而master分支将只包含了部分历史。其它开发者这时应该克隆中央仓库，建好develop分支的跟踪分支:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone ssh://user@host/path/to/repo.git</span><br><span class="line">git checkout -b develop origin/develop</span><br></pre></td></tr></table></figure>
 <p>现在每个开发都有了这些历史分支的本地拷贝。</p>
-<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
+<h3 id="工程师A和工程师B开始开发新功能"><a href="#工程师A和工程师B开始开发新功能" class="headerlink" title="工程师A和工程师B开始开发新功能"></a>工程师A和工程师B开始开发新功能</h3><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-6maryjohnbeginnew.png">
 <p>&nbsp;<br>这个示例中，工程师A和工程师B开始各自的功能开发。他们需要为各自的功能创建相应的分支。新分支不是基于master分支，而是应该基于develop分支</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature develop</span><br></pre></td></tr></table></figure>
 <p>他们用老套路添加提交到各自功能分支上：编辑、暂存、提交：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git add</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></p>
-<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-7maryfinishes.png">
+<h3 id="工程师A完成功能开发"><a href="#工程师A完成功能开发" class="headerlink" title="工程师A完成功能开发"></a>工程师A完成功能开发</h3><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-7maryfinishes.png">
 <p>&nbsp;<br>添加了提交后，工程师A觉得她的功能OK了。如果团队使用Pull Requests，这时候可以发起一个用于合并到develop分支。否则她可以直接合并到她本地的develop分支后push到中央仓库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git pull origin develop</span><br><span class="line">git checkout develop</span><br><span class="line">git merge some-feature</span><br><span class="line">git push</span><br><span class="line">git branch -d some-feature</span><br></pre></td></tr></table></figure></p>
 <p>第一条命令在合并功能前确保develop分支是最新的。注意，功能决不应该直接合并到master分支。冲突解决方法和集中式工作流一样</p>
-<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-8maryprepsrelease.png">
+<h3 id="工程师A开始准备发布"><a href="#工程师A开始准备发布" class="headerlink" title="工程师A开始准备发布"></a>工程师A开始准备发布</h3><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-8maryprepsrelease.png">
 <p>&nbsp;<br>这个时候工程师B正在实现他的功能，工程师A开始准备她的第一个项目正式发布。像功能开发一样，她用一个新的分支来做发布准备。这一步也确定了发布的版本号：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-0.1 develop</span><br></pre></td></tr></table></figure>
 <p>这个分支是清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支。</p>
 <p>只要工程师A创建这个分支并push到中央仓库，这个发布就是功能冻结的。任何不在develop分支中的新功能都推到下个发布循环中。</p>
-<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjs4qjbwz002o63w061ezkrva/images/git-workflow-release-cycle-9maryfinishes.png">
+<h3 id="工程师A完成发布"><a href="#工程师A完成发布" class="headerlink" title="工程师A完成发布"></a>工程师A完成发布</h3><img src="/2018/12/23/cjs4shr63002ds5w0weqsag76/images/git-workflow-release-cycle-9maryfinishes.png">
 <p>&nbsp;<br>一旦准备好了对外发布，工程师A合并修改到master分支和develop分支上，删除发布分支。合并回develop分支很重要，因为在发布分支中已经提交的更新需要在后面的新功能中也要是可用的。另外，如果工程师A的团队要求Code Review，这是一个发起Pull Request的理想时机。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git checkout develop</span><br><span class="line">git merge release-0.1</span><br><span class="line">git push</span><br><span class="line">git branch -d release-0.1</span><br></pre></td></tr></table></figure>
 <p>发布分支是作为功能开发（develop分支）和对外发布（master分支）间的缓冲。只要有合并到master分支，就应该打好Tag以方便跟踪。</p>
@@ -2276,7 +2488,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/">
+    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/12/cjs4shr600029s5w0xhzerq1q/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhangming">
@@ -2295,7 +2507,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/" itemprop="url">浏览器的回流与重绘</a></h1>
+                <a class="post-title-link" href="/2018/12/12/cjs4shr600029s5w0xhzerq1q/" itemprop="url">浏览器的回流与重绘</a></h1>
         
 
         <div class="post-meta">
@@ -2400,7 +2612,7 @@
       
         
           
-            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/16798b8db54caa31.png">
+            <h2 id="浏览器的渲染过程"><a href="#浏览器的渲染过程" class="headerlink" title="浏览器的渲染过程"></a>浏览器的渲染过程</h2><img src="/2018/12/12/cjs4shr600029s5w0xhzerq1q/images/16798b8db54caa31.png">
 <p>从上面这个图上，我们可以看到，浏览器渲染过程如下：</p>
 <ol>
 <li>浏览器使用流式布局模型 (Flow Based Layout)</li>
@@ -2410,7 +2622,7 @@
 <li>Painting(重绘):根据渲染树以及回流得到的几何信息，得到节点的绝对像素</li>
 <li>由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。</li>
 </ol>
-<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/16798b8d839a7d6d.png">
+<h3 id="生成渲染数"><a href="#生成渲染数" class="headerlink" title="生成渲染数"></a>生成渲染数</h3><img src="/2018/12/12/cjs4shr600029s5w0xhzerq1q/images/16798b8d839a7d6d.png">
 <p>为构建渲染树，浏览器大体上完成了下列工作：</p>
 <ol>
 <li>从 DOM 树的根节点开始遍历每个可见节点。某些节点不可见（例如脚本标记、元标记等），因为它们不会体现在渲染输出中，所以会被忽略。某些节点通过 CSS 隐藏，因此在渲染树中也会被忽略，例如，上例中的 span 节点—不会出现在渲染树中，—因为有一个显式规则在该节点上设置了“display: none”属性。</li>
@@ -2427,7 +2639,7 @@
 <p>以上网页的正文包含两个嵌套 div：第一个（父）div 将节点的显示尺寸设置为视口宽度的 50%，—父 div 包含的第二个 div—将其宽度设置为其父项的 50%；即视口宽度的 25%。</p>
 <p>布局流程的输出是一个“盒模型”，它会精确地捕获每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
 <p>最后，既然我们知道了哪些节点可见、它们的计算样式以及几何信息，我们终于可以将这些信息传递给最后一个阶段：将渲染树中的每个节点转换成屏幕上的实际像素。这一步通常称为“绘制”或“栅格化”。</p>
-<img src="/2018/12/12/cjs4qjbx0002p63w0i99wbi6c/images/layout-viewport.png">
+<img src="/2018/12/12/cjs4shr600029s5w0xhzerq1q/images/layout-viewport.png">
 <p>会导致回流的操作：</p>
 <ul>
 <li>页面首次渲染</li>
@@ -2520,299 +2732,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhangminggeek.github.io/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhangming">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="感动常在">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/" itemprop="url">跨域问题及解决方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T23:07:41+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3k字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  11分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</p>
-<p>如果两个页面的协议，端口（如果有指定）和域名都相同，则两个页面具有相同的源。</p>
-<table>
-<thead>
-<tr>
-<th>URL</th>
-<th>结果</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://store.company.com/dir2/other.html" target="_blank" rel="noopener">http://store.company.com/dir2/other.html</a></td>
-<td>成功</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="http://store.company.com/dir/inner/another.html" target="_blank" rel="noopener">http://store.company.com/dir/inner/another.html</a></td>
-<td>成功</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://store.company.com/secure.html" target="_blank" rel="noopener">https://store.company.com/secure.html</a></td>
-<td>失败</td>
-<td>不同协议 ( https和http )</td>
-</tr>
-<tr>
-<td><a href="http://store.company.com:81/dir/etc.html" target="_blank" rel="noopener">http://store.company.com:81/dir/etc.html</a></td>
-<td>失败</td>
-<td>不同端口 ( 81和80)</td>
-</tr>
-<tr>
-<td><a href="http://news.company.com/dir/other.html" target="_blank" rel="noopener">http://news.company.com/dir/other.html</a></td>
-<td>失败</td>
-<td>不同域名 ( news和store )</td>
-</tr>
-</tbody>
-</table>
-<h3 id="源的继承"><a href="#源的继承" class="headerlink" title="源的继承"></a>源的继承</h3><p>data：URLs获得一个新的，空的安全上下文。</p>
-<p>在页面中用 about:blank 或 javascript: URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有明确包含有关原始服务器的信息。</p>
-<p>例如，about:blank 通常作为父脚本写入内容的新的空白弹出窗口的 URL（例如，通过  Window.open()  机制）。 如果此弹出窗口也包含代码，则该代码将继承与创建它的脚本相同的源。data: URL会得到一个新的空的安全上下文。</p>
-<blockquote>
-<p>注意：在Gecko 6.0之前，如果用户在位置栏中输入 data URLs，data URLs 将继承当前浏览器窗口中网页的安全上下文。</p>
-</blockquote>
-<h3 id="IE例外"><a href="#IE例外" class="headerlink" title="IE例外"></a>IE例外</h3><p>当涉及到同源策略时，Internet Explorer 有两个主要的不同点：</p>
-<ul>
-<li>授信范围（Trust Zones）：两个相互之间高度互信的域名，如公司域名（corporate domains），不遵守同源策略的限制。</li>
-<li>端口：IE 未将端口号加入到同源策略的组成部分之中，因此 <a href="http://company.com:81/index.html" target="_blank" rel="noopener">http://company.com:81/index.html</a> 和<a href="http://company.com/index.html" target="_blank" rel="noopener">http://company.com/index.html</a>  属于同源并且不受任何限制。</li>
-</ul>
-<p>这些例外是非标准的，其它浏览器也未做出支持，但会助于开发基于window RT IE的应用程序。</p>
-<h2 id="跨域网络访问"><a href="#跨域网络访问" class="headerlink" title="跨域网络访问"></a>跨域网络访问</h2><p>同源策略控制了不同源之间的交互，例如在使用XMLHttpRequest 或 <img> 标签时则会受到同源策略的约束。这些交互通常分为三类：</p>
-<ul>
-<li>通常允许跨域写操作（Cross-origin writes）。例如链接（links），重定向以及表单提交。特定少数的HTTP请求需要添加 preflight。</li>
-<li>通常允许跨域资源嵌入（Cross-origin embedding）。</li>
-<li>通常不允许跨域读操作（Cross-origin reads）。但常可以通过内嵌资源来巧妙的进行读取访问。例如可以读取嵌入图片的高度和宽度，调用内嵌脚本的方法，或availability of an embedded resource。</li>
-</ul>
-<p>以下是可能嵌入跨源的资源的一些示例：</p>
-<ul>
-<li><code>&lt;script src=&quot;...&quot;&gt;&lt;/script&gt;</code> 标签嵌入跨域脚本。语法错误信息只能在同源脚本中捕捉到。</li>
-<li><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;...&quot;&gt;</code> 标签嵌入CSS。由于CSS的松散的语法规则，CSS的跨域需要一个设置正确的Content-Type 消息头。不同浏览器有不同的限制： IE, Firefox, Chrome, Safari (跳至CVE-2010-0051)部分 和 Opera。</li>
-<li><code>&lt;img&gt;</code>嵌入图片。支持的图片格式包括PNG,JPEG,GIF,BMP,SVG,…</li>
-<li><code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code>嵌入多媒体资源。</li>
-<li><code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code> 和 <code>&lt;applet&gt;</code> 的插件。</li>
-<li>@font-face 引入的字体。一些浏览器允许跨域字体（ cross-origin fonts），一些需要同源字体（same-origin fonts）。</li>
-<li><code>&lt;frame&gt;</code> 和 <code>&lt;iframe&gt;</code> 载入的任何资源。站点可以使用X-Frame-Options消息头来阻止这种形式的跨域交互。</li>
-</ul>
-<h2 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h2><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP 的解决方案就是通过 script 标签进行跨域请求。</p>
-<ul>
-<li>前端设置好回调函数，并把回调函数当做请求 url 携带的参数。</li>
-<li>后端接受到请求之后，返回回调函数名和需要的数据。</li>
-<li>后端响应并返回数据后，返回的数据传入到回调函数中并执行。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 通过原生使用 script 标签 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">jsonpCallback</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script src="http:/</span><span class="regexp">/127.0.0.1:3000?callback=jsonpCallback"&gt;&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-<p>也可以使用 AJAX GET 请求方式来跨域请求（axios GET 方式跨域同理）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- AJAX GET 请求 --&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">jsonpCallback</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">'GET'</span>, <span class="comment">// 必须是 GET 请求</span></span><br><span class="line">        url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">        dataType: <span class="string">'jsonp'</span>, <span class="comment">// 设置为 jsonp 类型</span></span><br><span class="line">        jsonpCallback: <span class="string">'jsonpCallback'</span> <span class="comment">// 设置回调函数</span></span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>优缺点：</p>
-<ul>
-<li>兼容性好，低版本的 IE 也支持这种方式。</li>
-<li>只能支持 GET 方式的 HTTP 请求。</li>
-<li>只支持前后端数据通信这样的 HTTP 请求，并不能解决不同域下的页面之间的数据交互通信问题</li>
-</ul>
-<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><h4 id="CORS的配置"><a href="#CORS的配置" class="headerlink" title="CORS的配置"></a>CORS的配置</h4><p>跨源资源共享（CORS）是一种机制，它使用其他HTTP请求头告诉浏览器让在一个源（域）上运行的Web应用程序有权访问不同来源服务器中的所选资源。Web应用程序在请求具有与自己不同源（域，协议和端口）的资源时，会发出跨源HTTP请求。</p>
-<p>出于安全原因，浏览器会限制从脚本中发起的跨源HTTP请求。例如，XMLHttpRequest和Fetch API遵循同源策略。这意味着使用这些API的Web应用程序只能从加载应用程序的同一源请求HTTP资源，除非来自其他来源的响应包含正确的CORS标头。</p>
-<img src="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/images/CORS_principle.png">
-<p>CORS机制支持浏览器和Web服务器之间的安全跨源请求和数据传输。现代浏览器在API中使用CORS，如XMLHttpRequest和Fetch，以帮助减轻跨域的HTTP请求的风险。</p>
-<p>服务端设置 Access-Control-Allow-Origin 字段，值可以是具体的域名或者 ‘*’ 通配符，配置好后就可以允许跨域请求数据。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">    type: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'http://127.0.0.1:3000'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'获取到的数据了，打开控制台瞧瞧'</span>);</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-<p>服务端如何设置跨域字段？ 后端语言设置跨域的方式都不一致，具体可参考后端语言本身的 API。</p>
-<p>Node 端设置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 响应头添加 Access-Control-Allow-Origin</span></span><br><span class="line">res.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">    <span class="string">'Access-Control-Allow-Origin'</span>: <span class="string">'*'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者使用了 Express 这样的框架</span></span><br><span class="line">res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br></pre></td></tr></table></figure></p>
-<h4 id="简单请求和复杂请求"><a href="#简单请求和复杂请求" class="headerlink" title="简单请求和复杂请求"></a>简单请求和复杂请求</h4><p>在 CORS 机制中, 把请求分为了 简单请求 和 复杂请求, 一个 HTTP 请求若想要让自己成为一个简单请求就要满足以下条件:</p>
-<ul>
-<li>首先, 请求方式的限制: 请求方式(method) 只能是 GET POST HEAD 三者中的一个</li>
-<li>其次就是请求头字段的限制: 请求头字段必须包含在以下集合中, 包括: Accept Accept-Language Content-Language Content-Type DPR Downlink Save-Data Viewport-Width Width.</li>
-<li>其次就是请求头值的限制: 当请求头中包含 Content-Type 的时候, 其值必须为 text/plain multipart/form-data application/x-www-form-urlencoded(这个是 form 提交默认的 Content-Type) 三者中的一个.</li>
-</ul>
-<h4 id="预检请求"><a href="#预检请求" class="headerlink" title="预检请求"></a>预检请求</h4><p>跨域资源共享标准新增了一组HTTP首部字段，允许服务器声明哪些源站通过浏览器有权访问哪些资源。另外，规范要求，对哪些可能对服务器数据产生副作用的请求方法（特别是GET以为的HTTP请求，或者搭配某些MIME类型的POST请求，）浏览器必须首先使用OPTION方法发起一个预检请求，从而获知服务端是否允许该跨域请求。服务端确认允许之后，才发起实际的HTTP请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括Cookie和HTTP认证相关数据）。</p>
-<p>所有的简单请求跨域访问都不会触发预检请求。</p>
-<p>浏览器在接受到我们发送的跨域请求的指令时, 会自动判断我们的请求是否属于跨域请求, 如果是的话便会发出预检请求, 预检请求的请求头信息也是浏览器根据我们的请求信息自动添加的. 示例项目中, 因为我们的请求是 PUT 类型的, 所以在预检请求的时候会添加 Access-Control-Allow-Methods: PUT 来咨询服务器自己是否可以向它发送这种类型的请求. 同理, 由于我们的请求中有自定义请求头 token 所以, 在预检请求中, 浏览器要和服务器做是否可以添加自定义请求头的协商. 只有当浏览器和服务器之间的预检请求协商通过了, 浏览器才会继续发送真正的 AJAX 请求.</p>
-<h3 id="Server-Proxy"><a href="#Server-Proxy" class="headerlink" title="Server Proxy"></a>Server Proxy</h3><p>通过服务端代理请求的方式也是解决浏览器跨域问题的方案。同源策略只是针对浏览器的安全策略，服务端并不受同源策略的限制，也就不存在跨域的问题。具体步骤如下：</p>
-<ul>
-<li>前端正常请求服务端提供的接口。比如请求接口：<a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> 。</li>
-<li>通过服务端设置代理发送请求，请求到数据后再将需要的数据返回给前端。比如设置的代理请求接口是 cnodejs.org/api/v1/topi… ，服务端代理将数据请求回来之后再将数据 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> 接口返回给前端。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务端代理请求代码</span></span><br><span class="line"><span class="comment">// 服务端只是简单的通过正常的 HTTP 请求的方式来代理请求接口数据</span></span><br><span class="line"><span class="comment">// 或者也可以使用 proxy 模块来代理</span></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'https://cnodejs.org/api/v1/topics'</span>;        </span><br><span class="line">https.get(url, (resp) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> data = <span class="string">""</span>;</span><br><span class="line">    resp.on(<span class="string">'data'</span>, chunk =&gt; &#123;</span><br><span class="line">        data += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    resp.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">        res.writeHead(<span class="number">200</span>, &#123;</span><br><span class="line">            <span class="string">'Access-Control-Allow-Origin'</span>: <span class="string">'*'</span>,</span><br><span class="line">            <span class="string">'Content-Type'</span>: <span class="string">'application/json; charset=utf-8'</span></span><br><span class="line">        &#125;);</span><br><span class="line">        res.end(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="location-hash-iframe"><a href="#location-hash-iframe" class="headerlink" title="location.hash + iframe"></a>location.hash + iframe</h3><p>location.hash + iframe 跨域通信的实现是这样的：</p>
-<ul>
-<li>不同域的 a 页面与 b 页面进行通信，在 a 页面中通过 iframe 嵌入 b 页面，并给 iframe 的 src 添加一个 hash 值。</li>
-<li>b 页面接收到了 hash 值后，确定 a 页面在尝试着与自己通信，然后通过修改 parent.location.hash 的值，将要通信的数据传递给 a 页面的 hash 值。</li>
-<li>但由于在 IE 和 Chrmoe 下不允许子页面直接修改父页面的 hash 值，所以需要一个代理页面，通过与 a 页面同域的 c 页面来传递数据。</li>
-<li>同样的在 b 页面中通过 iframe 嵌入 c 页面，将要传递的数据通过  iframe 的 src 链接的 hash 值传递给 c 页面，由于 a 页面与 c 页面同域，c 页面可以直接修改 a 页面的 hash 值或者调用 a 页面中的全局函数。</li>
-</ul>
-<p>大致流程：</p>
-<img src="/2018/12/09/cjs4qjbx1002r63w0jzr3uhho/images/165b1a74b0bc4290.png">
-<p>a 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">    iframe.style.display = <span class="string">'none'</span>;</span><br><span class="line">    iframe.src = <span class="string">"http://localhost:8081/b.html#data"</span>;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkHash</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> data = location.hash ? location.hash.substring(<span class="number">1</span>) : <span class="string">''</span>;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'获得到的数据是：'</span>, data);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'监听到hash的变化：'</span>, location.hash.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>b 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">     <span class="keyword">switch</span>(location.hash) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">'#data'</span>:</span><br><span class="line">         callback();</span><br><span class="line">         <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">"testHash"</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parent.location.hash = data;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">            <span class="keyword">var</span> ifrproxy = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">            ifrproxy.style.display = <span class="string">'none'</span>;</span><br><span class="line">            ifrproxy.src = <span class="string">'http://localhost:8080/c.html#'</span> + data;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(ifrproxy);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>c 页面代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 修改 a 页面的 hash 值</span></span><br><span class="line">    parent.parent.location.hash = self.location.hash.substring(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 调用 a 页面的全局函数</span></span><br><span class="line">    parent.parent.checkHash();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>优缺点：</p>
-<ul>
-<li>hash 传递的数据容量有限。</li>
-<li>数据直接暴露在 url 中。</li>
-</ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Security/Same-origin_policy" target="_blank" rel="noopener">浏览器的同源策略</a><br><a href="https://juejin.im/post/5b91d3be5188255c95380b5e" target="_blank" rel="noopener">前端跨域方法论</a><br><a href="https://juejin.im/post/5c07fa04e51d451de968906b" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】JSONP</a><br><a href="https://juejin.im/post/5c0a55e76fb9a049ef2665ba" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】CORS 基础篇</a><br><a href="https://juejin.im/post/5c0b5a8851882548e9380afb" target="_blank" rel="noopener">【小哥哥, 跨域要不要了解下】CORS 进阶篇</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2861,7 +2780,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
